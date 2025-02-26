@@ -1,39 +1,22 @@
-import {
-  afterAll,
-  beforeAll,
-  describe,
-  expect,
-  MockInstance,
-  test,
-  vi,
-} from 'vitest'
 import { act, fireEvent, screen } from '@testing-library/react'
-import { ConnectWalletButton } from '@/components/connect-wallet-button'
+import { baseSepolia } from 'viem/chains'
+import { describe, expect, test, vi } from 'vitest'
+
+import { ConnectButton } from '@/components/connect-button'
 import { renderWithProviders } from '@/test'
 import { mockWallet } from '@/test/mock-wallet'
-import { baseSepolia } from 'viem/chains'
-
-let mockError: ReturnType<MockInstance['mockImplementation']>
-
-beforeAll(() => {
-  // Silence the error logs if the component throws an error
-  mockError = vi.spyOn(console, 'error').mockImplementation(() => {})
-})
-
-afterAll(() => {
-  mockError.mockRestore()
-})
 
 describe('Given a user is not connected to their wallet', () => {
-  test('Should show correct default', () => {
-    const { getByText } = renderWithProviders(<ConnectWalletButton />)
+  test('Should show correct default', async () => {
+    const { getByText } = renderWithProviders(<ConnectButton />)
+    await vi.dynamicImportSettled()
 
     expect(getByText('Connect Wallet')).toBeInTheDocument()
   })
 
   test('Should show custom connect button', () => {
     const { getByText } = renderWithProviders(
-      <ConnectWalletButton connectButton={() => <div>Connect now</div>} />,
+      <ConnectButton connectButton={() => <div>Connect now</div>} />,
     )
 
     expect(getByText('Connect now')).toBeInTheDocument()
@@ -42,7 +25,7 @@ describe('Given a user is not connected to their wallet', () => {
 
 describe('Given a user is connected to their wallet', () => {
   test('Should use RainbowKits ConnectButton as default', async () => {
-    const { getByText } = renderWithProviders(<ConnectWalletButton />, {
+    const { getByText } = renderWithProviders(<ConnectButton />, {
       mockWallets: [
         { groupName: 'Wallets', wallets: [mockWallet('metamask', 'Metamask')] },
       ],
@@ -60,12 +43,12 @@ describe('Given a user is connected to their wallet', () => {
       fireEvent.click(btn)
     })
 
-    expect(getByText('0xf3…2266')).toBeInTheDocument()
+    expect(getByText('0xf39F...2266')).toBeInTheDocument()
   })
 
   test('Should show custom connectedButton', async () => {
     const { getByText } = renderWithProviders(
-      <ConnectWalletButton
+      <ConnectButton
         connectedButton={({ account }) => (
           <div>Connected {account.displayName}!</div>
         )}
@@ -101,7 +84,7 @@ describe('Given a user is connected to their wallet', () => {
 describe.skip('Given a user is on the wrong network', () => {
   test('Should show correct default', async () => {
     const { getByText } = renderWithProviders(
-      <ConnectWalletButton
+      <ConnectButton
         wrongNetworkButton={({}) => {
           return <div>Wrong network</div>
         }}
@@ -134,7 +117,7 @@ describe.skip('Given a user is on the wrong network', () => {
 
   test('Should show custom connect button', () => {
     const { getByText } = renderWithProviders(
-      <ConnectWalletButton connectButton={() => <div>Connect now</div>} />,
+      <ConnectButton connectButton={() => <div>Connect now</div>} />,
     )
 
     expect(getByText('Connect now')).toBeInTheDocument()

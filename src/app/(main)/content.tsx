@@ -130,7 +130,7 @@ export const Content = () => {
   return (
     <div>
       {/* Header */}
-      <header className="px-4 pt-8 pb-16">
+      <header className="px-4 pt-12 pb-16">
         <div className="mx-auto max-w-6xl text-center">
           <h1 className="mb-6 font-['Fredoka'] text-5xl font-bold tracking-wide text-white drop-shadow-lg">
             Base Meme Index

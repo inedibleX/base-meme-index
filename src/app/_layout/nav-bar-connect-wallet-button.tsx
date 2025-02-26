@@ -1,19 +1,41 @@
 'use client'
 
+import { LoaderCircleIcon, PlugIcon } from 'lucide-react'
 import React from 'react'
-import { ConnectWalletButton } from '@/components/connect-wallet-button'
+import { useAccount } from 'wagmi'
+
+import { ConnectButton } from '@/components/connect-button'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { LoaderCircleIcon } from 'lucide-react'
 
 export const NavBarConnectWalletButton = () => {
+  const { isReconnecting, isConnecting } = useAccount()
+
+  if (isConnecting || isReconnecting) {
+    return <Skeleton className="h-[36px] w-[200px] rounded-md" />
+  }
+
   return (
     <div>
-      <ConnectWalletButton
+      <ConnectButton
+        connectButton={({ openConnectModal }) => {
+          return (
+            <button
+              className={
+                'border-primary text-primary flex h-[36px] cursor-pointer items-center gap-x-2 rounded-full border px-4 py-2 hover:bg-gray-50'
+              }
+              onClick={openConnectModal}
+              type="button"
+            >
+              Connect <PlugIcon className="size-4" />
+            </button>
+          )
+        }}
         connectedButton={({
           account,
           chain,
@@ -21,7 +43,7 @@ export const NavBarConnectWalletButton = () => {
           openChainModal,
         }) => {
           return (
-            <div className={'flex items-center gap-x-2'}>
+            <div className={'flex h-[36px] items-center gap-x-2'}>
               <button
                 className={'cursor-pointer'}
                 onClick={openAccountModal}

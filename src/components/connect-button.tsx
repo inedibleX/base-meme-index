@@ -1,7 +1,16 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit'
-import React from 'react'
 // @ts-expect-error wagmi is not typed
 import { type ConnectButtonRendererProps } from '@rainbow-me/rainbowkit/dist/components/ConnectButton/ConnectButtonRenderer'
+import dynamic from 'next/dynamic'
+import React from 'react'
+import { shortenAddress } from '@/lib/shorten-address'
+
+import { Button } from './ui/button'
+
+const RainbowConnectButton = dynamic(
+  () =>
+    import('@rainbow-me/rainbowkit').then((mod) => mod.ConnectButton.Custom),
+  { ssr: false },
+)
 
 type RenderProps = {
   account: ConnectButtonRendererProps['account']
@@ -27,13 +36,13 @@ type ConnectWalletButtonProps = {
   wrongNetworkButton?: (props: WrongNetworkButtonProps) => React.ReactNode
 }
 
-export const ConnectWalletButton = ({
+export const ConnectButton = ({
   connectedButton,
   connectButton,
   wrongNetworkButton,
 }: ConnectWalletButtonProps) => {
   return (
-    <ConnectButton.Custom>
+    <RainbowConnectButton>
       {({
         account,
         chain,
@@ -69,9 +78,9 @@ export const ConnectWalletButton = ({
                   return connectButton({ openConnectModal })
                 }
                 return (
-                  <button onClick={openConnectModal} type="button">
+                  <Button onClick={openConnectModal} type="button">
                     Connect Wallet
-                  </button>
+                  </Button>
                 )
               }
 
@@ -90,11 +99,15 @@ export const ConnectWalletButton = ({
                 })
               }
 
-              return <ConnectButton showBalance />
+              return (
+                <Button onClick={openAccountModal} type="button">
+                  {shortenAddress(account?.address)}
+                </Button>
+              )
             })()}
           </div>
         )
       }}
-    </ConnectButton.Custom>
+    </RainbowConnectButton>
   )
 }
