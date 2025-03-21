@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Wallet } from 'lucide-react'
 import { useAccount, useBalance } from 'wagmi'

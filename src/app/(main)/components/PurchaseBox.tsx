@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useCallback, useEffect, useState } from 'react'
 import { ArrowDownUp, Loader2, X } from 'lucide-react'
 import {
@@ -11,16 +13,11 @@ import { BaseError, formatEther, parseEther } from 'viem'
 import { numberFormat } from '@/lib/formatters'
 
 interface PurchaseBoxProps {
-  onPurchase: (ethAmount: number, bmiAmount: number) => void
   bmiRate: number
   feePercentage: number
 }
 
-export const PurchaseBox = ({
-  onPurchase,
-  bmiRate,
-  feePercentage,
-}: PurchaseBoxProps) => {
+export const PurchaseBox = ({ bmiRate, feePercentage }: PurchaseBoxProps) => {
   const { address } = useAccount()
   const { data: ethBalance } = useBalance({
     address,
@@ -77,10 +74,9 @@ export const PurchaseBox = ({
 
   useEffect(() => {
     if (isConfirmed && receipt) {
-      onPurchase(parseFloat(purchaseAmount), calculateBmiAmount(purchaseAmount))
       setPurchaseAmount('')
     }
-  }, [isConfirmed, receipt, onPurchase, purchaseAmount, calculateBmiAmount])
+  }, [isConfirmed, receipt, purchaseAmount, calculateBmiAmount])
 
   const errMsg =
     (txError as BaseError)?.shortMessage ||

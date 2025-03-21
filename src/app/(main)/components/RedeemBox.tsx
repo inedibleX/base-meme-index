@@ -1,8 +1,9 @@
+'use client'
+
 import React, { useCallback, useEffect, useState } from 'react'
 import { ArrowRightLeft, Loader2, X } from 'lucide-react'
 import {
   useAccount,
-  useBalance,
   useWaitForTransactionReceipt,
   useWriteContract,
 } from 'wagmi'
@@ -14,17 +15,11 @@ import { numberFormat } from '@/lib/formatters'
 import { BaseError, formatEther, parseEther } from 'viem'
 
 interface RedeemBoxProps {
-  bmiBalance: number
-  onRedeem: (bmiAmount: number, ethAmount: number) => void
   bmiRate: number
   feePercentage: number
 }
 
-export const RedeemBox = ({
-  onRedeem,
-  bmiRate,
-  feePercentage,
-}: RedeemBoxProps) => {
+export const RedeemBox = ({ bmiRate, feePercentage }: RedeemBoxProps) => {
   const { address } = useAccount()
   const { data: bmiBalance } = useReadBmiTokenBalanceOf({
     args: [address as `0x${string}`],
@@ -84,10 +79,9 @@ export const RedeemBox = ({
 
   useEffect(() => {
     if (isConfirmed && receipt) {
-      onRedeem(parseFloat(redeemAmount), calculateEthAmount(redeemAmount))
       setRedeemAmount('')
     }
-  }, [isConfirmed, receipt, onRedeem, redeemAmount, calculateEthAmount])
+  }, [isConfirmed, receipt, redeemAmount, calculateEthAmount])
 
   const errMsg =
     (txError as BaseError)?.shortMessage ||
