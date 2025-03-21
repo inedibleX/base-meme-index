@@ -3,23 +3,24 @@ import { Wallet } from 'lucide-react'
 import { useAccount, useBalance } from 'wagmi'
 import { formatEther } from 'viem'
 import { numberFormat } from '@/lib/formatters'
+import { useReadBmiTokenBalanceOf } from '@/generated/wagmi'
 
-interface UserBalanceCardProps {
-  bmiBalance: number
-  bmiUsdRate: number
-}
+export const UserBalanceCard = () => {
+  const BMI_USD_RATE = 30 // 1 BMI = $30 USD
 
-export const UserBalanceCard = ({
-  bmiBalance,
-  bmiUsdRate,
-}: UserBalanceCardProps) => {
-  const calculateUsdValue = (bmiAmount: number) => {
-    return bmiAmount * bmiUsdRate
+  const calculateUsdValue = (bmiAmount: bigint) => {
+    return Number(bmiAmount) * BMI_USD_RATE
   }
 
   const { address } = useAccount()
   const { data: ethBalance } = useBalance({
     address,
+  })
+  const { data: bmiBalance } = useReadBmiTokenBalanceOf({
+    args: [address as `0x${string}`],
+    query: {
+      enabled: !!address,
+    },
   })
 
   return (
@@ -31,7 +32,7 @@ export const UserBalanceCard = ({
             <h2 className="text-sm text-slate-600">Your Balance</h2>
             <div className="space-y-1">
               <p className="text-2xl font-bold text-sky-600">
-                {bmiBalance.toFixed(2)} $BMI
+                {numberFormat(formatEther(bmiBalance ?? BigInt(0)))} $BMI
               </p>
               <p className="text-lg text-sky-500">
                 {numberFormat(formatEther(ethBalance?.value ?? BigInt(0)))} ETH
@@ -42,7 +43,7 @@ export const UserBalanceCard = ({
         <div className="text-right">
           <h2 className="text-sm text-slate-600">Value in USD</h2>
           <p className="text-2xl font-bold text-green-600">
-            ${numberFormat(calculateUsdValue(bmiBalance), 2, 2)}
+            ${numberFormat(calculateUsdValue(bmiBalance ?? BigInt(0)), 2, 2)}
           </p>
         </div>
       </div>

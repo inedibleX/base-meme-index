@@ -6,583 +6,611 @@ import {
 } from 'wagmi/codegen'
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// OnlyUpFactory
+// BMIToken
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const onlyUpFactoryAbi = [
-  { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
+export const bmiTokenAbi = [
   {
-    type: 'error',
-    inputs: [{ name: 'target', internalType: 'address', type: 'address' }],
-    name: 'AddressEmptyCode',
-  },
-  {
-    type: 'error',
-    inputs: [
-      { name: 'implementation', internalType: 'address', type: 'address' },
-    ],
-    name: 'ERC1967InvalidImplementation',
-  },
-  { type: 'error', inputs: [], name: 'ERC1967NonPayable' },
-  { type: 'error', inputs: [], name: 'ExcessiveTaxes' },
-  { type: 'error', inputs: [], name: 'FailedInnerCall' },
-  { type: 'error', inputs: [], name: 'InvalidFees' },
-  { type: 'error', inputs: [], name: 'InvalidInitialization' },
-  { type: 'error', inputs: [], name: 'InvalidOwner' },
-  { type: 'error', inputs: [], name: 'NotInitializing' },
-  { type: 'error', inputs: [], name: 'OnlyDexSetter' },
-  { type: 'error', inputs: [], name: 'OnlyFeeManager' },
-  { type: 'error', inputs: [], name: 'OnlyUp' },
-  {
-    type: 'error',
-    inputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
-    name: 'OwnableInvalidOwner',
-  },
-  {
-    type: 'error',
-    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'OwnableUnauthorizedAccount',
-  },
-  { type: 'error', inputs: [], name: 'Salt' },
-  { type: 'error', inputs: [], name: 'UUPSUnauthorizedCallContext' },
-  {
-    type: 'error',
-    inputs: [{ name: 'slot', internalType: 'bytes32', type: 'bytes32' }],
-    name: 'UUPSUnsupportedProxiableUUID',
-  },
-  {
-    type: 'event',
-    anonymous: false,
+    type: 'constructor',
     inputs: [
       {
-        name: 'token',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      { name: 'pool', internalType: 'address', type: 'address', indexed: true },
-      {
-        name: 'creator',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'positionId',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-    ],
-    name: 'GoatTokenCreated',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'version',
-        internalType: 'uint64',
-        type: 'uint64',
-        indexed: false,
-      },
-    ],
-    name: 'Initialized',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      { name: 'pool', internalType: 'address', type: 'address', indexed: true },
-      {
-        name: 'token',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'positionId',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-    ],
-    name: 'OnlyUpUniPoolCreated',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'previousOwner',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'newOwner',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-    ],
-    name: 'OwnershipTransferred',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'token0',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'token1',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'pair',
-        internalType: 'address',
-        type: 'address',
-        indexed: false,
-      },
-      { name: '', internalType: 'uint256', type: 'uint256', indexed: false },
-    ],
-    name: 'PairCreated',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'implementation',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-    ],
-    name: 'Upgraded',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'UPGRADE_INTERFACE_VERSION',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: '_reserve0', internalType: 'uint256', type: 'uint256' },
-      { name: '_reserve1', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'addInitialLiquidity',
-    outputs: [{ name: 'positionId', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    name: 'allPairs',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: '_tokens', internalType: 'address[]', type: 'address[]' }],
-    name: 'collect',
-    outputs: [
-      { name: 'amounts', internalType: 'uint256[2][]', type: 'uint256[2][]' },
-    ],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: '_params',
-        internalType: 'struct GoatTypes.TokenParams',
+        name: 'params',
+        internalType: 'struct WeightedPool.NewPoolParams',
         type: 'tuple',
         components: [
           { name: 'name', internalType: 'string', type: 'string' },
           { name: 'symbol', internalType: 'string', type: 'string' },
-          { name: 'supply', internalType: 'uint256', type: 'uint256' },
+          { name: 'numTokens', internalType: 'uint256', type: 'uint256' },
           {
-            name: 'maxWinMultiplier',
-            internalType: 'uint256',
-            type: 'uint256',
+            name: 'normalizedWeights',
+            internalType: 'uint256[]',
+            type: 'uint256[]',
           },
-          { name: 'buyTax', internalType: 'uint256', type: 'uint256' },
-          { name: 'sellTax', internalType: 'uint256', type: 'uint256' },
-          { name: 'winChance', internalType: 'uint256', type: 'uint256' },
-          { name: 'owner', internalType: 'address', type: 'address' },
-          { name: 'treasury', internalType: 'address', type: 'address' },
-          { name: 'dialogueStyle', internalType: 'string', type: 'string' },
+          { name: 'version', internalType: 'string', type: 'string' },
         ],
       },
-      { name: '', internalType: 'enum OnlyUpFactory.TokenType', type: 'uint8' },
-      { name: '', internalType: 'int24', type: 'int24' },
-      { name: '_salt', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'vault', internalType: 'contract IVault', type: 'address' },
     ],
-    name: 'createToken',
-    outputs: [
-      { name: 'token', internalType: 'address', type: 'address' },
-      { name: 'pool', internalType: 'address', type: 'address' },
-    ],
-    stateMutability: 'payable',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'creatorShare',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'dexSetter',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'feeManager',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'feeShares',
-    outputs: [
-      { name: '_treasury', internalType: 'address', type: 'address' },
-      { name: '_creatorShare', internalType: 'uint256', type: 'uint256' },
-      { name: '_treasuryShare', internalType: 'uint256', type: 'uint256' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: '', internalType: 'address', type: 'address' }],
-    name: 'fromDexes',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'deployer', internalType: 'address', type: 'address' },
-      { name: 'constructorArgs', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'generateSalt',
-    outputs: [
-      { name: 'salt', internalType: 'bytes32', type: 'bytes32' },
-      { name: 'token', internalType: 'address', type: 'address' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: '', internalType: 'address', type: 'address' },
-      { name: '', internalType: 'address', type: 'address' },
-    ],
-    name: 'getPair',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: '_from', internalType: 'address', type: 'address' },
-      { name: '_to', internalType: 'address', type: 'address' },
-    ],
-    name: 'getTaxes',
-    outputs: [
-      { name: 'fromTax', internalType: 'uint256', type: 'uint256' },
-      { name: 'toTax', internalType: 'uint256', type: 'uint256' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'graduationMintRatio',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: '_positionManager',
-        internalType: 'contract INonfungiblePositionManager',
-        type: 'address',
-      },
-      { name: '_feeManager', internalType: 'address', type: 'address' },
-    ],
-    name: 'initialize',
-    outputs: [],
     stateMutability: 'nonpayable',
   },
+  { type: 'error', inputs: [], name: 'BaseOutOfBounds' },
+  { type: 'error', inputs: [], name: 'ECDSAInvalidSignature' },
   {
-    type: 'function',
-    inputs: [],
-    name: 'mainFromTax',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
+    type: 'error',
+    inputs: [{ name: 'length', internalType: 'uint256', type: 'uint256' }],
+    name: 'ECDSAInvalidSignatureLength',
   },
   {
-    type: 'function',
-    inputs: [],
-    name: 'mainToTax',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
+    type: 'error',
+    inputs: [{ name: 's', internalType: 'bytes32', type: 'bytes32' }],
+    name: 'ECDSAInvalidSignatureS',
   },
   {
-    type: 'function',
-    inputs: [],
-    name: 'minWethToGraduate',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
+    type: 'error',
+    inputs: [{ name: 'deadline', internalType: 'uint256', type: 'uint256' }],
+    name: 'ERC2612ExpiredSignature',
   },
   {
-    type: 'function',
-    inputs: [],
-    name: 'owner',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'ownerGraduationMintShare',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
+    type: 'error',
     inputs: [
-      { name: '', internalType: 'address', type: 'address' },
-      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: 'signer', internalType: 'address', type: 'address' },
+      { name: 'owner', internalType: 'address', type: 'address' },
     ],
-    name: 'positionInfo',
-    outputs: [
-      { name: 'creator', internalType: 'address', type: 'address' },
-      { name: 'positionId', internalType: 'uint256', type: 'uint256' },
+    name: 'ERC2612InvalidSigner',
+  },
+  { type: 'error', inputs: [], name: 'ExponentOutOfBounds' },
+  { type: 'error', inputs: [], name: 'InputLengthMismatch' },
+  {
+    type: 'error',
+    inputs: [
+      { name: 'account', internalType: 'address', type: 'address' },
+      { name: 'currentNonce', internalType: 'uint256', type: 'uint256' },
     ],
-    stateMutability: 'view',
+    name: 'InvalidAccountNonce',
+  },
+  { type: 'error', inputs: [], name: 'InvalidExponent' },
+  { type: 'error', inputs: [], name: 'InvalidShortString' },
+  { type: 'error', inputs: [], name: 'InvalidToken' },
+  { type: 'error', inputs: [], name: 'MaxInRatio' },
+  { type: 'error', inputs: [], name: 'MaxOutRatio' },
+  { type: 'error', inputs: [], name: 'MinWeight' },
+  { type: 'error', inputs: [], name: 'NormalizedWeightInvariant' },
+  { type: 'error', inputs: [], name: 'ProductOutOfBounds' },
+  {
+    type: 'error',
+    inputs: [{ name: 'sender', internalType: 'address', type: 'address' }],
+    name: 'SenderIsNotVault',
   },
   {
-    type: 'function',
-    inputs: [],
-    name: 'positionManager',
-    outputs: [
+    type: 'error',
+    inputs: [{ name: 'str', internalType: 'string', type: 'string' }],
+    name: 'StringTooLong',
+  },
+  { type: 'error', inputs: [], name: 'WeightedPoolBptRateUnsupported' },
+  { type: 'error', inputs: [], name: 'ZeroDivision' },
+  { type: 'error', inputs: [], name: 'ZeroInvariant' },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
       {
-        name: '',
-        internalType: 'contract INonfungiblePositionManager',
+        name: 'owner',
+        internalType: 'address',
         type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'spender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
       },
     ],
-    stateMutability: 'view',
+    name: 'Approval',
   },
+  { type: 'event', anonymous: false, inputs: [], name: 'EIP712DomainChanged' },
   {
-    type: 'function',
+    type: 'event',
+    anonymous: false,
     inputs: [
-      { name: 'deployer', internalType: 'address', type: 'address' },
-      { name: 'salt', internalType: 'bytes32', type: 'bytes32' },
-      { name: 'constructorArgs', internalType: 'bytes', type: 'bytes' },
+      { name: 'from', internalType: 'address', type: 'address', indexed: true },
+      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
     ],
-    name: 'predictTokenAddress',
-    outputs: [{ name: 'result', internalType: 'address', type: 'address' }],
-    stateMutability: 'view',
+    name: 'Transfer',
   },
   {
     type: 'function',
     inputs: [],
-    name: 'proxiableUUID',
+    name: 'DOMAIN_SEPARATOR',
     outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [],
-    name: 'renounceOwnership',
-    outputs: [],
-    stateMutability: 'nonpayable',
+    name: 'PERMIT_TYPEHASH',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [
-      { name: '_newDexSetter', internalType: 'address', type: 'address' },
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'spender', internalType: 'address', type: 'address' },
     ],
-    name: 'setDexSetter',
-    outputs: [],
-    stateMutability: 'nonpayable',
+    name: 'allowance',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [
-      { name: '_treasury', internalType: 'address', type: 'address' },
-      { name: '_tradeFee', internalType: 'uint256', type: 'uint256' },
-      { name: '_creatorShare', internalType: 'uint256', type: 'uint256' },
-      { name: '_treasuryShare', internalType: 'uint256', type: 'uint256' },
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
     ],
-    name: 'setFeeShares',
-    outputs: [],
+    name: 'approve',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
     stateMutability: 'nonpayable',
   },
   {
     type: 'function',
-    inputs: [
-      {
-        name: '_graduationMintRatio',
-        internalType: 'uint256',
-        type: 'uint256',
-      },
-    ],
-    name: 'setGraduationMintRatio',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: '_mainFromTax', internalType: 'uint256', type: 'uint256' },
-      { name: '_mainToTax', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'setMainTaxes',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: '_minWethToGraduate', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'setMinWethToGraduate',
-    outputs: [],
-    stateMutability: 'nonpayable',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'balanceOf',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [
       {
-        name: '_ownerGraduationMintShare',
+        name: 'balancesLiveScaled18',
+        internalType: 'uint256[]',
+        type: 'uint256[]',
+      },
+      { name: 'tokenInIndex', internalType: 'uint256', type: 'uint256' },
+      { name: 'invariantRatio', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'computeBalance',
+    outputs: [{ name: 'newBalance', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'balancesLiveScaled18',
+        internalType: 'uint256[]',
+        type: 'uint256[]',
+      },
+      { name: 'rounding', internalType: 'enum Rounding', type: 'uint8' },
+    ],
+    name: 'computeInvariant',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'decimals',
+    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'eip712Domain',
+    outputs: [
+      { name: 'fields', internalType: 'bytes1', type: 'bytes1' },
+      { name: 'name', internalType: 'string', type: 'string' },
+      { name: 'version', internalType: 'string', type: 'string' },
+      { name: 'chainId', internalType: 'uint256', type: 'uint256' },
+      { name: 'verifyingContract', internalType: 'address', type: 'address' },
+      { name: 'salt', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'extensions', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'emitApproval',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address' },
+      { name: 'to', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'emitTransfer',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getAggregateFeePercentages',
+    outputs: [
+      {
+        name: 'aggregateSwapFeePercentage',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      {
+        name: 'aggregateYieldFeePercentage',
         internalType: 'uint256',
         type: 'uint256',
       },
     ],
-    name: 'setOwnerGraduationMintShare',
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getCurrentLiveBalances',
+    outputs: [
+      {
+        name: 'balancesLiveScaled18',
+        internalType: 'uint256[]',
+        type: 'uint256[]',
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getMaximumInvariantRatio',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getMaximumSwapFeePercentage',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getMinimumInvariantRatio',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getMinimumSwapFeePercentage',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getNormalizedWeights',
+    outputs: [{ name: '', internalType: 'uint256[]', type: 'uint256[]' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getRate',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getStaticSwapFeePercentage',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTokenInfo',
+    outputs: [
+      { name: 'tokens', internalType: 'contract IERC20[]', type: 'address[]' },
+      {
+        name: 'tokenInfo',
+        internalType: 'struct TokenInfo[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'tokenType', internalType: 'enum TokenType', type: 'uint8' },
+          {
+            name: 'rateProvider',
+            internalType: 'contract IRateProvider',
+            type: 'address',
+          },
+          { name: 'paysYieldFees', internalType: 'bool', type: 'bool' },
+        ],
+      },
+      { name: 'balancesRaw', internalType: 'uint256[]', type: 'uint256[]' },
+      {
+        name: 'lastBalancesLiveScaled18',
+        internalType: 'uint256[]',
+        type: 'uint256[]',
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTokens',
+    outputs: [
+      { name: 'tokens', internalType: 'contract IERC20[]', type: 'address[]' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getVault',
+    outputs: [{ name: '', internalType: 'contract IVault', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getWeightedPoolDynamicData',
+    outputs: [
+      {
+        name: 'data',
+        internalType: 'struct WeightedPoolDynamicData',
+        type: 'tuple',
+        components: [
+          {
+            name: 'balancesLiveScaled18',
+            internalType: 'uint256[]',
+            type: 'uint256[]',
+          },
+          { name: 'tokenRates', internalType: 'uint256[]', type: 'uint256[]' },
+          {
+            name: 'staticSwapFeePercentage',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          { name: 'totalSupply', internalType: 'uint256', type: 'uint256' },
+          { name: 'isPoolInitialized', internalType: 'bool', type: 'bool' },
+          { name: 'isPoolPaused', internalType: 'bool', type: 'bool' },
+          { name: 'isPoolInRecoveryMode', internalType: 'bool', type: 'bool' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getWeightedPoolImmutableData',
+    outputs: [
+      {
+        name: 'data',
+        internalType: 'struct WeightedPoolImmutableData',
+        type: 'tuple',
+        components: [
+          {
+            name: 'tokens',
+            internalType: 'contract IERC20[]',
+            type: 'address[]',
+          },
+          {
+            name: 'decimalScalingFactors',
+            internalType: 'uint256[]',
+            type: 'uint256[]',
+          },
+          {
+            name: 'normalizedWeights',
+            internalType: 'uint256[]',
+            type: 'uint256[]',
+          },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'incrementNonce',
     outputs: [],
     stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'name',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
+    name: 'nonces',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [
-      { name: '_dex', internalType: 'address', type: 'address' },
-      { name: '_to', internalType: 'bool', type: 'bool' },
-      { name: '_from', internalType: 'bool', type: 'bool' },
-      { name: '_on', internalType: 'bool', type: 'bool' },
+      {
+        name: 'request',
+        internalType: 'struct PoolSwapParams',
+        type: 'tuple',
+        components: [
+          { name: 'kind', internalType: 'enum SwapKind', type: 'uint8' },
+          {
+            name: 'amountGivenScaled18',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+          {
+            name: 'balancesScaled18',
+            internalType: 'uint256[]',
+            type: 'uint256[]',
+          },
+          { name: 'indexIn', internalType: 'uint256', type: 'uint256' },
+          { name: 'indexOut', internalType: 'uint256', type: 'uint256' },
+          { name: 'router', internalType: 'address', type: 'address' },
+          { name: 'userData', internalType: 'bytes', type: 'bytes' },
+        ],
+      },
     ],
-    name: 'setTax',
-    outputs: [],
-    stateMutability: 'nonpayable',
+    name: 'onSwap',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [
-      { name: '_tokenPriceBuffer', internalType: 'uint256', type: 'uint256' },
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: 'deadline', internalType: 'uint256', type: 'uint256' },
+      { name: 'v', internalType: 'uint8', type: 'uint8' },
+      { name: 'r', internalType: 'bytes32', type: 'bytes32' },
+      { name: 's', internalType: 'bytes32', type: 'bytes32' },
     ],
-    name: 'setTokenPriceBuffer',
+    name: 'permit',
     outputs: [],
     stateMutability: 'nonpayable',
   },
   {
     type: 'function',
-    inputs: [{ name: '', internalType: 'address', type: 'address' }],
-    name: 'toDexes',
+    inputs: [{ name: 'interfaceId', internalType: 'bytes4', type: 'bytes4' }],
+    name: 'supportsInterface',
     outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [],
-    name: 'tokenPriceBuffer',
+    name: 'symbol',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalSupply',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'tradeFee',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
-    name: 'transferOwnership',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'treasury',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'treasuryShare',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'uniswapV3Factory',
-    outputs: [
-      { name: '', internalType: 'contract IUniswapV3Factory', type: 'address' },
-    ],
     stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [
-      { name: 'newImplementation', internalType: 'address', type: 'address' },
-      { name: 'data', internalType: 'bytes', type: 'bytes' },
+      { name: 'to', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
     ],
-    name: 'upgradeToAndCall',
-    outputs: [],
-    stateMutability: 'payable',
+    name: 'transfer',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address' },
+      { name: 'to', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transferFrom',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'version',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
   },
 ] as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const onlyUpFactoryAddress = {
-  8453: '0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c',
+export const bmiTokenAddress = {
+  8453: '0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc',
 } as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const onlyUpFactoryConfig = {
-  address: onlyUpFactoryAddress,
-  abi: onlyUpFactoryAbi,
+export const bmiTokenConfig = {
+  address: bmiTokenAddress,
+  abi: bmiTokenAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// IndexFund
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF)
+ */
+export const indexFundAbi = [
+  { type: 'constructor', inputs: [], stateMutability: 'nonpayable' },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'mint',
+    outputs: [],
+    stateMutability: 'payable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'sharesToRedeem', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'redeem',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: 'userShares',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+] as const
+
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF)
+ */
+export const indexFundAddress = {
+  8453: '0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF',
+} as const
+
+/**
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF)
+ */
+export const indexFundConfig = {
+  address: indexFundAddress,
+  abi: indexFundAbi,
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -590,790 +618,660 @@ export const onlyUpFactoryConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useReadOnlyUpFactory = /*#__PURE__*/ createUseReadContract({
-  abi: onlyUpFactoryAbi,
-  address: onlyUpFactoryAddress,
+export const useReadBmiToken = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
 })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"UPGRADE_INTERFACE_VERSION"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"DOMAIN_SEPARATOR"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useReadOnlyUpFactoryUpgradeInterfaceVersion =
+export const useReadBmiTokenDomainSeparator =
   /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'UPGRADE_INTERFACE_VERSION',
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'DOMAIN_SEPARATOR',
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"allPairs"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"PERMIT_TYPEHASH"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useReadOnlyUpFactoryAllPairs = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'allPairs',
-  },
-)
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"creatorShare"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryCreatorShare =
+export const useReadBmiTokenPermitTypehash =
   /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'creatorShare',
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'PERMIT_TYPEHASH',
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"dexSetter"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"allowance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useReadOnlyUpFactoryDexSetter =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'dexSetter',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"feeManager"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryFeeManager =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'feeManager',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"feeShares"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryFeeShares =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'feeShares',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"fromDexes"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryFromDexes =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'fromDexes',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"generateSalt"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryGenerateSalt =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'generateSalt',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"getPair"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryGetPair = /*#__PURE__*/ createUseReadContract({
-  abi: onlyUpFactoryAbi,
-  address: onlyUpFactoryAddress,
-  functionName: 'getPair',
+export const useReadBmiTokenAllowance = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'allowance',
 })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"getTaxes"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"balanceOf"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useReadOnlyUpFactoryGetTaxes = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'getTaxes',
-  },
-)
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"graduationMintRatio"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryGraduationMintRatio =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'graduationMintRatio',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"mainFromTax"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryMainFromTax =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'mainFromTax',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"mainToTax"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryMainToTax =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'mainToTax',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"minWethToGraduate"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryMinWethToGraduate =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'minWethToGraduate',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"owner"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryOwner = /*#__PURE__*/ createUseReadContract({
-  abi: onlyUpFactoryAbi,
-  address: onlyUpFactoryAddress,
-  functionName: 'owner',
+export const useReadBmiTokenBalanceOf = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'balanceOf',
 })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"ownerGraduationMintShare"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"computeBalance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useReadOnlyUpFactoryOwnerGraduationMintShare =
+export const useReadBmiTokenComputeBalance =
   /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'ownerGraduationMintShare',
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'computeBalance',
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"positionInfo"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"computeInvariant"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useReadOnlyUpFactoryPositionInfo =
+export const useReadBmiTokenComputeInvariant =
   /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'positionInfo',
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'computeInvariant',
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"positionManager"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"decimals"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useReadOnlyUpFactoryPositionManager =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'positionManager',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"predictTokenAddress"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryPredictTokenAddress =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'predictTokenAddress',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"proxiableUUID"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryProxiableUuid =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'proxiableUUID',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"toDexes"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryToDexes = /*#__PURE__*/ createUseReadContract({
-  abi: onlyUpFactoryAbi,
-  address: onlyUpFactoryAddress,
-  functionName: 'toDexes',
+export const useReadBmiTokenDecimals = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'decimals',
 })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"tokenPriceBuffer"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"eip712Domain"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useReadOnlyUpFactoryTokenPriceBuffer =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'tokenPriceBuffer',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"tradeFee"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryTradeFee = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'tradeFee',
-  },
-)
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"treasury"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryTreasury = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'treasury',
-  },
-)
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"treasuryShare"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryTreasuryShare =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'treasuryShare',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"uniswapV3Factory"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useReadOnlyUpFactoryUniswapV3Factory =
-  /*#__PURE__*/ createUseReadContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'uniswapV3Factory',
-  })
-
-/**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useWriteOnlyUpFactory = /*#__PURE__*/ createUseWriteContract({
-  abi: onlyUpFactoryAbi,
-  address: onlyUpFactoryAddress,
+export const useReadBmiTokenEip712Domain = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'eip712Domain',
 })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"addInitialLiquidity"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getAggregateFeePercentages"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactoryAddInitialLiquidity =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'addInitialLiquidity',
+export const useReadBmiTokenGetAggregateFeePercentages =
+  /*#__PURE__*/ createUseReadContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'getAggregateFeePercentages',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"collect"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getCurrentLiveBalances"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactoryCollect =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'collect',
+export const useReadBmiTokenGetCurrentLiveBalances =
+  /*#__PURE__*/ createUseReadContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'getCurrentLiveBalances',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"createToken"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getMaximumInvariantRatio"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactoryCreateToken =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'createToken',
+export const useReadBmiTokenGetMaximumInvariantRatio =
+  /*#__PURE__*/ createUseReadContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'getMaximumInvariantRatio',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"initialize"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getMaximumSwapFeePercentage"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactoryInitialize =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'initialize',
+export const useReadBmiTokenGetMaximumSwapFeePercentage =
+  /*#__PURE__*/ createUseReadContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'getMaximumSwapFeePercentage',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"renounceOwnership"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getMinimumInvariantRatio"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactoryRenounceOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'renounceOwnership',
+export const useReadBmiTokenGetMinimumInvariantRatio =
+  /*#__PURE__*/ createUseReadContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'getMinimumInvariantRatio',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setDexSetter"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getMinimumSwapFeePercentage"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactorySetDexSetter =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setDexSetter',
+export const useReadBmiTokenGetMinimumSwapFeePercentage =
+  /*#__PURE__*/ createUseReadContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'getMinimumSwapFeePercentage',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setFeeShares"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getNormalizedWeights"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactorySetFeeShares =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setFeeShares',
+export const useReadBmiTokenGetNormalizedWeights =
+  /*#__PURE__*/ createUseReadContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'getNormalizedWeights',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setGraduationMintRatio"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getRate"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactorySetGraduationMintRatio =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setGraduationMintRatio',
+export const useReadBmiTokenGetRate = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'getRate',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getStaticSwapFeePercentage"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useReadBmiTokenGetStaticSwapFeePercentage =
+  /*#__PURE__*/ createUseReadContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'getStaticSwapFeePercentage',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setMainTaxes"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getTokenInfo"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactorySetMainTaxes =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setMainTaxes',
+export const useReadBmiTokenGetTokenInfo = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'getTokenInfo',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getTokens"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useReadBmiTokenGetTokens = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'getTokens',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getVault"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useReadBmiTokenGetVault = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'getVault',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getWeightedPoolDynamicData"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useReadBmiTokenGetWeightedPoolDynamicData =
+  /*#__PURE__*/ createUseReadContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'getWeightedPoolDynamicData',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setMinWethToGraduate"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getWeightedPoolImmutableData"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactorySetMinWethToGraduate =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setMinWethToGraduate',
+export const useReadBmiTokenGetWeightedPoolImmutableData =
+  /*#__PURE__*/ createUseReadContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'getWeightedPoolImmutableData',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setOwnerGraduationMintShare"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"name"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactorySetOwnerGraduationMintShare =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setOwnerGraduationMintShare',
+export const useReadBmiTokenName = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'name',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"nonces"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useReadBmiTokenNonces = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'nonces',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"onSwap"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useReadBmiTokenOnSwap = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'onSwap',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"supportsInterface"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useReadBmiTokenSupportsInterface =
+  /*#__PURE__*/ createUseReadContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'supportsInterface',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setTax"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"symbol"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
  */
-export const useWriteOnlyUpFactorySetTax = /*#__PURE__*/ createUseWriteContract(
-  {
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setTax',
-  },
+export const useReadBmiTokenSymbol = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'symbol',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"totalSupply"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useReadBmiTokenTotalSupply = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'totalSupply',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"version"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useReadBmiTokenVersion = /*#__PURE__*/ createUseReadContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'version',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWriteBmiToken = /*#__PURE__*/ createUseWriteContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"approve"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWriteBmiTokenApprove = /*#__PURE__*/ createUseWriteContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'approve',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"emitApproval"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWriteBmiTokenEmitApproval =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'emitApproval',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"emitTransfer"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWriteBmiTokenEmitTransfer =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'emitTransfer',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"incrementNonce"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWriteBmiTokenIncrementNonce =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'incrementNonce',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"permit"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWriteBmiTokenPermit = /*#__PURE__*/ createUseWriteContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'permit',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"transfer"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWriteBmiTokenTransfer = /*#__PURE__*/ createUseWriteContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+  functionName: 'transfer',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWriteBmiTokenTransferFrom =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useSimulateBmiToken = /*#__PURE__*/ createUseSimulateContract({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+})
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"approve"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useSimulateBmiTokenApprove =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'approve',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"emitApproval"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useSimulateBmiTokenEmitApproval =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'emitApproval',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"emitTransfer"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useSimulateBmiTokenEmitTransfer =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'emitTransfer',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"incrementNonce"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useSimulateBmiTokenIncrementNonce =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'incrementNonce',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"permit"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useSimulateBmiTokenPermit =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'permit',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"transfer"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useSimulateBmiTokenTransfer =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'transfer',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useSimulateBmiTokenTransferFrom =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link bmiTokenAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWatchBmiTokenEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: bmiTokenAbi,
+  address: bmiTokenAddress,
+})
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link bmiTokenAbi}__ and `eventName` set to `"Approval"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWatchBmiTokenApprovalEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    eventName: 'Approval',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link bmiTokenAbi}__ and `eventName` set to `"EIP712DomainChanged"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWatchBmiTokenEip712DomainChangedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    eventName: 'EIP712DomainChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link bmiTokenAbi}__ and `eventName` set to `"Transfer"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc)
+ */
+export const useWatchBmiTokenTransferEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: bmiTokenAbi,
+    address: bmiTokenAddress,
+    eventName: 'Transfer',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF)
+ */
+export const useReadIndexFund = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"userShares"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF)
+ */
+export const useReadIndexFundUserShares = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'userShares',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF)
+ */
+export const useWriteIndexFund = /*#__PURE__*/ createUseWriteContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"mint"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF)
+ */
+export const useWriteIndexFundMint = /*#__PURE__*/ createUseWriteContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'mint',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"redeem"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF)
+ */
+export const useWriteIndexFundRedeem = /*#__PURE__*/ createUseWriteContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'redeem',
+})
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF)
+ */
+export const useSimulateIndexFund = /*#__PURE__*/ createUseSimulateContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+})
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"mint"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF)
+ */
+export const useSimulateIndexFundMint = /*#__PURE__*/ createUseSimulateContract(
+  { abi: indexFundAbi, address: indexFundAddress, functionName: 'mint' },
 )
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setTokenPriceBuffer"`
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"redeem"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF)
  */
-export const useWriteOnlyUpFactorySetTokenPriceBuffer =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setTokenPriceBuffer',
-  })
-
-/**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"transferOwnership"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useWriteOnlyUpFactoryTransferOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'transferOwnership',
-  })
-
-/**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"upgradeToAndCall"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useWriteOnlyUpFactoryUpgradeToAndCall =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'upgradeToAndCall',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactory = /*#__PURE__*/ createUseSimulateContract(
-  {
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-  },
-)
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"addInitialLiquidity"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactoryAddInitialLiquidity =
+export const useSimulateIndexFundRedeem =
   /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'addInitialLiquidity',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"collect"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactoryCollect =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'collect',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"createToken"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactoryCreateToken =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'createToken',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"initialize"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactoryInitialize =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'initialize',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"renounceOwnership"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactoryRenounceOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'renounceOwnership',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setDexSetter"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactorySetDexSetter =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setDexSetter',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setFeeShares"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactorySetFeeShares =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setFeeShares',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setGraduationMintRatio"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactorySetGraduationMintRatio =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setGraduationMintRatio',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setMainTaxes"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactorySetMainTaxes =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setMainTaxes',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setMinWethToGraduate"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactorySetMinWethToGraduate =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setMinWethToGraduate',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setOwnerGraduationMintShare"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactorySetOwnerGraduationMintShare =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setOwnerGraduationMintShare',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setTax"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactorySetTax =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setTax',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"setTokenPriceBuffer"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactorySetTokenPriceBuffer =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'setTokenPriceBuffer',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"transferOwnership"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactoryTransferOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'transferOwnership',
-  })
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `functionName` set to `"upgradeToAndCall"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useSimulateOnlyUpFactoryUpgradeToAndCall =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    functionName: 'upgradeToAndCall',
-  })
-
-/**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link onlyUpFactoryAbi}__
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useWatchOnlyUpFactoryEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-  })
-
-/**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `eventName` set to `"GoatTokenCreated"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useWatchOnlyUpFactoryGoatTokenCreatedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    eventName: 'GoatTokenCreated',
-  })
-
-/**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `eventName` set to `"Initialized"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useWatchOnlyUpFactoryInitializedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    eventName: 'Initialized',
-  })
-
-/**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `eventName` set to `"OnlyUpUniPoolCreated"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useWatchOnlyUpFactoryOnlyUpUniPoolCreatedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    eventName: 'OnlyUpUniPoolCreated',
-  })
-
-/**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `eventName` set to `"OwnershipTransferred"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useWatchOnlyUpFactoryOwnershipTransferredEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    eventName: 'OwnershipTransferred',
-  })
-
-/**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `eventName` set to `"PairCreated"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useWatchOnlyUpFactoryPairCreatedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    eventName: 'PairCreated',
-  })
-
-/**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link onlyUpFactoryAbi}__ and `eventName` set to `"Upgraded"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c)
- */
-export const useWatchOnlyUpFactoryUpgradedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: onlyUpFactoryAbi,
-    address: onlyUpFactoryAddress,
-    eventName: 'Upgraded',
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'redeem',
   })

@@ -45,6 +45,7 @@ export function numberFormat(
   number: number | string,
   minPrecision: number = 0,
   maxPrecision: number = 4,
+  roundingMode: 'floor' | 'ceil' = 'floor',
 ): string {
   const parsedNumber = parseFloat(number as unknown as string)
   if (isNaN(parsedNumber) || number === '' || number === undefined) return '0'
@@ -52,5 +53,6 @@ export function numberFormat(
   return new Intl.NumberFormat('en-US', {
     minimumFractionDigits: minPrecision,
     maximumFractionDigits: maxPrecision,
+    roundingMode,
   }).format(parsedNumber)
 }

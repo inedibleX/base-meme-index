@@ -19,9 +19,19 @@ export default defineConfig(() => {
         chainId: base.id,
         contracts: [
           {
-            name: 'OnlyUpFactory',
+            name: 'IndexFund',
             address: {
-              [base.id]: getAddress('0xfB2fC6E01b6D5aF48FBc3ECBA2cA1b69e811f74c'),
+              [base.id]: getAddress(
+                '0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF',
+              ),
+            },
+          },
+          {
+            name: 'BMIToken',
+            address: {
+              [base.id]: getAddress(
+                '0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc',
+              ),
             },
           },
         ],

@@ -8,21 +8,17 @@ import { IndexComposition } from './components/IndexComposition'
 
 export const Content = () => {
   const [bmiBalance, setBmiBalance] = useState(0)
-  const [ethBalance, setEthBalance] = useState(10) // Starting with 10 ETH
   const [error, setError] = useState('')
 
   const BMI_RATE = 100 // 1 ETH = 100 BMI tokens
-  const BMI_USD_RATE = 30 // 1 BMI = $30 USD
   const FEE_PERCENTAGE = 0.01 // 1% fee
 
   const handlePurchase = (ethAmount: number, bmiAmount: number) => {
-    setEthBalance((prev) => prev - ethAmount)
     setBmiBalance((prev) => prev + bmiAmount)
   }
 
   const handleRedeem = (bmiAmount: number, ethAmount: number) => {
     setBmiBalance((prev) => prev - bmiAmount)
-    setEthBalance((prev) => prev + ethAmount)
   }
 
   const indexTokens = [
@@ -63,7 +59,7 @@ export const Content = () => {
       <Header />
 
       <main className="mx-auto max-w-6xl px-4 pb-24">
-        <UserBalanceCard bmiBalance={bmiBalance} bmiUsdRate={BMI_USD_RATE} />
+        <UserBalanceCard />
 
         {error && (
           <div className="mb-6 rounded-lg border border-red-400 bg-red-100 px-4 py-3 text-red-700">
@@ -71,10 +67,9 @@ export const Content = () => {
           </div>
         )}
 
-        <div className="mb-12 grid gap-8 md:grid-cols-2">
+        <div className="mb-8 grid gap-8 md:grid-cols-2">
           <PurchaseBox
             bmiRate={BMI_RATE}
-            ethBalance={ethBalance}
             feePercentage={FEE_PERCENTAGE}
             onPurchase={handlePurchase}
           />

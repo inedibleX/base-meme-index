@@ -1,5 +1,17 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { ArrowRightLeft, Loader2, X } from 'lucide-react'
+import {
+  useAccount,
+  useBalance,
+  useWaitForTransactionReceipt,
+  useWriteContract,
+} from 'wagmi'
+import {
+  useReadBmiTokenBalanceOf,
+  useSimulateIndexFundRedeem,
+} from '@/generated/wagmi'
+import { numberFormat } from '@/lib/formatters'
+import { BaseError, formatEther, parseEther } from 'viem'
 
 interface RedeemBoxProps {
   bmiBalance: number
@@ -9,42 +21,80 @@ interface RedeemBoxProps {
 }
 
 export const RedeemBox = ({
-  bmiBalance,
   onRedeem,
   bmiRate,
   feePercentage,
 }: RedeemBoxProps) => {
+  const { address } = useAccount()
+  const { data: bmiBalance } = useReadBmiTokenBalanceOf({
+    args: [address as `0x${string}`],
+    query: {
+      enabled: !!address,
+    },
+  })
+
   const [redeemAmount, setRedeemAmount] = useState('')
-  const [isRedeeming, setIsRedeeming] = useState(false)
-  const [error, setError] = useState('')
   const [showRedeemConfirm, setShowRedeemConfirm] = useState(false)
 
-  const calculateEthAmount = (bmiAmount: string) => {
-    if (!bmiAmount) return 0
-    const rawAmount = parseFloat(bmiAmount) / bmiRate
-    return rawAmount * (1 - feePercentage)
-  }
-
   const handleRedeemClick = () => {
-    const bmiAmount = parseFloat(redeemAmount)
-    if (bmiAmount > bmiBalance) {
-      setError('Insufficient $BMI balance')
-      return
-    }
-    setError('')
     setShowRedeemConfirm(true)
   }
 
   const handleRedeemConfirm = () => {
-    const bmiAmount = parseFloat(redeemAmount)
-    const ethToReceive = calculateEthAmount(redeemAmount)
+    if (!simulateRedeemData?.request) return
+    void writeContract(simulateRedeemData?.request)
     setShowRedeemConfirm(false)
-    setIsRedeeming(true)
-
-    onRedeem(bmiAmount, ethToReceive)
-    setRedeemAmount('')
-    setIsRedeeming(false)
   }
+
+  const {
+    data: simulateRedeemData,
+    error: simulateRedeemError,
+    isLoading: isRedeemSimulating,
+  } = useSimulateIndexFundRedeem({
+    args: [parseEther(redeemAmount)],
+    query: {
+      enabled: !!redeemAmount,
+      retry: 0,
+    },
+  })
+
+  const {
+    data: hash,
+    error: txError,
+    writeContract,
+    isPending,
+  } = useWriteContract()
+
+  const {
+    isLoading: isConfirming,
+    data: receipt,
+    isSuccess: isConfirmed,
+  } = useWaitForTransactionReceipt({
+    hash,
+  })
+
+  const calculateEthAmount = useCallback(
+    (bmiAmount: string) => {
+      if (!bmiAmount) return 0
+      const rawAmount = parseFloat(bmiAmount) / bmiRate
+      return rawAmount * (1 - feePercentage)
+    },
+    [bmiRate, feePercentage],
+  )
+
+  useEffect(() => {
+    if (isConfirmed && receipt) {
+      onRedeem(parseFloat(redeemAmount), calculateEthAmount(redeemAmount))
+      setRedeemAmount('')
+    }
+  }, [isConfirmed, receipt, onRedeem, redeemAmount, calculateEthAmount])
+
+  const errMsg =
+    (txError as BaseError)?.shortMessage ||
+    (simulateRedeemError as BaseError)?.shortMessage
+
+  const isDisabled =
+    !simulateRedeemData || isRedeemSimulating || isConfirming || isPending
 
   return (
     <>
@@ -55,18 +105,34 @@ export const RedeemBox = ({
         </div>
         <div className="space-y-4">
           <div className="rounded-xl bg-sky-50 p-4">
-            <label
-              className="mb-2 block text-sm text-slate-600"
-              htmlFor="redeemAmount"
-            >
-              Amount in $BMI
-            </label>
+            <div className="flex items-center justify-between">
+              <label
+                className="mb-2 block text-sm text-slate-600"
+                htmlFor="purchaseAmount"
+              >
+                Amount in $BMI
+              </label>
+              <button
+                className="cursor-pointer text-sm text-sky-600 hover:text-sky-800"
+                onClick={() => {
+                  setRedeemAmount(
+                    numberFormat(
+                      formatEther(bmiBalance ?? BigInt(0)),
+                      2,
+                      6,
+                      'floor',
+                    ).replace(',', ''),
+                  )
+                }}
+              >
+                {numberFormat(formatEther(bmiBalance ?? BigInt(0)))} $BMI
+              </button>
+            </div>
             <input
               className="w-full [appearance:textfield] rounded-lg border border-sky-200 bg-white px-4 py-2 text-slate-800 placeholder-slate-400 focus:border-sky-400 focus:ring-2 focus:ring-sky-200 focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
               min="0"
               onChange={(e) => {
                 setRedeemAmount(e.target.value)
-                setError('')
               }}
               placeholder="0.0"
               step="0.01"
@@ -81,15 +147,11 @@ export const RedeemBox = ({
             )}
           </div>
           <button
-            className={`flex w-full transform items-center justify-center rounded-xl bg-gradient-to-r from-blue-500 to-sky-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02] ${!redeemAmount || parseFloat(redeemAmount) > bmiBalance ? 'cursor-not-allowed opacity-50 hover:scale-100' : 'hover:from-blue-400 hover:to-sky-400'}`}
-            disabled={
-              !redeemAmount ||
-              isRedeeming ||
-              parseFloat(redeemAmount) > bmiBalance
-            }
+            className={`flex w-full transform items-center justify-center rounded-xl bg-gradient-to-r from-blue-500 to-sky-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02] ${isDisabled ? 'cursor-not-allowed opacity-50 hover:scale-100' : 'hover:from-blue-400 hover:to-sky-400'}`}
+            disabled={isDisabled}
             onClick={handleRedeemClick}
           >
-            {isRedeeming ? (
+            {isRedeemSimulating || isConfirming || isPending ? (
               <>
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                 Redeeming $BMI...
@@ -98,6 +160,7 @@ export const RedeemBox = ({
               'Redeem'
             )}
           </button>
+          {errMsg && <p className="mt-2 text-sm text-red-500">{errMsg}</p>}
         </div>
       </div>
 
