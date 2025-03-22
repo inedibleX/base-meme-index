@@ -35,7 +35,7 @@ export const useTVLCalculations = () => {
     )
       return 0
 
-    return Number(totalSupply) / tvl
+    return tvl / Number(formatEther(totalSupply))
   }, [isTokenInfoLoading, isTotalSupplyLoading, totalSupply, tvl])
 
   return {
