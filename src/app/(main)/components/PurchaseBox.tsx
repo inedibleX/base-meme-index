@@ -11,6 +11,8 @@ import {
 import { useSimulateIndexFundMint } from '@/generated/wagmi'
 import { BaseError, formatEther, parseEther } from 'viem'
 import { numberFormat } from '@/lib/formatters'
+import { cn } from '@/lib/utils'
+import { BalanceButton } from './BalanceButton'
 
 interface PurchaseBoxProps {
   bmiRate: number
@@ -103,21 +105,12 @@ export const PurchaseBox = ({ bmiRate, feePercentage }: PurchaseBoxProps) => {
               >
                 Amount in ETH
               </label>
-              <button
-                className="cursor-pointer text-sm text-sky-600 hover:text-sky-800"
-                onClick={() => {
-                  setPurchaseAmount(
-                    numberFormat(
-                      formatEther(ethBalance?.value ?? BigInt(0)),
-                      2,
-                      6,
-                      'floor',
-                    ).replace(',', ''),
-                  )
-                }}
-              >
-                {numberFormat(formatEther(ethBalance?.value ?? BigInt(0)))} Ξ
-              </button>
+              <BalanceButton
+                balance={ethBalance?.value ?? BigInt(0)}
+                isDisabled={isDisabled || !ethBalance || !address}
+                label="ETH"
+                onClick={(v) => setPurchaseAmount(v)}
+              />
             </div>
             <input
               className="w-full [appearance:textfield] rounded-lg border border-sky-200 bg-white px-4 py-2 text-slate-800 placeholder-slate-400 focus:border-sky-400 focus:ring-2 focus:ring-sky-200 focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"

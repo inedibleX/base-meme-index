@@ -13,6 +13,8 @@ import {
 } from '@/generated/wagmi'
 import { numberFormat } from '@/lib/formatters'
 import { BaseError, formatEther, parseEther } from 'viem'
+import { cn } from '@/lib/utils'
+import { BalanceButton } from './BalanceButton'
 
 interface RedeemBoxProps {
   bmiRate: number
@@ -106,21 +108,12 @@ export const RedeemBox = ({ bmiRate, feePercentage }: RedeemBoxProps) => {
               >
                 Amount in $BMI
               </label>
-              <button
-                className="cursor-pointer text-sm text-sky-600 hover:text-sky-800"
-                onClick={() => {
-                  setRedeemAmount(
-                    numberFormat(
-                      formatEther(bmiBalance ?? BigInt(0)),
-                      2,
-                      6,
-                      'floor',
-                    ).replace(',', ''),
-                  )
-                }}
-              >
-                {numberFormat(formatEther(bmiBalance ?? BigInt(0)))} $BMI
-              </button>
+              <BalanceButton
+                balance={bmiBalance ?? BigInt(0)}
+                isDisabled={!bmiBalance || !address}
+                label="$BMI"
+                onClick={(v) => setRedeemAmount(v)}
+              />
             </div>
             <input
               className="w-full [appearance:textfield] rounded-lg border border-sky-200 bg-white px-4 py-2 text-slate-800 placeholder-slate-400 focus:border-sky-400 focus:ring-2 focus:ring-sky-200 focus:outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
