@@ -1,18 +1,15 @@
 'use client'
 
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Wallet } from 'lucide-react'
 import { useAccount, useBalance } from 'wagmi'
 import { formatEther } from 'viem'
 import { numberFormat } from '@/lib/formatters'
 import { useReadBmiTokenBalanceOf } from '@/generated/wagmi'
+import { useTVLCalculations } from '../hooks/useTVLCalculations'
 
 export const UserBalanceCard = () => {
-  const BMI_USD_RATE = 30 // 1 BMI = $30 USD
-
-  const calculateUsdValue = (bmiAmount: bigint) => {
-    return Number(bmiAmount) * BMI_USD_RATE
-  }
+  const { valueInUsd } = useTVLCalculations()
 
   const { address } = useAccount()
   const { data: ethBalance } = useBalance({
@@ -24,6 +21,10 @@ export const UserBalanceCard = () => {
       enabled: !!address,
     },
   })
+
+  const bmiBalanceInUsd = useMemo(() => {
+    return bmiBalance ? Number(bmiBalance) * valueInUsd : 0
+  }, [bmiBalance, valueInUsd])
 
   return (
     <div className="mb-8 rounded-2xl bg-white/90 p-6 shadow-xl backdrop-blur-md">
@@ -45,7 +46,7 @@ export const UserBalanceCard = () => {
         <div className="text-right">
           <h2 className="text-sm text-slate-600">Value in USD</h2>
           <p className="text-2xl font-bold text-green-600">
-            ${numberFormat(calculateUsdValue(bmiBalance ?? BigInt(0)), 2, 2)}
+            ${numberFormat(bmiBalanceInUsd, 2, 2)}
           </p>
         </div>
       </div>
