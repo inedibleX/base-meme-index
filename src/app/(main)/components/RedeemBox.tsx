@@ -29,9 +29,6 @@ export const RedeemBox = ({ bmiRate, feePercentage }: RedeemBoxProps) => {
     refetch: refetchBmiBalance,
   } = useReadBmiTokenBalanceOf({
     args: [address as `0x${string}`],
-    query: {
-      enabled: !!address,
-    },
   })
 
   const [redeemAmount, setRedeemAmount] = useState('')

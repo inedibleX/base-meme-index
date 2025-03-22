@@ -19,9 +19,6 @@ export const UserBalanceCard = () => {
   const { data: bmiBalance, isLoading: isBmiBalanceLoading } =
     useReadBmiTokenBalanceOf({
       args: [address as `0x${string}`],
-      query: {
-        enabled: !!address,
-      },
     })
 
   const bmiBalanceInUsd = useMemo(() => {
