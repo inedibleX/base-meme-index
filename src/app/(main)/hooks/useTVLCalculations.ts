@@ -14,7 +14,7 @@ export const useTVLCalculations = () => {
   const { data: totalSupply, isLoading: isTotalSupplyLoading } =
     useReadBmiTokenTotalSupply()
 
-  const { data: tokenPrice } = useQuery({
+  const { data: tokenPrice, isLoading: isTokenPriceLoading } = useQuery({
     ...getTokenPriceQueryOptions(tokenInfo?.[0][0] ?? ''),
     enabled: !!tokenInfo?.[0][0],
   })
@@ -41,6 +41,7 @@ export const useTVLCalculations = () => {
   return {
     tvl,
     valueInUsd,
-    isLoading: isTokenInfoLoading || isTotalSupplyLoading,
+    isLoading:
+      isTokenInfoLoading || isTotalSupplyLoading || isTokenPriceLoading,
   }
 }
