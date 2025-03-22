@@ -12,6 +12,7 @@ import { useSimulateIndexFundMint } from '@/generated/wagmi'
 import { BaseError, parseEther } from 'viem'
 import { BalanceButton } from './BalanceButton'
 import { NumberInput } from './NumberInput'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface PurchaseBoxProps {
   bmiRate: number
@@ -20,7 +21,11 @@ interface PurchaseBoxProps {
 
 export const PurchaseBox = ({ bmiRate, feePercentage }: PurchaseBoxProps) => {
   const { address } = useAccount()
-  const { data: ethBalance } = useBalance({
+  const {
+    data: ethBalance,
+    isLoading: isEthBalanceLoading,
+    refetch: refetchEthBalance,
+  } = useBalance({
     address,
   })
 
@@ -76,8 +81,15 @@ export const PurchaseBox = ({ bmiRate, feePercentage }: PurchaseBoxProps) => {
   useEffect(() => {
     if (isConfirmed && receipt) {
       setPurchaseAmount('')
+      refetchEthBalance()
     }
-  }, [isConfirmed, receipt, purchaseAmount, calculateBmiAmount])
+  }, [
+    isConfirmed,
+    receipt,
+    purchaseAmount,
+    calculateBmiAmount,
+    refetchEthBalance,
+  ])
 
   const errMsg =
     (txError as BaseError)?.shortMessage ||
@@ -104,12 +116,16 @@ export const PurchaseBox = ({ bmiRate, feePercentage }: PurchaseBoxProps) => {
               >
                 Amount in ETH
               </label>
-              <BalanceButton
-                balance={ethBalance?.value ?? BigInt(0)}
-                isDisabled={!ethBalance || !address}
-                label="ETH"
-                onClick={(v) => setPurchaseAmount(v)}
-              />
+              {isEthBalanceLoading ? (
+                <Skeleton className="h-[20px] w-[80px] rounded-sm" />
+              ) : (
+                <BalanceButton
+                  balance={ethBalance?.value ?? BigInt(0)}
+                  isDisabled={!ethBalance || !address}
+                  label="ETH"
+                  onClick={(v) => setPurchaseAmount(v)}
+                />
+              )}
             </div>
             <NumberInput
               id={'purchaseAmount'}

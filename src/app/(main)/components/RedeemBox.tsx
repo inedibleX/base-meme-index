@@ -14,6 +14,7 @@ import {
 import { BaseError, parseEther } from 'viem'
 import { BalanceButton } from './BalanceButton'
 import { NumberInput } from './NumberInput'
+import { Skeleton } from '@/components/ui/skeleton'
 
 interface RedeemBoxProps {
   bmiRate: number
@@ -22,7 +23,11 @@ interface RedeemBoxProps {
 
 export const RedeemBox = ({ bmiRate, feePercentage }: RedeemBoxProps) => {
   const { address } = useAccount()
-  const { data: bmiBalance } = useReadBmiTokenBalanceOf({
+  const {
+    data: bmiBalance,
+    isLoading: isBmiBalanceLoading,
+    refetch: refetchBmiBalance,
+  } = useReadBmiTokenBalanceOf({
     args: [address as `0x${string}`],
     query: {
       enabled: !!address,
@@ -81,8 +86,15 @@ export const RedeemBox = ({ bmiRate, feePercentage }: RedeemBoxProps) => {
   useEffect(() => {
     if (isConfirmed && receipt) {
       setRedeemAmount('')
+      refetchBmiBalance()
     }
-  }, [isConfirmed, receipt, redeemAmount, calculateEthAmount])
+  }, [
+    isConfirmed,
+    receipt,
+    redeemAmount,
+    calculateEthAmount,
+    refetchBmiBalance,
+  ])
 
   const errMsg =
     (txError as BaseError)?.shortMessage ||
@@ -107,12 +119,16 @@ export const RedeemBox = ({ bmiRate, feePercentage }: RedeemBoxProps) => {
               >
                 Amount in $BMI
               </label>
-              <BalanceButton
-                balance={bmiBalance ?? BigInt(0)}
-                isDisabled={!bmiBalance || !address}
-                label="$BMI"
-                onClick={(v) => setRedeemAmount(v)}
-              />
+              {isBmiBalanceLoading ? (
+                <Skeleton className="h-[20px] w-[80px] rounded-sm" />
+              ) : (
+                <BalanceButton
+                  balance={bmiBalance ?? BigInt(0)}
+                  isDisabled={!bmiBalance || !address}
+                  label="$BMI"
+                  onClick={(v) => setRedeemAmount(v)}
+                />
+              )}
             </div>
             <NumberInput
               id={'redeemAmount'}
