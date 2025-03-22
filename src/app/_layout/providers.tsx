@@ -2,11 +2,7 @@
 
 import { getQueryClient } from '@/lib/queries/get-query-client'
 import { config } from '@/lib/wagmi.config'
-import {
-  QueryClientProvider,
-  HydrationBoundary,
-  dehydrate,
-} from '@tanstack/react-query'
+import { QueryClientProvider } from '@tanstack/react-query'
 import { darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { type ReactNode } from 'react'
 import { type State, WagmiProvider } from 'wagmi'
@@ -29,18 +25,16 @@ export function Providers(props: {
   return (
     <WagmiProvider config={config} initialState={props.initialState}>
       <QueryClientProvider client={queryClient}>
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <RainbowKitProvider
-            appInfo={appInfo}
-            coolMode
-            initialChain={baseSepolia}
-            modalSize={'compact'}
-            showRecentTransactions
-            theme={darkTheme()}
-          >
-            {props.children}
-          </RainbowKitProvider>
-        </HydrationBoundary>
+        <RainbowKitProvider
+          appInfo={appInfo}
+          coolMode
+          initialChain={baseSepolia}
+          modalSize={'compact'}
+          showRecentTransactions
+          theme={darkTheme()}
+        >
+          {props.children}
+        </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   )
