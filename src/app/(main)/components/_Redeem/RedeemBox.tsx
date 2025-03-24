@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { ArrowRightLeft } from 'lucide-react'
 import { useAccount } from 'wagmi'
 import { useReadBmiTokenBalanceOf } from '@/generated/wagmi'
@@ -10,6 +10,7 @@ import { NumberInput } from '../NumberInput'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ApproveBMIButton } from '../_Purchase/ApproveBMIButton'
 import { RedeemBMIButton } from './RedeemBMIButton'
+import { toastTxSuccess } from '@/lib/toast'
 
 export const RedeemBox = () => {
   const { address } = useAccount()
@@ -18,6 +19,23 @@ export const RedeemBox = () => {
       args: [address as `0x${string}`],
     })
   const [redeemAmount, setRedeemAmount] = useState('')
+
+  const onRedeem = useCallback((hash: string) => {
+    setRedeemAmount('')
+    toastTxSuccess(
+      'Transaction successful',
+      'Your $BMI has been redeemed!',
+      hash,
+    )
+  }, [])
+
+  const onApprove = useCallback((hash: string) => {
+    toastTxSuccess(
+      'Transaction successful',
+      'Your $BMI has been approved!',
+      hash,
+    )
+  }, [])
 
   return (
     <>
@@ -56,10 +74,11 @@ export const RedeemBox = () => {
             actionButton={
               <RedeemBMIButton
                 amount={parseEther(redeemAmount ?? '0')}
-                onRedeem={() => setRedeemAmount('')}
+                onRedeem={onRedeem}
               />
             }
             amount={parseEther(redeemAmount ?? '0')}
+            onApprove={onApprove}
           />
         </div>
       </div>

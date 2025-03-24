@@ -3,8 +3,10 @@ import {
   useSimulateBmiTokenApprove,
 } from '@/generated/wagmi'
 import { env } from '@/lib/env'
+import { toastTxSuccess } from '@/lib/toast'
 import { Loader2 } from 'lucide-react'
 import { useEffect } from 'react'
+import { toast } from 'sonner'
 import { BaseError, maxUint256 } from 'viem'
 import {
   useAccount,
@@ -14,12 +16,14 @@ import {
 
 type ApproveBMIButtonProps = {
   amount: bigint
+  onApprove: (hash: string) => void
   actionButton: React.ReactNode
 }
 
 export const ApproveBMIButton = ({
   amount,
   actionButton,
+  onApprove,
 }: ApproveBMIButtonProps) => {
   const { address } = useAccount()
   const {
@@ -64,10 +68,18 @@ export const ApproveBMIButton = ({
   })
 
   useEffect(() => {
-    if (isConfirmed && receipt) {
+    async function refetch() {
+      if (!isConfirmed || !receipt) return
       refetchBmiAllowance()
     }
+    void refetch()
   }, [isConfirmed, receipt, refetchBmiAllowance])
+
+  useEffect(() => {
+    if (isConfirmed && receipt) {
+      onApprove(receipt.transactionHash)
+    }
+  }, [isConfirmed, receipt, onApprove])
 
   const handleApproveClick = () => {
     if (!simulateApproveData?.request) return

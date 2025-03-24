@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { ArrowDownUp } from 'lucide-react'
 import { useBalance, useAccount } from 'wagmi'
 import { parseEther } from 'viem'
@@ -8,7 +8,7 @@ import { BalanceButton } from '../BalanceButton'
 import { NumberInput } from '../NumberInput'
 import { Skeleton } from '@/components/ui/skeleton'
 import { PurchaseBMIButton } from './PurchaseBMIButton'
-
+import { toastTxSuccess } from '@/lib/toast'
 export const PurchaseBox = () => {
   const [purchaseAmount, setPurchaseAmount] = useState('')
 
@@ -16,6 +16,15 @@ export const PurchaseBox = () => {
   const { data: ethBalance, isLoading: isEthBalanceLoading } = useBalance({
     address,
   })
+
+  const onPurchase = useCallback((hash: string) => {
+    setPurchaseAmount('')
+    toastTxSuccess(
+      'Transaction successful',
+      'Your $BMI has been purchased!',
+      hash,
+    )
+  }, [])
 
   return (
     <>
@@ -54,9 +63,7 @@ export const PurchaseBox = () => {
           </div>
           <PurchaseBMIButton
             amount={parseEther(purchaseAmount)}
-            onPurchase={() => {
-              setPurchaseAmount('')
-            }}
+            onPurchase={onPurchase}
           />
         </div>
       </div>

@@ -18,10 +18,11 @@ import { useTVLCalculations } from '../../hooks/useTVLCalculations'
 import { ConfirmationDialog } from '../ConfirmationDIalog'
 import { useQuery } from '@tanstack/react-query'
 import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
+import { toastTxSuccess } from '@/lib/toast'
 
 type PurchaseBMIButtonProps = {
   amount: bigint
-  onPurchase: () => void
+  onPurchase: (hash: string) => void
 }
 
 export const PurchaseBMIButton = ({
@@ -80,18 +81,25 @@ export const PurchaseBMIButton = ({
   }
 
   useEffect(() => {
-    if (isConfirmed && receipt) {
+    async function refetch() {
+      if (!isConfirmed || !receipt) return
+
       Promise.all([refetchEthBalance(), refetchBMI(), refetchBMITotalSupply()])
-      onPurchase()
     }
+    void refetch()
   }, [
     isConfirmed,
     receipt,
     refetchEthBalance,
     refetchBMI,
     refetchBMITotalSupply,
-    onPurchase,
   ])
+
+  useEffect(() => {
+    if (isConfirmed && receipt) {
+      onPurchase(receipt.transactionHash)
+    }
+  }, [isConfirmed, receipt, onPurchase])
 
   let errMsg =
     (txError as BaseError)?.shortMessage ||

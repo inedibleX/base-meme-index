@@ -19,10 +19,10 @@ import { ConfirmationDialog } from '../ConfirmationDIalog'
 import { useQuery } from '@tanstack/react-query'
 import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
 import { useTVLCalculations } from '../../hooks/useTVLCalculations'
-
+import { toastTxSuccess } from '@/lib/toast'
 type RedeemBMIButtonProps = {
   amount: bigint
-  onRedeem: () => void
+  onRedeem: (hash: string) => void
 }
 
 export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
@@ -75,24 +75,31 @@ export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
   })
 
   useEffect(() => {
-    if (isConfirmed && receipt) {
+    async function refetch() {
+      if (!isConfirmed || !receipt) return
+
       Promise.all([
         refetchBmiBalance(),
         refetchEthBalance(),
         refetchBMITotalSupply(),
         refetchTokenInfo(),
       ])
-      onRedeem()
     }
+    void refetch()
   }, [
     isConfirmed,
     receipt,
+    refetchBMITotalSupply,
     refetchBmiBalance,
     refetchEthBalance,
-    refetchBMITotalSupply,
     refetchTokenInfo,
-    onRedeem,
   ])
+
+  useEffect(() => {
+    if (isConfirmed && receipt) {
+      onRedeem(receipt.transactionHash)
+    }
+  }, [isConfirmed, receipt, onRedeem])
 
   const handleRedeemClick = () => {
     setShowRedeemConfirm(true)
