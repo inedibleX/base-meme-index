@@ -9,6 +9,7 @@ import { config } from '@/lib/wagmi.config'
 import { NavBar } from '@/app/_layout/nav-bar'
 import { Footer } from '@/app/_layout/footer'
 import { env } from '@/lib/env'
+import { Toaster } from 'sonner'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -52,6 +53,7 @@ export default async function RootLayout(
             <Footer />
           </div>
         </Providers>
+        <Toaster />
       </body>
     </html>
   )
