@@ -18,7 +18,6 @@ import { useTVLCalculations } from '../../hooks/useTVLCalculations'
 import { ConfirmationDialog } from '../ConfirmationDIalog'
 import { useQuery } from '@tanstack/react-query'
 import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
-import { toastTxSuccess } from '@/lib/toast'
 
 type PurchaseBMIButtonProps = {
   amount: bigint

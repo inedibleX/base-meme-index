@@ -19,7 +19,6 @@ import { ConfirmationDialog } from '../ConfirmationDIalog'
 import { useQuery } from '@tanstack/react-query'
 import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
 import { useTVLCalculations } from '../../hooks/useTVLCalculations'
-import { toastTxSuccess } from '@/lib/toast'
 type RedeemBMIButtonProps = {
   amount: bigint
   onRedeem: (hash: string) => void

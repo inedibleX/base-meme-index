@@ -3,10 +3,8 @@ import {
   useSimulateBmiTokenApprove,
 } from '@/generated/wagmi'
 import { env } from '@/lib/env'
-import { toastTxSuccess } from '@/lib/toast'
 import { Loader2 } from 'lucide-react'
 import { useEffect } from 'react'
-import { toast } from 'sonner'
 import { BaseError, maxUint256 } from 'viem'
 import {
   useAccount,
