@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useCallback, useEffect, useState } from 'react'
-import { Loader2, X } from 'lucide-react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Loader2 } from 'lucide-react'
 import {
   useBalance,
   useAccount,
@@ -15,21 +15,21 @@ import {
 } from '@/generated/wagmi'
 import { BaseError, formatEther } from 'viem'
 import { useTVLCalculations } from '../../hooks/useTVLCalculations'
+import { ConfirmationDialog } from '../ConfirmationDIalog'
+import { useQuery } from '@tanstack/react-query'
+import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
 
 type PurchaseBMIButtonProps = {
   amount: bigint
-  bmiRate: number
-  feePercentage: number
   onPurchase: () => void
 }
 
 export const PurchaseBMIButton = ({
   amount,
-  bmiRate,
-  feePercentage,
   onPurchase,
 }: PurchaseBMIButtonProps) => {
   const { valueInUsd, isLoading: isValueInUsdLoading } = useTVLCalculations()
+  const { data: ethPrice } = useQuery(getEthPriceQueryOptions())
 
   const { address } = useAccount()
   const { refetch: refetchEthBalance } = useBalance({
@@ -79,15 +79,6 @@ export const PurchaseBMIButton = ({
     setShowPurchaseConfirm(false)
   }
 
-  const calculateBmiAmount = useCallback(
-    (ethAmount: string) => {
-      if (!ethAmount) return 0
-      const rawAmount = parseFloat(ethAmount) * bmiRate
-      return rawAmount * (1 - feePercentage)
-    },
-    [bmiRate, feePercentage],
-  )
-
   useEffect(() => {
     if (isConfirmed && receipt) {
       Promise.all([refetchEthBalance(), refetchBMI(), refetchBMITotalSupply()])
@@ -102,17 +93,25 @@ export const PurchaseBMIButton = ({
     onPurchase,
   ])
 
-  const errMsg =
+  let errMsg =
     (txError as BaseError)?.shortMessage ||
     (simulatePurchaseError as BaseError)?.shortMessage
+
+  if (errMsg && errMsg === 'User rejected the request.') {
+    errMsg = ''
+  }
 
   const isDisabled =
     !simulatePurchaseData || isPurchaseSimulating || isConfirming || isPending
 
-  const calculateEstimate = useCallback(() => {
+  const estimatedAmount = useMemo(() => {
+    if (!ethPrice) return 0
     if (isValueInUsdLoading) return 0
-    return parseFloat(formatEther(amount)) / valueInUsd
-  }, [amount, isValueInUsdLoading, valueInUsd])
+    const ethAmount = formatEther(amount)
+    const ethPricePerToken = valueInUsd / ethPrice
+    const estimated = parseFloat(ethAmount) / ethPricePerToken
+    return estimated
+  }, [amount, ethPrice, isValueInUsdLoading, valueInUsd])
 
   return (
     <>
@@ -132,45 +131,33 @@ export const PurchaseBMIButton = ({
       </button>
       {errMsg && <p className="mt-2 text-sm text-red-500">{errMsg}</p>}
 
-      {showPurchaseConfirm && (
-        <div className="fixed inset-0 z-10 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
-            <div className="mb-4 flex items-start justify-between">
-              <h3 className="text-xl font-semibold text-slate-800">
-                Confirm Purchase
-              </h3>
-              <button
-                className="text-slate-400 hover:text-slate-600"
-                onClick={() => setShowPurchaseConfirm(false)}
-              >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-            <div className="space-y-4">
-              <div className="rounded-xl bg-sky-50 p-4">
-                <div className="mb-2 flex justify-between">
-                  <span className="text-slate-600">You pay:</span>
-                  <span className="font-semibold text-slate-800">
-                    {formatEther(amount)} ETH
-                  </span>
-                </div>
-                <div className="flex justify-between border-t border-sky-200 pt-2">
-                  <span className="text-slate-600">You receive (est.):</span>
-                  <span className="font-semibold text-sky-600">
-                    {calculateEstimate().toFixed(2)} $BMI
-                  </span>
-                </div>
+      <ConfirmationDialog
+        confirmButtonText="Confirm Purchase"
+        description="Are you sure you want to purchase $BMI?"
+        onConfirm={handlePurchaseConfirm}
+        onOpenChange={setShowPurchaseConfirm}
+        open={showPurchaseConfirm}
+        title="Confirm Purchase"
+      >
+        <div className="flex items-center justify-center">
+          <div className="w-full space-y-4">
+            <div className="rounded-xl bg-sky-50 p-4">
+              <div className="mb-2 flex justify-between">
+                <span className="text-slate-600">You pay:</span>
+                <span className="font-semibold text-slate-800">
+                  {formatEther(amount)} ETH
+                </span>
               </div>
-              <button
-                className="w-full transform rounded-xl bg-gradient-to-r from-sky-500 to-blue-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02]"
-                onClick={handlePurchaseConfirm}
-              >
-                Confirm Purchase
-              </button>
+              <div className="flex justify-between border-t border-sky-200 pt-2">
+                <span className="text-slate-600">You receive (est.):</span>
+                <span className="font-semibold text-sky-600">
+                  {estimatedAmount.toFixed(2)} $BMI
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      )}
+      </ConfirmationDialog>
     </>
   )
 }

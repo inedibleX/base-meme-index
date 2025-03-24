@@ -11,12 +11,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { ApproveBMIButton } from '../_Purchase/ApproveBMIButton'
 import { RedeemBMIButton } from './RedeemBMIButton'
 
-interface RedeemBoxProps {
-  bmiRate: number
-  feePercentage: number
-}
-
-export const RedeemBox = ({ bmiRate, feePercentage }: RedeemBoxProps) => {
+export const RedeemBox = () => {
   const { address } = useAccount()
   const { data: bmiBalance, isLoading: isBmiBalanceLoading } =
     useReadBmiTokenBalanceOf({
@@ -61,8 +56,6 @@ export const RedeemBox = ({ bmiRate, feePercentage }: RedeemBoxProps) => {
             actionButton={
               <RedeemBMIButton
                 amount={parseEther(redeemAmount ?? '0')}
-                bmiRate={bmiRate}
-                feePercentage={feePercentage}
                 onRedeem={() => setRedeemAmount('')}
               />
             }

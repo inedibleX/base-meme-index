@@ -9,12 +9,7 @@ import { NumberInput } from '../NumberInput'
 import { Skeleton } from '@/components/ui/skeleton'
 import { PurchaseBMIButton } from './PurchaseBMIButton'
 
-interface PurchaseBoxProps {
-  bmiRate: number
-  feePercentage: number
-}
-
-export const PurchaseBox = ({ bmiRate, feePercentage }: PurchaseBoxProps) => {
+export const PurchaseBox = () => {
   const [purchaseAmount, setPurchaseAmount] = useState('')
 
   const { address } = useAccount()
@@ -59,8 +54,6 @@ export const PurchaseBox = ({ bmiRate, feePercentage }: PurchaseBoxProps) => {
           </div>
           <PurchaseBMIButton
             amount={parseEther(purchaseAmount)}
-            bmiRate={bmiRate}
-            feePercentage={feePercentage}
             onPurchase={() => {
               setPurchaseAmount('')
             }}

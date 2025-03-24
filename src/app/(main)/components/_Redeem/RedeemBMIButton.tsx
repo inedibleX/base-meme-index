@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   useAccount,
   useBalance,
@@ -14,24 +14,24 @@ import {
   useSimulateIndexFundRedeem,
 } from '@/generated/wagmi'
 import { BaseError, formatEther } from 'viem'
-import { Loader2, X } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
+import { ConfirmationDialog } from '../ConfirmationDIalog'
+import { useQuery } from '@tanstack/react-query'
+import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
+import { useTVLCalculations } from '../../hooks/useTVLCalculations'
 
 type RedeemBMIButtonProps = {
   amount: bigint
-  bmiRate: number
-  feePercentage: number
   onRedeem: () => void
 }
 
-export const RedeemBMIButton = ({
-  amount,
-  bmiRate,
-  feePercentage,
-  onRedeem,
-}: RedeemBMIButtonProps) => {
+export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
   const [showRedeemConfirm, setShowRedeemConfirm] = useState(false)
 
   const { address } = useAccount()
+  const { data: ethPrice } = useQuery(getEthPriceQueryOptions())
+  const { valueInUsd, isLoading: isValueInUsdLoading } = useTVLCalculations()
+
   // for refetching and keeping the UI in sync
   const { refetch: refetchBmiBalance } = useReadBmiTokenBalanceOf({
     args: [address as `0x${string}`],
@@ -104,21 +104,25 @@ export const RedeemBMIButton = ({
     setShowRedeemConfirm(false)
   }
 
-  const calculateEthAmount = useCallback(
-    (bmiAmount: string) => {
-      if (!bmiAmount) return 0
-      const rawAmount = parseFloat(bmiAmount) / bmiRate
-      return rawAmount * (1 - feePercentage)
-    },
-    [bmiRate, feePercentage],
-  )
-
-  const errMsg =
+  let errMsg =
     (txError as BaseError)?.shortMessage ||
     (simulateRedeemError as BaseError)?.shortMessage
 
+  if (errMsg && errMsg === 'User rejected the request.') {
+    errMsg = ''
+  }
+
   const isDisabled =
     !simulateRedeemData || isRedeemSimulating || isConfirming || isPending
+
+  const estimatedAmount = useMemo(() => {
+    if (!ethPrice) return 0
+    if (isValueInUsdLoading) return 0
+    const tokenAmount = formatEther(amount)
+    const ethPricePerToken = valueInUsd / ethPrice
+    const estimated = ethPricePerToken * parseFloat(tokenAmount)
+    return estimated
+  }, [amount, ethPrice, isValueInUsdLoading, valueInUsd])
 
   return (
     <>
@@ -139,45 +143,33 @@ export const RedeemBMIButton = ({
 
       {errMsg && <p className="mt-2 text-sm text-red-500">{errMsg}</p>}
 
-      {showRedeemConfirm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
-            <div className="mb-4 flex items-start justify-between">
-              <h3 className="text-xl font-semibold text-slate-800">
-                Confirm Redemption
-              </h3>
-              <button
-                className="text-slate-400 hover:text-slate-600"
-                onClick={() => setShowRedeemConfirm(false)}
-              >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-            <div className="space-y-4">
-              <div className="rounded-xl bg-sky-50 p-4">
-                <div className="mb-2 flex justify-between">
-                  <span className="text-slate-600">You redeem:</span>
-                  <span className="font-semibold text-slate-800">
-                    {formatEther(amount)} $BMI
-                  </span>
-                </div>
-                <div className="flex justify-between border-t border-sky-200 pt-2">
-                  <span className="text-slate-600">You receive (est.):</span>
-                  <span className="font-semibold text-sky-600">
-                    {calculateEthAmount(formatEther(amount)).toFixed(4)} ETH
-                  </span>
-                </div>
+      <ConfirmationDialog
+        confirmButtonText="Confirm Redemption"
+        description="Are you sure you want to redeem $BMI?"
+        onConfirm={handleRedeemConfirm}
+        onOpenChange={setShowRedeemConfirm}
+        open={showRedeemConfirm}
+        title="Confirm Redemption"
+      >
+        <div className="flex items-center justify-center">
+          <div className="w-full space-y-4">
+            <div className="rounded-xl bg-sky-50 p-4">
+              <div className="mb-2 flex justify-between">
+                <span className="text-slate-600">You redeem:</span>
+                <span className="font-semibold text-slate-800">
+                  {formatEther(amount)} $BMI
+                </span>
               </div>
-              <button
-                className="w-full transform rounded-xl bg-gradient-to-r from-blue-500 to-sky-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02]"
-                onClick={handleRedeemConfirm}
-              >
-                Confirm Redemption
-              </button>
+              <div className="flex justify-between border-t border-sky-200 pt-2">
+                <span className="text-slate-600">You receive (est.):</span>
+                <span className="font-semibold text-sky-600">
+                  {estimatedAmount.toFixed(6)} ETH
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      )}
+      </ConfirmationDialog>
     </>
   )
 }
