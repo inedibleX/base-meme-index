@@ -1,7 +1,7 @@
 import { Header } from './components/Header'
 import { UserBalanceCard } from './components/UserBalanceCard'
-import { PurchaseBox } from './components/PurchaseBox'
-import { RedeemBox } from './components/RedeemBox'
+import { PurchaseBox } from './components/_Purchase/PurchaseBox'
+import { RedeemBox } from './components/_Redeem/RedeemBox'
 import { IndexComposition } from './components/IndexComposition'
 import { TVLAmount } from './components/TVLAmount'
 

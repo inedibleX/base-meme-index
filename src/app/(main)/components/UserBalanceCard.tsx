@@ -22,7 +22,7 @@ export const UserBalanceCard = () => {
     })
 
   const bmiBalanceInUsd = useMemo(() => {
-    return bmiBalance ? Number(bmiBalance) * valueInUsd : 0
+    return bmiBalance ? Number(formatEther(bmiBalance)) * valueInUsd : 0
   }, [bmiBalance, valueInUsd])
 
   return (
