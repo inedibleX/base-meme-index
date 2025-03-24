@@ -21,17 +21,19 @@ export default defineConfig(() => {
           {
             name: 'IndexFund',
             address: {
-              [base.id]: getAddress(
-                '0x84A189D468d3538Daf98a0674756aCDBeA1aC2aF',
-              ),
+              [base.id]: getAddress(env.NEXT_PUBLIC_INDEX_FUND_ADDRESS),
             },
           },
           {
             name: 'BMIToken',
             address: {
-              [base.id]: getAddress(
-                '0x6d3110bfad307A5E1eC8D64434cFf6d273Fc0bEc',
-              ),
+              [base.id]: getAddress(env.NEXT_PUBLIC_BMI_TOKEN_ADDRESS),
+            },
+          },
+          {
+            name: 'Vault',
+            address: {
+              [base.id]: getAddress(env.NEXT_PUBLIC_VAULT_ADDRESS),
             },
           },
         ],
