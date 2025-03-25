@@ -28,7 +28,37 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: env.NEXT_PUBLIC_APP_NAME,
-  description: 'Make ideas',
+  icons: [
+    {
+      rel: 'icon',
+      sizes: '16x16',
+      type: 'image/png',
+      url: '/favicon-16x16.png',
+    },
+    {
+      rel: 'icon',
+      sizes: '32x32',
+      type: 'image/png',
+      url: '/favicon-32x32.png',
+    },
+    {
+      rel: 'icon',
+      sizes: '192x192',
+      type: 'image/png',
+      url: '/favicon-192x192.png',
+    },
+    {
+      rel: 'icon',
+      sizes: '512x512',
+      type: 'image/png',
+      url: '/favicon-512x512.png',
+    },
+  ],
+  appleWebApp: {
+    capable: true,
+    title: env.NEXT_PUBLIC_APP_NAME,
+    statusBarStyle: 'default',
+  },
 }
 
 export default async function RootLayout(
