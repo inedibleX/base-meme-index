@@ -1,10 +1,29 @@
 import { act, fireEvent, screen } from '@testing-library/react'
-import { describe, expect, test } from 'vitest'
+import {
+  afterAll,
+  beforeAll,
+  describe,
+  expect,
+  MockInstance,
+  test,
+  vi,
+} from 'vitest'
 
 import { renderWithProviders } from '@/test'
 import { mockWallet } from '@/test/mock-wallet'
 
-import { WalletConnectButton } from './wallet-connect-button'
+import { WalletConnectButton } from '../wallet-connect-button'
+
+let mockError: ReturnType<MockInstance['mockImplementation']>
+
+beforeAll(() => {
+  // Silence the `An empty string ("")` error logs
+  mockError = vi.spyOn(console, 'error').mockImplementation(() => {})
+})
+
+afterAll(() => {
+  mockError.mockRestore()
+})
 
 describe('WalletConnectButton', () => {
   test('should show loading state when mounted', async () => {

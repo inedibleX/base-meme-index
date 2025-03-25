@@ -1,25 +1,49 @@
 import { act, fireEvent, screen } from '@testing-library/react'
 import { baseSepolia } from 'viem/chains'
-import { describe, expect, test, vi } from 'vitest'
+import {
+  afterAll,
+  beforeAll,
+  describe,
+  expect,
+  MockInstance,
+  test,
+  vi,
+} from 'vitest'
 
 import { ConnectButton } from '@/components/connect-button'
 import { renderWithProviders } from '@/test'
 import { mockWallet } from '@/test/mock-wallet'
 
+let mockError: ReturnType<MockInstance['mockImplementation']>
+
+beforeAll(() => {
+  // Silence the `An empty string ("")` error logs
+  mockError = vi.spyOn(console, 'error').mockImplementation(() => {})
+})
+
+afterAll(() => {
+  mockError.mockRestore()
+})
+
 describe('Given a user is not connected to their wallet', () => {
   test('Should show correct default', async () => {
     const { getByText } = renderWithProviders(<ConnectButton />)
-    await vi.dynamicImportSettled()
+
+    await act(async () => {
+      await vi.dynamicImportSettled()
+    })
 
     expect(getByText('Connect Wallet')).toBeInTheDocument()
   })
 
-  test('Should show custom connect button', () => {
+  test('Should show custom connect button', async () => {
     const { getByText } = renderWithProviders(
       <ConnectButton connectButton={() => <div>Connect now</div>} />,
     )
 
-    expect(getByText('Connect now')).toBeInTheDocument()
+    await act(async () => {
+      expect(getByText('Connect now')).toBeInTheDocument()
+    })
   })
 })
 
