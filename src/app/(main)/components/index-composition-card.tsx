@@ -4,7 +4,7 @@ import React from 'react'
 
 import { tokenMap } from '@/lib/tokens'
 
-export const IndexComposition = () => {
+export const IndexCompositionCard = () => {
   return (
     <div className="rounded-2xl bg-white/90 p-6 shadow-xl backdrop-blur-md">
       <div className="mb-6 flex items-center">

@@ -3,8 +3,8 @@ import { Metadata } from 'next'
 import { PurchaseCard } from '@/app/(main)/components/_PurchaseCard/purchase-card'
 import { RedeemCard } from '@/app/(main)/components/_RedeemCard/redeem-card'
 import { Header } from '@/app/(main)/components/header'
-import { IndexComposition } from '@/app/(main)/components/index-composition'
-import { TVLAmount } from '@/app/(main)/components/tvl-amount'
+import { IndexCompositionCard } from '@/app/(main)/components/index-composition-card'
+import { TVLAmountCard } from '@/app/(main)/components/tvl-amount-card'
 import { UserBalanceCard } from '@/app/(main)/components/user-balance-card'
 import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
 import { getQueryClient } from '@/lib/queries/get-query-client'
@@ -22,8 +22,8 @@ export default function Home() {
           <PurchaseCard />
           <RedeemCard />
         </div>
-        <TVLAmount />
-        <IndexComposition />
+        <TVLAmountCard />
+        <IndexCompositionCard />
       </main>
     </div>
   )

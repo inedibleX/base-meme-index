@@ -130,12 +130,12 @@ export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
 
   const isLoading = isRedeemSimulating || isConfirming || isPending
 
-  const estimatedRedeemedEth = useMemo(() => {
+  const estimatedEthReceived = useMemo(() => {
     if (!ethPrice) return 0
     if (isBmiTokenValueUsdPriceLoading) return 0
-    const tokenAmount = formatEther(amount)
+    const tokenAmount = parseFloat(formatEther(amount))
     const ethPricePerToken = bmiTokenUsdPrice / ethPrice
-    const estimated = ethPricePerToken * parseFloat(tokenAmount)
+    const estimated = ethPricePerToken * tokenAmount
     return estimated
   }, [amount, ethPrice, isBmiTokenValueUsdPriceLoading, bmiTokenUsdPrice])
 
@@ -159,7 +159,7 @@ export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
         open={showConfirmRedeemDialog}
         title="Confirm Redemption"
         userPaysAmount={`${formatEther(amount)} $BMI`}
-        userReceivesAmount={`${estimatedRedeemedEth.toFixed(6)} ETH`}
+        userReceivesAmount={`${estimatedEthReceived.toFixed(6)} ETH`}
       />
     </>
   )

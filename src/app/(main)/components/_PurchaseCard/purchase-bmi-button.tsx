@@ -120,7 +120,7 @@ export const PurchaseBMIButton = ({
 
   const isLoading = isPurchaseSimulating || isConfirming || isPending
 
-  const estimatedPurchasedBmiTokens = useMemo(() => {
+  const estimatedBmiTokensReceived = useMemo(() => {
     if (!ethPrice) return 0
     if (isBmiTokenUsdPriceLoading) return 0
     const amountInEth = formatEther(amount)
@@ -149,7 +149,7 @@ export const PurchaseBMIButton = ({
         open={showConfirmPurchaseDialog}
         title="Confirm Purchase"
         userPaysAmount={`${formatEther(amount)} ETH`}
-        userReceivesAmount={`${estimatedPurchasedBmiTokens.toFixed(2)} $BMI`}
+        userReceivesAmount={`${estimatedBmiTokensReceived.toFixed(2)} $BMI`}
       />
     </>
   )

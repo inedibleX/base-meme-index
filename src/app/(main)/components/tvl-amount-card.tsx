@@ -4,7 +4,7 @@ import { useBmiTokenUsdPriceAndTVL } from '@/app/(main)/hooks/use-bmi-token-usd-
 import { Skeleton } from '@/components/ui/skeleton'
 import { numberFormat } from '@/lib/formatters'
 
-export const TVLAmount = () => {
+export const TVLAmountCard = () => {
   const { tvl, isLoading } = useBmiTokenUsdPriceAndTVL()
 
   return (
