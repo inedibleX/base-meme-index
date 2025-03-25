@@ -138,6 +138,7 @@ export const PurchaseBMIButton = ({
       >
         {isLoading ? 'Purchase' : 'Purchasing...'}
       </ActionButton>
+
       {errMsg && <p className="mt-2 text-sm text-red-500">{errMsg}</p>}
 
       <SwapConfirmationDialog

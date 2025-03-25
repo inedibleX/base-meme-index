@@ -9,13 +9,13 @@ import {
 } from '@/components/ui/dialog'
 
 type ConfirmationDialogProps = {
-  children: React.ReactNode
-  confirmButtonText: string
-  description: string
-  open: boolean
-  onConfirm: () => void
-  onOpenChange: (open: boolean) => void
   title: string
+  description: string
+  confirmButtonText: string
+  children: React.ReactNode
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  onConfirm: () => void
 }
 
 export function ConfirmationDialog({

@@ -2,10 +2,12 @@ import React from 'react'
 
 import { ConfirmationDialog } from './confirmation-dialog'
 
+type WithoutChildren<T> = Omit<T, 'children'>
+
 type SwapConfirmationDialogProps = {
   userPaysAmount: React.ReactNode
   userReceivesAmount: React.ReactNode
-} & Omit<React.ComponentProps<typeof ConfirmationDialog>, 'children'>
+} & WithoutChildren<React.ComponentProps<typeof ConfirmationDialog>>
 
 export const SwapConfirmationDialog = ({
   userPaysAmount,
