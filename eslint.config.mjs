@@ -3,6 +3,9 @@ import { fileURLToPath } from 'url'
 import { FlatCompat } from '@eslint/eslintrc'
 import typescriptParser from '@typescript-eslint/parser'
 import prettierPlugin from 'eslint-plugin-prettier/recommended'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
+import unusedImports from 'eslint-plugin-unused-imports'
+import importPlugin from 'eslint-plugin-import'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -47,7 +50,35 @@ const eslintConfig = [
       'no-duplicate-imports': ['error', { includeExports: true }],
       '@typescript-eslint/no-unused-vars': 'warn',
     },
-    ignores: ['generated/**/*', 'node_modules/**/*'],
+  },
+  {
+    plugins: {
+      'simple-import-sort': simpleImportSort,
+      'unused-imports': unusedImports,
+      import: importPlugin,
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
+      'import/first': 'error',
+      'import/newline-after-import': 'error',
+      'import/no-duplicates': 'error',
+      'import/no-unresolved': 'off',
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': [
+        'warn',
+        {
+          vars: 'all',
+          varsIgnorePattern: '^_',
+          args: 'after-used',
+          argsIgnorePattern: '^_',
+        },
+      ],
+    },
+  },
+  {
+    ignores: ['generated/**/*', 'node_modules/**/*', 'src/test/**/*'],
   },
 ]
 
