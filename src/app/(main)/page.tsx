@@ -13,17 +13,13 @@ export default function Home() {
   return (
     <div>
       <Header />
-
       <main className="mx-auto max-w-6xl px-4 pb-24">
         <UserBalanceCard />
-
         <div className="mb-8 grid grid-cols-1 items-start gap-8 md:grid-cols-2">
           <PurchaseBox />
           <RedeemBox />
         </div>
-
         <TVLAmount />
-
         <IndexComposition />
       </main>
     </div>
