@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ConfirmationDialog } from './confirmation-dialog'
+import { ConfirmationDialog } from '@/components/confirmation-dialog'
 
 type WithoutChildren<T> = Omit<T, 'children'>
 
