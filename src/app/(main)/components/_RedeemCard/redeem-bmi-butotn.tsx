@@ -15,10 +15,10 @@ import {
 } from '@/generated/wagmi'
 import { BaseError, formatEther } from 'viem'
 import { Loader2 } from 'lucide-react'
-import { ConfirmationDialog } from '../ConfirmationDIalog'
+import { ConfirmationDialog } from '../confirmation-dialog'
 import { useQuery } from '@tanstack/react-query'
 import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
-import { useTVLCalculations } from '../../hooks/useTVLCalculations'
+import { useTVLCalculations } from '../../hooks/use-tvl-calculation'
 type RedeemBMIButtonProps = {
   amount: bigint
   onRedeem: (hash: string) => void
@@ -27,11 +27,11 @@ type RedeemBMIButtonProps = {
 export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
   const [showRedeemConfirm, setShowRedeemConfirm] = useState(false)
 
-  const { address } = useAccount()
   const { data: ethPrice } = useQuery(getEthPriceQueryOptions())
   const { valueInUsd, isLoading: isValueInUsdLoading } = useTVLCalculations()
 
   // for refetching and keeping the UI in sync
+  const { address } = useAccount()
   const { refetch: refetchBmiBalance } = useReadBmiTokenBalanceOf({
     args: [address as `0x${string}`],
   })
@@ -39,6 +39,7 @@ export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
     address,
   })
   const { refetch: refetchBMITotalSupply } = useReadBmiTokenTotalSupply()
+  // TODO: replace with a dynamic token and address
   const { refetch: refetchTokenInfo } = useReadVaultGetPoolTokenInfo({
     args: [
       '0xffa997dfed184a220392ebae7c054c39d87ad00f0001000000000000000001d2',

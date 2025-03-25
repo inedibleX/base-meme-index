@@ -8,6 +8,7 @@ import { formatEther } from 'viem'
 import { useMemo } from 'react'
 
 export const useTVLCalculations = () => {
+  // TODO: replace with a dynamic token and address
   const { data: tokenInfo, isLoading: isTokenInfoLoading } =
     useReadVaultGetPoolTokenInfo({
       args: [
@@ -19,6 +20,7 @@ export const useTVLCalculations = () => {
   const { data: totalSupply, isLoading: isTotalSupplyLoading } =
     useReadBmiTokenTotalSupply()
 
+  // TODO: and this one
   const { data: tokenPrice, isLoading: isTokenPriceLoading } = useQuery({
     ...getTokenPriceQueryOptions('0x0d97f261b1e88845184f678e2d1e7a98d9fd38de'),
     enabled: !!tokenInfo,

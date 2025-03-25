@@ -5,14 +5,14 @@ import { ArrowRightLeft } from 'lucide-react'
 import { useAccount } from 'wagmi'
 import { useReadBmiTokenBalanceOf } from '@/generated/wagmi'
 import { parseEther } from 'viem'
-import { BalanceButton } from '../BalanceButton'
-import { NumberInput } from '../NumberInput'
+import { BalanceButton } from '../balance-button'
+import { NumberInput } from '../number-input'
 import { Skeleton } from '@/components/ui/skeleton'
-import { ApproveBMIButton } from '../_Purchase/ApproveBMIButton'
-import { RedeemBMIButton } from './RedeemBMIButton'
+import { ApproveBMIButton } from '../_PurchaseCard/approve-bmi-button'
+import { RedeemBMIButton } from './redeem-bmi-butotn'
 import { toastTxSuccess } from '@/lib/toast'
 
-export const RedeemBox = () => {
+export const RedeemCard = () => {
   const { address } = useAccount()
   const { data: bmiBalance, isLoading: isBmiBalanceLoading } =
     useReadBmiTokenBalanceOf({

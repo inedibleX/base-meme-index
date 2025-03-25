@@ -1,9 +1,9 @@
-import { Header } from './components/Header'
-import { UserBalanceCard } from './components/UserBalanceCard'
-import { PurchaseBox } from './components/_Purchase/PurchaseBox'
-import { RedeemBox } from './components/_Redeem/RedeemBox'
-import { IndexComposition } from './components/IndexComposition'
-import { TVLAmount } from './components/TVLAmount'
+import { Header } from './components/header'
+import { UserBalanceCard } from './components/user-balance-card'
+import { PurchaseCard } from './components/_PurchaseCard/purchase-card'
+import { RedeemCard } from './components/_Redeem/redeem-card'
+import { IndexComposition } from './components/index-composition'
+import { TVLAmount } from './components/tvl-amount'
 import { getQueryClient } from '@/lib/queries/get-query-client'
 import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
 import { Metadata } from 'next'
@@ -17,8 +17,8 @@ export default function Home() {
       <main className="mx-auto max-w-6xl px-4 pb-24">
         <UserBalanceCard />
         <div className="mb-8 grid grid-cols-1 items-start gap-8 md:grid-cols-2">
-          <PurchaseBox />
-          <RedeemBox />
+          <PurchaseCard />
+          <RedeemCard />
         </div>
         <TVLAmount />
         <IndexComposition />

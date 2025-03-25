@@ -1,7 +1,7 @@
 'use client'
 
 import { numberFormat } from '@/lib/formatters'
-import { useTVLCalculations } from '../hooks/useTVLCalculations'
+import { useTVLCalculations } from '../hooks/use-tvl-calculation'
 import { Skeleton } from '@/components/ui/skeleton'
 
 export const TVLAmount = () => {

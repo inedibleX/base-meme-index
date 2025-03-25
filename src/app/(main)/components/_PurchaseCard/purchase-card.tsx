@@ -4,12 +4,13 @@ import React, { useCallback, useState } from 'react'
 import { ArrowDownUp } from 'lucide-react'
 import { useBalance, useAccount } from 'wagmi'
 import { parseEther } from 'viem'
-import { BalanceButton } from '../BalanceButton'
-import { NumberInput } from '../NumberInput'
+import { BalanceButton } from '../balance-button'
+import { NumberInput } from '../number-input'
 import { Skeleton } from '@/components/ui/skeleton'
-import { PurchaseBMIButton } from './PurchaseBMIButton'
+import { PurchaseBMIButton } from './purchase-bmi-button'
 import { toastTxSuccess } from '@/lib/toast'
-export const PurchaseBox = () => {
+
+export const PurchaseCard = () => {
   const [purchaseAmount, setPurchaseAmount] = useState('')
 
   const { address } = useAccount()

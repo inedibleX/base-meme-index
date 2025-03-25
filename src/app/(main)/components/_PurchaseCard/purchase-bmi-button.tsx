@@ -14,8 +14,8 @@ import {
   useSimulateIndexFundMint,
 } from '@/generated/wagmi'
 import { BaseError, formatEther } from 'viem'
-import { useTVLCalculations } from '../../hooks/useTVLCalculations'
-import { ConfirmationDialog } from '../ConfirmationDIalog'
+import { useTVLCalculations } from '../../hooks/use-tvl-calculation'
+import { ConfirmationDialog } from '../confirmation-dialog'
 import { useQuery } from '@tanstack/react-query'
 import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
 

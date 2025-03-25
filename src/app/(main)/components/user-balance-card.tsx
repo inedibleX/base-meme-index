@@ -6,7 +6,7 @@ import { useAccount, useBalance } from 'wagmi'
 import { formatEther } from 'viem'
 import { numberFormat } from '@/lib/formatters'
 import { useReadBmiTokenBalanceOf } from '@/generated/wagmi'
-import { useTVLCalculations } from '../hooks/useTVLCalculations'
+import { useTVLCalculations } from '../hooks/use-tvl-calculation'
 import { Skeleton } from '@/components/ui/skeleton'
 
 export const UserBalanceCard = () => {
