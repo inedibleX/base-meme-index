@@ -1,6 +1,6 @@
-# Dapp Starter Kit
+# Base Meme Index
 
-This starter kit helps you build decentralized applications (Dapps) on the Ethereum blockchain.
+Base's first equal-weighted meme index fund! Deposit Ether and receive equal amounts of 8 top Base memes that constantly rebalance. Equal weighting has more volatility than cap weighting--as memes should!
 
 ## Dependencies
 - Next.js v15.1.17
@@ -25,6 +25,12 @@ This starter kit helps you build decentralized applications (Dapps) on the Ether
 This project uses `vitest`, `@react-testing-library/jest-dom`, and `@testing-library/react` for testing.
 - Run `npm run test` to execute the tests.
 - Run `npm run test:watch` for watch mode.
+
+## Linting
+- Run `npm run lint` or `npm run lint:fix`
+
+## Wagmi Codegen
+If you update the contract addresses in your environment variables, run `npm run codegen:wagmi` to regenerate the React hooks for interacting with the contracts.
 
 ## Building
 Build the project by running: `npm run build`.
