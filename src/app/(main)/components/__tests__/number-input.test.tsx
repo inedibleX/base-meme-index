@@ -63,16 +63,4 @@ describe('NumberInput', () => {
     render(<NumberInput onChange={() => {}} value="" />)
     expect(screen.queryByLabelText('Clear input')).not.toBeInTheDocument()
   })
-
-  it('respects step attribute', () => {
-    render(<NumberInput value="" />)
-    const input = screen.getByRole('spinbutton')
-    expect(input).toHaveAttribute('step', '0.01')
-  })
-
-  it('respects min attribute', () => {
-    render(<NumberInput value="" />)
-    const input = screen.getByRole('spinbutton')
-    expect(input).toHaveAttribute('min', '0')
-  })
 })

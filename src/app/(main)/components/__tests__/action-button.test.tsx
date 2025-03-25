@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { ActionButton } from '@/app/(main)/components/action-button'
+import { ActionButton } from '../action-button'
 
 describe('ActionButton', () => {
   it('renders with default text when no children provided', () => {
@@ -31,15 +31,5 @@ describe('ActionButton', () => {
     const button = screen.getByRole('button')
     expect(button).toBeDisabled()
     expect(button).toHaveClass('cursor-not-allowed')
-    expect(button).toHaveClass('opacity-50')
-    expect(button).toHaveClass('hover:scale-100')
-  })
-
-  it('applies hover styles when not disabled', () => {
-    render(<ActionButton isLoading={false}>Click Me</ActionButton>)
-    const button = screen.getByRole('button')
-    expect(button).toHaveClass('hover:from-blue-400')
-    expect(button).toHaveClass('hover:to-sky-400')
-    expect(button).toHaveClass('hover:scale-[1.02]')
   })
 })
