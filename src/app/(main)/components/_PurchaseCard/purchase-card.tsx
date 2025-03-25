@@ -1,13 +1,14 @@
 'use client'
 
-import React, { useCallback, useState } from 'react'
 import { ArrowDownUp } from 'lucide-react'
-import { useBalance, useAccount } from 'wagmi'
+import React, { useCallback, useState } from 'react'
 import { parseEther } from 'viem'
-import { BalanceButton } from '../balance-button'
-import { NumberInput } from '../number-input'
+import { useAccount, useBalance } from 'wagmi'
+
+import { PurchaseBMIButton } from '@/app/(main)/components/_PurchaseCard/purchase-bmi-button'
+import { BalanceButton } from '@/app/(main)/components/balance-button'
+import { NumberInput } from '@/app/(main)/components/number-input'
 import { Skeleton } from '@/components/ui/skeleton'
-import { PurchaseBMIButton } from './purchase-bmi-button'
 import { toastTxSuccess } from '@/lib/toast'
 
 export const PurchaseCard = () => {

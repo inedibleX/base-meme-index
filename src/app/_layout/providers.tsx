@@ -1,13 +1,14 @@
 'use client'
 
+import { darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { type ReactNode } from 'react'
+import { baseSepolia } from 'viem/chains'
+import { type State, WagmiProvider } from 'wagmi'
+
+import { env } from '@/lib/env'
 import { getQueryClient } from '@/lib/queries/get-query-client'
 import { config } from '@/lib/wagmi.config'
-import { QueryClientProvider } from '@tanstack/react-query'
-import { darkTheme, RainbowKitProvider } from '@rainbow-me/rainbowkit'
-import { type ReactNode } from 'react'
-import { type State, WagmiProvider } from 'wagmi'
-import { baseSepolia } from 'viem/chains'
-import { env } from '@/lib/env'
 
 export function Providers(props: {
   children: ReactNode

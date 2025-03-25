@@ -1,9 +1,8 @@
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from '@/ui/navigation-menu'
+import { Menu as MenuIcon } from 'lucide-react'
+import Link from 'next/link'
+import React from 'react'
+
+import { NavBarConnectWalletButton } from '@/app/_layout/nav-bar-connect-wallet-button'
 import {
   Drawer,
   DrawerContent,
@@ -11,11 +10,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
-import React from 'react'
-import { NavBarConnectWalletButton } from '@/app/_layout/nav-bar-connect-wallet-button'
 import { Button } from '@/ui/button'
-import Link from 'next/link'
-import { Menu as MenuIcon } from 'lucide-react'
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from '@/ui/navigation-menu'
 
 const menuItems = [
   { title: 'Discover', href: '/' },

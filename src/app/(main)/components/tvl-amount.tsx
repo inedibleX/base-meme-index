@@ -1,8 +1,8 @@
 'use client'
 
-import { numberFormat } from '@/lib/formatters'
-import { useBmiTokenUsdPriceAndTVL } from '../hooks/use-bmi-token-usd-price-and-tvl'
+import { useBmiTokenUsdPriceAndTVL } from '@/app/(main)/hooks/use-bmi-token-usd-price-and-tvl'
 import { Skeleton } from '@/components/ui/skeleton'
+import { numberFormat } from '@/lib/formatters'
 
 export const TVLAmount = () => {
   const { tvl, isLoading } = useBmiTokenUsdPriceAndTVL()

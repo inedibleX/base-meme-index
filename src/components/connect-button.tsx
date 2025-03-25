@@ -2,9 +2,9 @@
 import { type ConnectButtonRendererProps } from '@rainbow-me/rainbowkit/dist/components/ConnectButton/ConnectButtonRenderer'
 import dynamic from 'next/dynamic'
 import React from 'react'
-import { shortenAddress } from '@/lib/shorten-address'
 
-import { Button } from './ui/button'
+import { Button } from '@/components/ui/button'
+import { shortenAddress } from '@/lib/shorten-address'
 
 const RainbowConnectButton = dynamic(
   () =>

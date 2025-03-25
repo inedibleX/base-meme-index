@@ -1,6 +1,7 @@
+import { formatEther } from 'viem'
+
 import { numberFormat } from '@/lib/formatters'
 import { cn } from '@/lib/utils'
-import { formatEther } from 'viem'
 
 export const BalanceButton = ({
   balance,

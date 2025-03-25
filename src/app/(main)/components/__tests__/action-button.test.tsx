@@ -1,6 +1,7 @@
-import { describe, expect, it } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { ActionButton } from '../action-button'
+import { describe, expect, it } from 'vitest'
+
+import { ActionButton } from '@/app/(main)/components/action-button'
 
 describe('ActionButton', () => {
   it('renders with default text when no children provided', () => {

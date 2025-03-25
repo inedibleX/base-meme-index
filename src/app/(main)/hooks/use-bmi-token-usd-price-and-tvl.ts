@@ -1,11 +1,12 @@
+import { useQuery } from '@tanstack/react-query'
+import { useMemo } from 'react'
+import { formatEther } from 'viem'
+
 import {
   useReadBmiTokenTotalSupply,
   useReadVaultGetPoolTokenInfo,
 } from '@/generated/wagmi'
 import { getTokenPriceQueryOptions } from '@/lib/queries/get-coingecko-price'
-import { useQuery } from '@tanstack/react-query'
-import { formatEther } from 'viem'
-import { useMemo } from 'react'
 
 export const useBmiTokenUsdPriceAndTVL = () => {
   // TODO: replace with a dynamic token and address

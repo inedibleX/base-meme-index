@@ -1,8 +1,3 @@
-import {
-  useReadBmiTokenAllowance,
-  useSimulateBmiTokenApprove,
-} from '@/generated/wagmi'
-import { env } from '@/lib/env'
 import { useEffect } from 'react'
 import { BaseError, maxUint256 } from 'viem'
 import {
@@ -10,7 +5,13 @@ import {
   useWaitForTransactionReceipt,
   useWriteContract,
 } from 'wagmi'
-import { ActionButton } from '../action-button'
+
+import { ActionButton } from '@/app/(main)/components/action-button'
+import {
+  useReadBmiTokenAllowance,
+  useSimulateBmiTokenApprove,
+} from '@/generated/wagmi'
+import { env } from '@/lib/env'
 
 type ApproveBMIButtonProps = {
   amount: bigint

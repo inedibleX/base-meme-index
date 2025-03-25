@@ -1,15 +1,17 @@
-import type { Metadata } from 'next'
-import { Fredoka, Geist, Geist_Mono } from 'next/font/google'
 import '@/app/_styles/globals.css'
 import '@rainbow-me/rainbowkit/styles.css'
-import { Providers } from '@/app/_layout/providers'
+
+import type { Metadata } from 'next'
+import { Fredoka, Geist, Geist_Mono } from 'next/font/google'
 import { headers } from 'next/headers'
-import { cookieToInitialState } from 'wagmi'
-import { config } from '@/lib/wagmi.config'
-import { NavBar } from '@/app/_layout/nav-bar'
-import { Footer } from '@/app/_layout/footer'
-import { env } from '@/lib/env'
 import { Toaster } from 'sonner'
+import { cookieToInitialState } from 'wagmi'
+
+import { Footer } from '@/app/_layout/footer'
+import { NavBar } from '@/app/_layout/nav-bar'
+import { Providers } from '@/app/_layout/providers'
+import { env } from '@/lib/env'
+import { config } from '@/lib/wagmi.config'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

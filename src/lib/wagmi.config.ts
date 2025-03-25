@@ -6,16 +6,17 @@ import {
   coinbaseWallet,
   ledgerWallet,
   metaMaskWallet,
+  phantomWallet,
   rabbyWallet,
   rainbowWallet,
   safeWallet,
-  walletConnectWallet,
   tokenPocketWallet,
-  phantomWallet,
+  walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets'
-import { http, cookieStorage, createConfig, createStorage } from 'wagmi'
+import { cookieStorage, createConfig, createStorage, http } from 'wagmi'
 import { base } from 'wagmi/chains'
 import { injected } from 'wagmi/connectors'
+
 import { env } from '@/lib/env'
 
 const walletConnectProjectId =

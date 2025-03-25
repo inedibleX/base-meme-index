@@ -1,12 +1,14 @@
-import { Header } from './components/header'
-import { UserBalanceCard } from './components/user-balance-card'
-import { PurchaseCard } from './components/_PurchaseCard/purchase-card'
-import { RedeemCard } from './components/_RedeemCard/redeem-card'
-import { IndexComposition } from './components/index-composition'
-import { TVLAmount } from './components/tvl-amount'
-import { getQueryClient } from '@/lib/queries/get-query-client'
-import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
 import { Metadata } from 'next'
+
+import { PurchaseCard } from '@/app/(main)/components/_PurchaseCard/purchase-card'
+import { RedeemCard } from '@/app/(main)/components/_RedeemCard/redeem-card'
+import { Header } from '@/app/(main)/components/header'
+import { IndexComposition } from '@/app/(main)/components/index-composition'
+import { TVLAmount } from '@/app/(main)/components/tvl-amount'
+import { UserBalanceCard } from '@/app/(main)/components/user-balance-card'
+import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
+import { getQueryClient } from '@/lib/queries/get-query-client'
+
 export default function Home() {
   const queryClient = getQueryClient()
   void queryClient.prefetchQuery(getEthPriceQueryOptions())

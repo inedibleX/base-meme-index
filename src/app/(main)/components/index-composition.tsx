@@ -1,7 +1,9 @@
-import React from 'react'
 import { PieChart } from 'lucide-react'
-import { tokenMap } from '@/lib/tokens'
 import Image from 'next/image'
+import React from 'react'
+
+import { tokenMap } from '@/lib/tokens'
+
 export const IndexComposition = () => {
   return (
     <div className="rounded-2xl bg-white/90 p-6 shadow-xl backdrop-blur-md">

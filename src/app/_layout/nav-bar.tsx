@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { NavBarConnectWalletButton } from '@/app/_layout/nav-bar-connect-wallet-button'
 
 const NavBarDesktop = () => {

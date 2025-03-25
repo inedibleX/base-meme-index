@@ -9,10 +9,9 @@ import {
   vi,
 } from 'vitest'
 
+import { WalletConnectButton } from '@/components/wallet-connect-button'
 import { renderWithProviders } from '@/test'
 import { mockWallet } from '@/test/mock-wallet'
-
-import { WalletConnectButton } from '../wallet-connect-button'
 
 let mockError: ReturnType<MockInstance['mockImplementation']>
 

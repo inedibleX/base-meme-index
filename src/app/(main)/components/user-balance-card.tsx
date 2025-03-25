@@ -1,13 +1,14 @@
 'use client'
 
-import React, { useMemo } from 'react'
 import { Wallet } from 'lucide-react'
-import { useAccount, useBalance } from 'wagmi'
+import React, { useMemo } from 'react'
 import { formatEther } from 'viem'
-import { numberFormat } from '@/lib/formatters'
-import { useReadBmiTokenBalanceOf } from '@/generated/wagmi'
-import { useBmiTokenUsdPriceAndTVL } from '../hooks/use-bmi-token-usd-price-and-tvl'
+import { useAccount, useBalance } from 'wagmi'
+
+import { useBmiTokenUsdPriceAndTVL } from '@/app/(main)/hooks/use-bmi-token-usd-price-and-tvl'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useReadBmiTokenBalanceOf } from '@/generated/wagmi'
+import { numberFormat } from '@/lib/formatters'
 
 export const UserBalanceCard = () => {
   const { usdPrice: bmiTokenUsdPrice, isLoading: isBmiTokenUsdPriceLoading } =

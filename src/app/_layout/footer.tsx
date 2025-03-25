@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { env } from '@/lib/env'
 
 export const Footer = () => {

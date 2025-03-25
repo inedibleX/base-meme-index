@@ -1,16 +1,18 @@
 'use client'
 
-import React, { useCallback, useState } from 'react'
 import { ArrowRightLeft } from 'lucide-react'
-import { useAccount } from 'wagmi'
-import { useReadBmiTokenBalanceOf } from '@/generated/wagmi'
+import React, { useCallback, useState } from 'react'
 import { parseEther } from 'viem'
+import { useAccount } from 'wagmi'
+
+import { Skeleton } from '@/components/ui/skeleton'
+import { useReadBmiTokenBalanceOf } from '@/generated/wagmi'
+import { toastTxSuccess } from '@/lib/toast'
+
+import { ApproveBMIButton } from '../_PurchaseCard/approve-bmi-button'
 import { BalanceButton } from '../balance-button'
 import { NumberInput } from '../number-input'
-import { Skeleton } from '@/components/ui/skeleton'
-import { ApproveBMIButton } from '../_PurchaseCard/approve-bmi-button'
 import { RedeemBMIButton } from './redeem-bmi-button'
-import { toastTxSuccess } from '@/lib/toast'
 
 export const RedeemCard = () => {
   const { address } = useAccount()
