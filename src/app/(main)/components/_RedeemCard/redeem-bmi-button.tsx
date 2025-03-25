@@ -1,32 +1,34 @@
 'use client'
 
+import { useQuery } from '@tanstack/react-query'
 import React, { useEffect, useMemo, useState } from 'react'
+import { BaseError, formatEther } from 'viem'
 import {
   useAccount,
   useBalance,
   useWaitForTransactionReceipt,
   useWriteContract,
 } from 'wagmi'
+
 import {
   useReadBmiTokenBalanceOf,
   useReadBmiTokenTotalSupply,
   useReadVaultGetPoolTokenInfo,
   useSimulateIndexFundRedeem,
 } from '@/generated/wagmi'
-import { BaseError, formatEther } from 'viem'
-import { Loader2 } from 'lucide-react'
-import { ConfirmationDialog } from '../confirmation-dialog'
-import { useQuery } from '@tanstack/react-query'
 import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
+
 import { useBmiTokenUsdPriceAndTVL } from '../../hooks/use-bmi-token-usd-price-and-tvl'
 import { ActionButton } from '../action-button'
+import { SwapConfirmationDialog } from '../swap-confirmation-dialog'
+
 type RedeemBMIButtonProps = {
   amount: bigint
   onRedeem: (hash: string) => void
 }
 
 export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
-  const [showRedeemConfirm, setShowRedeemConfirm] = useState(false)
+  const [showConfirmRedeemDialog, setShowConfirmRedeemDialog] = useState(false)
 
   const { data: ethPrice } = useQuery(getEthPriceQueryOptions())
   const {
@@ -36,15 +38,15 @@ export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
 
   // for refetching and keeping the UI in sync
   const { address } = useAccount()
-  const { refetch: refetchBmiBalance } = useReadBmiTokenBalanceOf({
+  const { refetch: refetchBmiTokenBalance } = useReadBmiTokenBalanceOf({
     args: [address as `0x${string}`],
   })
   const { refetch: refetchEthBalance } = useBalance({
     address,
   })
-  const { refetch: refetchBMITotalSupply } = useReadBmiTokenTotalSupply()
+  const { refetch: refetchBmiTokenTotalSupply } = useReadBmiTokenTotalSupply()
   // TODO: replace with a dynamic token and address
-  const { refetch: refetchTokenInfo } = useReadVaultGetPoolTokenInfo({
+  const { refetch: refetchPoolTokenInfo } = useReadVaultGetPoolTokenInfo({
     args: [
       '0xffa997dfed184a220392ebae7c054c39d87ad00f0001000000000000000001d2',
       '0x0d97f261b1e88845184f678e2d1e7a98d9fd38de',
@@ -83,20 +85,20 @@ export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
       if (!isConfirmed || !receipt) return
 
       Promise.all([
-        refetchBmiBalance(),
         refetchEthBalance(),
-        refetchBMITotalSupply(),
-        refetchTokenInfo(),
+        refetchBmiTokenBalance(),
+        refetchBmiTokenTotalSupply(),
+        refetchPoolTokenInfo(),
       ])
     }
     void refetch()
   }, [
     isConfirmed,
     receipt,
-    refetchBMITotalSupply,
-    refetchBmiBalance,
     refetchEthBalance,
-    refetchTokenInfo,
+    refetchBmiTokenBalance,
+    refetchBmiTokenTotalSupply,
+    refetchPoolTokenInfo,
   ])
 
   useEffect(() => {
@@ -106,13 +108,13 @@ export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
   }, [isConfirmed, receipt, onRedeem])
 
   const handleRedeemClick = () => {
-    setShowRedeemConfirm(true)
+    setShowConfirmRedeemDialog(true)
   }
 
-  const handleRedeemConfirm = () => {
+  const handleRedeemConfirmed = () => {
+    setShowConfirmRedeemDialog(false)
     if (!simulateRedeemData?.request) return
     void writeContract(simulateRedeemData?.request)
-    setShowRedeemConfirm(false)
   }
 
   let errMsg =
@@ -144,38 +146,21 @@ export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
         isLoading={isLoading}
         onClick={handleRedeemClick}
       >
-        {isLoading ? 'Redeem' : 'Redeeming...'}
+        {!isLoading ? 'Redeem' : 'Redeeming...'}
       </ActionButton>
 
       {errMsg && <p className="mt-2 text-sm text-red-500">{errMsg}</p>}
 
-      <ConfirmationDialog
+      <SwapConfirmationDialog
         confirmButtonText="Confirm Redemption"
         description="Are you sure you want to redeem $BMI?"
-        onConfirm={handleRedeemConfirm}
-        onOpenChange={setShowRedeemConfirm}
-        open={showRedeemConfirm}
+        onConfirm={handleRedeemConfirmed}
+        onOpenChange={setShowConfirmRedeemDialog}
+        open={showConfirmRedeemDialog}
         title="Confirm Redemption"
-      >
-        <div className="flex items-center justify-center">
-          <div className="w-full space-y-4">
-            <div className="rounded-xl bg-sky-50 p-4">
-              <div className="mb-2 flex justify-between">
-                <span className="text-slate-600">You redeem:</span>
-                <span className="font-semibold text-slate-800">
-                  {formatEther(amount)} $BMI
-                </span>
-              </div>
-              <div className="flex justify-between border-t border-sky-200 pt-2">
-                <span className="text-slate-600">You receive (est.):</span>
-                <span className="font-semibold text-sky-600">
-                  {estimatedRedeemedEth.toFixed(6)} ETH
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ConfirmationDialog>
+        userPaysAmount={`${formatEther(amount)} $BMI`}
+        userReceivesAmount={`${estimatedRedeemedEth.toFixed(6)} ETH`}
+      />
     </>
   )
 }

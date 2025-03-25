@@ -1,24 +1,24 @@
 'use client'
 
+import { useQuery } from '@tanstack/react-query'
 import React, { useEffect, useMemo, useState } from 'react'
-import { Loader2 } from 'lucide-react'
+import { BaseError, formatEther } from 'viem'
 import {
-  useBalance,
   useAccount,
-  useWriteContract,
+  useBalance,
   useWaitForTransactionReceipt,
+  useWriteContract,
 } from 'wagmi'
+
+import { ActionButton } from '@/app/(main)/components/action-button'
+import { SwapConfirmationDialog } from '@/app/(main)/components/swap-confirmation-dialog'
+import { useBmiTokenUsdPriceAndTVL } from '@/app/(main)/hooks/use-bmi-token-usd-price-and-tvl'
 import {
   useReadBmiTokenBalanceOf,
   useReadBmiTokenTotalSupply,
   useSimulateIndexFundMint,
 } from '@/generated/wagmi'
-import { BaseError, formatEther } from 'viem'
-import { useBmiTokenUsdPriceAndTVL } from '../../hooks/use-bmi-token-usd-price-and-tvl'
-import { ConfirmationDialog } from '../confirmation-dialog'
-import { useQuery } from '@tanstack/react-query'
 import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
-import { ActionButton } from '../action-button'
 
 type PurchaseBMIButtonProps = {
   amount: bigint
@@ -37,15 +37,16 @@ export const PurchaseBMIButton = ({
   const { refetch: refetchEthBalance } = useBalance({
     address,
   })
-  const { refetch: refetchBMI } = useReadBmiTokenBalanceOf({
+  const { refetch: refetchBmiTokenBalance } = useReadBmiTokenBalanceOf({
     args: [address as `0x${string}`],
   })
-  const { refetch: refetchBMITotalSupply } = useReadBmiTokenTotalSupply()
+  const { refetch: refetchBmiTotalSupply } = useReadBmiTokenTotalSupply()
 
-  const [showPurchaseConfirm, setShowPurchaseConfirm] = useState(false)
+  const [showConfirmPurchaseDialog, setShowConfirmPurchaseDialog] =
+    useState(false)
 
   const handlePurchaseClick = () => {
-    setShowPurchaseConfirm(true)
+    setShowConfirmPurchaseDialog(true)
   }
 
   const {
@@ -75,25 +76,29 @@ export const PurchaseBMIButton = ({
     hash,
   })
 
-  const handlePurchaseConfirm = () => {
+  const handlePurchaseConfirmed = () => {
     if (!simulatePurchaseData?.request) return
     void writeContract(simulatePurchaseData?.request)
-    setShowPurchaseConfirm(false)
+    setShowConfirmPurchaseDialog(false)
   }
 
   useEffect(() => {
     async function refetch() {
       if (!isConfirmed || !receipt) return
 
-      Promise.all([refetchEthBalance(), refetchBMI(), refetchBMITotalSupply()])
+      Promise.all([
+        refetchEthBalance(),
+        refetchBmiTokenBalance(),
+        refetchBmiTotalSupply(),
+      ])
     }
     void refetch()
   }, [
     isConfirmed,
     receipt,
     refetchEthBalance,
-    refetchBMI,
-    refetchBMITotalSupply,
+    refetchBmiTokenBalance,
+    refetchBmiTotalSupply,
   ])
 
   useEffect(() => {
@@ -135,33 +140,16 @@ export const PurchaseBMIButton = ({
       </ActionButton>
       {errMsg && <p className="mt-2 text-sm text-red-500">{errMsg}</p>}
 
-      <ConfirmationDialog
+      <SwapConfirmationDialog
         confirmButtonText="Confirm Purchase"
         description="Are you sure you want to purchase $BMI?"
-        onConfirm={handlePurchaseConfirm}
-        onOpenChange={setShowPurchaseConfirm}
-        open={showPurchaseConfirm}
+        onConfirm={handlePurchaseConfirmed}
+        onOpenChange={setShowConfirmPurchaseDialog}
+        open={showConfirmPurchaseDialog}
         title="Confirm Purchase"
-      >
-        <div className="flex items-center justify-center">
-          <div className="w-full space-y-4">
-            <div className="rounded-xl bg-sky-50 p-4">
-              <div className="mb-2 flex justify-between">
-                <span className="text-slate-600">You pay:</span>
-                <span className="font-semibold text-slate-800">
-                  {formatEther(amount)} ETH
-                </span>
-              </div>
-              <div className="flex justify-between border-t border-sky-200 pt-2">
-                <span className="text-slate-600">You receive (est.):</span>
-                <span className="font-semibold text-sky-600">
-                  {estimatedPurchasedBmiTokens.toFixed(2)} $BMI
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ConfirmationDialog>
+        userPaysAmount={`${formatEther(amount)} ETH`}
+        userReceivesAmount={`${estimatedPurchasedBmiTokens.toFixed(2)} $BMI`}
+      />
     </>
   )
 }
