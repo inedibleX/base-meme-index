@@ -1,11 +1,11 @@
 'use client'
 
 import { numberFormat } from '@/lib/formatters'
-import { useTVLCalculations } from '../hooks/use-tvl-calculation'
+import { useBmiTokenUsdPriceAndTVL } from '../hooks/use-bmi-token-usd-price-and-tvl'
 import { Skeleton } from '@/components/ui/skeleton'
 
 export const TVLAmount = () => {
-  const { tvl, isLoading } = useTVLCalculations()
+  const { tvl, isLoading } = useBmiTokenUsdPriceAndTVL()
 
   return (
     <div className="mb-8 flex items-center justify-between rounded-2xl bg-white/90 p-6 shadow-xl backdrop-blur-md">

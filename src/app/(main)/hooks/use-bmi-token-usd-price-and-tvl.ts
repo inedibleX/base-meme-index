@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 import { formatEther } from 'viem'
 import { useMemo } from 'react'
 
-export const useTVLCalculations = () => {
+export const useBmiTokenUsdPriceAndTVL = () => {
   // TODO: replace with a dynamic token and address
   const { data: tokenInfo, isLoading: isTokenInfoLoading } =
     useReadVaultGetPoolTokenInfo({
@@ -21,19 +21,18 @@ export const useTVLCalculations = () => {
     useReadBmiTokenTotalSupply()
 
   // TODO: and this one
-  const { data: tokenPrice, isLoading: isTokenPriceLoading } = useQuery({
+  const { data: tokenUsdPrice, isLoading: isTokenPriceLoading } = useQuery({
     ...getTokenPriceQueryOptions('0x0d97f261b1e88845184f678e2d1e7a98d9fd38de'),
     enabled: !!tokenInfo,
   })
 
   const tvl = useMemo(() => {
     if (isTokenInfoLoading) return 0
-    const balance = formatEther(tokenInfo?.[0] ?? BigInt(0))
-    const usd = tokenPrice ?? 0
-    return parseFloat(balance) * usd * 8
-  }, [isTokenInfoLoading, tokenInfo, tokenPrice])
+    const cash = parseFloat(formatEther(tokenInfo?.[0] ?? BigInt(0)))
+    return cash * (tokenUsdPrice ?? 0) * 8
+  }, [isTokenInfoLoading, tokenInfo, tokenUsdPrice])
 
-  const valueInUsd = useMemo(() => {
+  const bmiTokenUsdPrice = useMemo(() => {
     if (isTokenInfoLoading || isTotalSupplyLoading) return 0
     if (
       totalSupply === undefined ||
@@ -47,7 +46,7 @@ export const useTVLCalculations = () => {
 
   return {
     tvl,
-    valueInUsd,
+    usdPrice: bmiTokenUsdPrice,
     isLoading:
       isTokenInfoLoading || isTotalSupplyLoading || isTokenPriceLoading,
   }

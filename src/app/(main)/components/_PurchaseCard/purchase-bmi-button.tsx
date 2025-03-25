@@ -14,10 +14,11 @@ import {
   useSimulateIndexFundMint,
 } from '@/generated/wagmi'
 import { BaseError, formatEther } from 'viem'
-import { useTVLCalculations } from '../../hooks/use-tvl-calculation'
+import { useBmiTokenUsdPriceAndTVL } from '../../hooks/use-bmi-token-usd-price-and-tvl'
 import { ConfirmationDialog } from '../confirmation-dialog'
 import { useQuery } from '@tanstack/react-query'
 import { getEthPriceQueryOptions } from '@/lib/queries/get-eth-price'
+import { ActionButton } from '../action-button'
 
 type PurchaseBMIButtonProps = {
   amount: bigint
@@ -28,7 +29,8 @@ export const PurchaseBMIButton = ({
   amount,
   onPurchase,
 }: PurchaseBMIButtonProps) => {
-  const { valueInUsd, isLoading: isValueInUsdLoading } = useTVLCalculations()
+  const { usdPrice: bmiTokenUsdPrice, isLoading: isBmiTokenUsdPriceLoading } =
+    useBmiTokenUsdPriceAndTVL()
   const { data: ethPrice } = useQuery(getEthPriceQueryOptions())
 
   const { address } = useAccount()
@@ -111,31 +113,26 @@ export const PurchaseBMIButton = ({
   const isDisabled =
     !simulatePurchaseData || isPurchaseSimulating || isConfirming || isPending
 
-  const estimatedAmount = useMemo(() => {
+  const isLoading = isPurchaseSimulating || isConfirming || isPending
+
+  const estimatedPurchasedBmiTokens = useMemo(() => {
     if (!ethPrice) return 0
-    if (isValueInUsdLoading) return 0
-    const ethAmount = formatEther(amount)
-    const ethPricePerToken = valueInUsd / ethPrice
-    const estimated = parseFloat(ethAmount) / ethPricePerToken
+    if (isBmiTokenUsdPriceLoading) return 0
+    const amountInEth = formatEther(amount)
+    const ethPricePerToken = bmiTokenUsdPrice / ethPrice
+    const estimated = parseFloat(amountInEth) / ethPricePerToken
     return estimated
-  }, [amount, ethPrice, isValueInUsdLoading, valueInUsd])
+  }, [amount, ethPrice, isBmiTokenUsdPriceLoading, bmiTokenUsdPrice])
 
   return (
     <>
-      <button
-        className={`flex w-full transform items-center justify-center rounded-xl bg-gradient-to-r from-sky-500 to-blue-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02] ${isDisabled ? 'cursor-not-allowed opacity-50 hover:scale-100' : 'hover:from-sky-400 hover:to-blue-400'}`}
+      <ActionButton
         disabled={isDisabled}
+        isLoading={isLoading}
         onClick={handlePurchaseClick}
       >
-        {isPurchaseSimulating || isConfirming || isPending ? (
-          <>
-            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-            Purchasing $BMI...
-          </>
-        ) : (
-          'Purchase'
-        )}
-      </button>
+        {isLoading ? 'Purchase' : 'Purchasing...'}
+      </ActionButton>
       {errMsg && <p className="mt-2 text-sm text-red-500">{errMsg}</p>}
 
       <ConfirmationDialog
@@ -158,7 +155,7 @@ export const PurchaseBMIButton = ({
               <div className="flex justify-between border-t border-sky-200 pt-2">
                 <span className="text-slate-600">You receive (est.):</span>
                 <span className="font-semibold text-sky-600">
-                  {estimatedAmount.toFixed(2)} $BMI
+                  {estimatedPurchasedBmiTokens.toFixed(2)} $BMI
                 </span>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import { Header } from './components/header'
 import { UserBalanceCard } from './components/user-balance-card'
 import { PurchaseCard } from './components/_PurchaseCard/purchase-card'
-import { RedeemCard } from './components/_Redeem/redeem-card'
+import { RedeemCard } from './components/_RedeemCard/redeem-card'
 import { IndexComposition } from './components/index-composition'
 import { TVLAmount } from './components/tvl-amount'
 import { getQueryClient } from '@/lib/queries/get-query-client'

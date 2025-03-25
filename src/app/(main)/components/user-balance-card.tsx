@@ -6,24 +6,27 @@ import { useAccount, useBalance } from 'wagmi'
 import { formatEther } from 'viem'
 import { numberFormat } from '@/lib/formatters'
 import { useReadBmiTokenBalanceOf } from '@/generated/wagmi'
-import { useTVLCalculations } from '../hooks/use-tvl-calculation'
+import { useBmiTokenUsdPriceAndTVL } from '../hooks/use-bmi-token-usd-price-and-tvl'
 import { Skeleton } from '@/components/ui/skeleton'
 
 export const UserBalanceCard = () => {
-  const { valueInUsd, isLoading: isValueInUsdLoading } = useTVLCalculations()
+  const { usdPrice: bmiTokenUsdPrice, isLoading: isBmiTokenUsdPriceLoading } =
+    useBmiTokenUsdPriceAndTVL()
 
   const { address } = useAccount()
   const { data: ethBalance, isLoading: isEthBalanceLoading } = useBalance({
     address,
   })
-  const { data: bmiBalance, isLoading: isBmiBalanceLoading } =
+  const { data: bmiTokenBalance, isLoading: isBmiTokenBalanceLoading } =
     useReadBmiTokenBalanceOf({
       args: [address as `0x${string}`],
     })
 
-  const bmiBalanceInUsd = useMemo(() => {
-    return bmiBalance ? Number(formatEther(bmiBalance)) * valueInUsd : 0
-  }, [bmiBalance, valueInUsd])
+  const usdBalance = useMemo(() => {
+    return bmiTokenBalance
+      ? Number(formatEther(bmiTokenBalance)) * bmiTokenUsdPrice
+      : 0
+  }, [bmiTokenBalance, bmiTokenUsdPrice])
 
   return (
     <div className="mb-8 rounded-2xl bg-white/90 p-6 shadow-xl backdrop-blur-md">
@@ -33,11 +36,11 @@ export const UserBalanceCard = () => {
           <div>
             <h2 className="text-sm text-slate-600">Your Balance</h2>
             <div className="space-y-1">
-              {isBmiBalanceLoading ? (
+              {isBmiTokenBalanceLoading ? (
                 <Skeleton className="h-[32px] w-[95px] rounded-sm" />
               ) : (
                 <p className="text-2xl font-bold text-sky-600">
-                  {numberFormat(formatEther(bmiBalance ?? BigInt(0)))} $BMI
+                  {numberFormat(formatEther(bmiTokenBalance ?? BigInt(0)))} $BMI
                 </p>
               )}
               {isEthBalanceLoading ? (
@@ -53,11 +56,11 @@ export const UserBalanceCard = () => {
         </div>
         <div className="text-right">
           <h2 className="text-sm text-slate-600">Value in USD</h2>
-          {isValueInUsdLoading ? (
+          {isBmiTokenUsdPriceLoading ? (
             <Skeleton className="h-[32px] w-[80px] rounded-sm" />
           ) : (
             <p className="text-2xl font-bold text-green-600">
-              ${numberFormat(bmiBalanceInUsd, 2, 2)}
+              ${numberFormat(usdBalance, 2, 2)}
             </p>
           )}
         </div>

@@ -9,12 +9,12 @@ import { BalanceButton } from '../balance-button'
 import { NumberInput } from '../number-input'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ApproveBMIButton } from '../_PurchaseCard/approve-bmi-button'
-import { RedeemBMIButton } from './redeem-bmi-butotn'
+import { RedeemBMIButton } from './redeem-bmi-button'
 import { toastTxSuccess } from '@/lib/toast'
 
 export const RedeemCard = () => {
   const { address } = useAccount()
-  const { data: bmiBalance, isLoading: isBmiBalanceLoading } =
+  const { data: bmiTokenBalance, isLoading: isBmiTokenBalanceLoading } =
     useReadBmiTokenBalanceOf({
       args: [address as `0x${string}`],
     })
@@ -53,12 +53,12 @@ export const RedeemCard = () => {
               >
                 Amount in $BMI
               </label>
-              {isBmiBalanceLoading ? (
+              {isBmiTokenBalanceLoading ? (
                 <Skeleton className="h-[20px] w-[80px] rounded-sm" />
               ) : (
                 <BalanceButton
-                  balance={bmiBalance ?? BigInt(0)}
-                  isDisabled={!bmiBalance || !address}
+                  balance={bmiTokenBalance ?? BigInt(0)}
+                  isDisabled={!bmiTokenBalance || !address}
                   label="$BMI"
                   onClick={(v) => setRedeemAmount(v)}
                 />

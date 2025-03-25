@@ -3,7 +3,6 @@ import {
   useSimulateBmiTokenApprove,
 } from '@/generated/wagmi'
 import { env } from '@/lib/env'
-import { Loader2 } from 'lucide-react'
 import { useEffect } from 'react'
 import { BaseError, maxUint256 } from 'viem'
 import {
@@ -11,6 +10,7 @@ import {
   useWaitForTransactionReceipt,
   useWriteContract,
 } from 'wagmi'
+import { ActionButton } from '../action-button'
 
 type ApproveBMIButtonProps = {
   amount: bigint
@@ -25,9 +25,9 @@ export const ApproveBMIButton = ({
 }: ApproveBMIButtonProps) => {
   const { address } = useAccount()
   const {
-    data: bmiAllowance,
-    isLoading: isBmiAllowanceLoading,
-    refetch: refetchBmiAllowance,
+    data: bmiTokenAllowance,
+    isLoading: isBmiTokenAllowanceLoading,
+    refetch: refetchBmiTokenAllowance,
   } = useReadBmiTokenAllowance({
     args: [
       address as `0x${string}`,
@@ -68,10 +68,10 @@ export const ApproveBMIButton = ({
   useEffect(() => {
     async function refetch() {
       if (!isConfirmed || !receipt) return
-      refetchBmiAllowance()
+      refetchBmiTokenAllowance()
     }
     void refetch()
-  }, [isConfirmed, receipt, refetchBmiAllowance])
+  }, [isConfirmed, receipt, refetchBmiTokenAllowance])
 
   useEffect(() => {
     if (isConfirmed && receipt) {
@@ -85,13 +85,18 @@ export const ApproveBMIButton = ({
   }
 
   const isDisabled =
-    isBmiAllowanceLoading ||
+    isBmiTokenAllowanceLoading ||
     isApproveSimulating ||
     isConfirming ||
     isPending ||
     amount === BigInt(0)
 
-  if (amount === BigInt(0) || (bmiAllowance && bmiAllowance >= amount))
+  const isLoading = isApproveSimulating || isConfirming || isPending
+
+  if (
+    amount === BigInt(0) ||
+    (bmiTokenAllowance && bmiTokenAllowance >= amount)
+  )
     return actionButton
 
   const errorMsg =
@@ -100,20 +105,13 @@ export const ApproveBMIButton = ({
 
   return (
     <>
-      <button
-        className={`flex w-full transform items-center justify-center rounded-xl bg-gradient-to-r from-blue-500 to-sky-500 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02] ${isDisabled ? 'cursor-not-allowed opacity-50 hover:scale-100' : 'hover:from-blue-400 hover:to-sky-400'}`}
+      <ActionButton
         disabled={isDisabled}
+        isLoading={isLoading}
         onClick={handleApproveClick}
       >
-        {isApproveSimulating || isConfirming || isPending ? (
-          <>
-            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-            Approving $BMI...
-          </>
-        ) : (
-          'Approve $BMI'
-        )}
-      </button>
+        {isLoading ? 'Approve $BMI' : 'Approving...'}
+      </ActionButton>
 
       {errorMsg && <p className="mt-2 text-sm text-red-500">{errorMsg}</p>}
     </>
