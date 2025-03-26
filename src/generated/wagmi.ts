@@ -642,325 +642,627 @@ export const bmiTokenConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
 export const indexFundAbi = [
   {
     type: 'constructor',
     inputs: [
-      { name: '_wethAddress', internalType: 'address', type: 'address' },
-      { name: '_uniswapV3Router', internalType: 'address', type: 'address' },
-      { name: '_uniswapV3Factory', internalType: 'address', type: 'address' },
-      { name: '_uniswapV2Router', internalType: 'address', type: 'address' },
-      { name: '_balancerVault', internalType: 'address', type: 'address' },
-      { name: '_balancerPoolToken', internalType: 'address', type: 'address' },
-      { name: '_indexTokens', internalType: 'address[]', type: 'address[]' },
-      { name: '_tokenWeights', internalType: 'uint256[]', type: 'uint256[]' },
       {
-        name: '_swapPoolTypes',
-        internalType: 'enum IndexFund.SwapPoolType[]',
-        type: 'uint8[]',
+        name: 'params',
+        internalType: 'struct WeightedPool.NewPoolParams',
+        type: 'tuple',
+        components: [
+          { name: 'name', internalType: 'string', type: 'string' },
+          { name: 'symbol', internalType: 'string', type: 'string' },
+          {
+            name: 'tokens',
+            internalType: 'contract IERC20[]',
+            type: 'address[]',
+          },
+          {
+            name: 'normalizedWeights',
+            internalType: 'uint256[]',
+            type: 'uint256[]',
+          },
+          {
+            name: 'rateProviders',
+            internalType: 'contract IRateProvider[]',
+            type: 'address[]',
+          },
+          {
+            name: 'assetManagers',
+            internalType: 'address[]',
+            type: 'address[]',
+          },
+          {
+            name: 'swapFeePercentage',
+            internalType: 'uint256',
+            type: 'uint256',
+          },
+        ],
       },
+      { name: 'vault', internalType: 'contract IVault', type: 'address' },
+      {
+        name: 'protocolFeeProvider',
+        internalType: 'contract IProtocolFeePercentagesProvider',
+        type: 'address',
+      },
+      { name: 'pauseWindowDuration', internalType: 'uint256', type: 'uint256' },
+      {
+        name: 'bufferPeriodDuration',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'version', internalType: 'string', type: 'string' },
     ],
     stateMutability: 'nonpayable',
   },
   {
-    type: 'error',
-    inputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
-    name: 'OwnableInvalidOwner',
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'owner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'spender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Approval',
   },
   {
-    type: 'error',
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'paused', internalType: 'bool', type: 'bool', indexed: false },
+    ],
+    name: 'PausedStateChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'feeType',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+      {
+        name: 'protocolFeePercentage',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'ProtocolFeePercentageCacheUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'enabled', internalType: 'bool', type: 'bool', indexed: false },
+    ],
+    name: 'RecoveryModeStateChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'swapFeePercentage',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'SwapFeePercentageChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address', indexed: true },
+      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Transfer',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'DOMAIN_SEPARATOR',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'spender', internalType: 'address', type: 'address' },
+    ],
+    name: 'allowance',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'approve',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
     inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'OwnableUnauthorizedAccount',
-  },
-  { type: 'error', inputs: [], name: 'ReentrancyGuardReentrantCall' },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'newFeeBasisPoints',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-    ],
-    name: 'FeeUpdated',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      { name: 'user', internalType: 'address', type: 'address', indexed: true },
-      {
-        name: 'ethAmount',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-      {
-        name: 'sharesIssued',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-    ],
-    name: 'Minted',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'previousOwner',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'newOwner',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-    ],
-    name: 'OwnershipTransferred',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      { name: 'user', internalType: 'address', type: 'address', indexed: true },
-      {
-        name: 'sharesRedeemed',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-      {
-        name: 'ethAmount',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-    ],
-    name: 'Redeemed',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'newSlippageTolerance',
-        internalType: 'uint16',
-        type: 'uint16',
-        indexed: false,
-      },
-    ],
-    name: 'SlippageToleranceUpdated',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'DEFAULT_FEE_TIER',
-    outputs: [{ name: '', internalType: 'uint24', type: 'uint24' }],
+    name: 'balanceOf',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [],
-    name: 'DIVISOR',
-    outputs: [{ name: '', internalType: 'uint24', type: 'uint24' }],
+    name: 'decimals',
+    outputs: [{ name: '', internalType: 'uint8', type: 'uint8' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'decreaseAllowance',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
     inputs: [],
-    name: 'balancerPoolId',
+    name: 'disableRecoveryMode',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'enableRecoveryMode',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getATHRateProduct',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'selector', internalType: 'bytes4', type: 'bytes4' }],
+    name: 'getActionId',
     outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [],
-    name: 'balancerPoolToken',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'balancerVault',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'feeBasisPoints',
+    name: 'getActualSupply',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'tokenIn', internalType: 'address', type: 'address' },
-      { name: 'tokenOut', internalType: 'address', type: 'address' },
-      { name: 'amountIn', internalType: 'uint128', type: 'uint128' },
+    inputs: [],
+    name: 'getAuthorizer',
+    outputs: [
+      { name: '', internalType: 'contract IAuthorizer', type: 'address' },
     ],
-    name: 'getSwapQuote',
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getDomainSeparator',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getInvariant',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'tokenIn', internalType: 'address', type: 'address' },
-      { name: 'tokenOut', internalType: 'address', type: 'address' },
-      { name: 'amountIn', internalType: 'uint128', type: 'uint128' },
-    ],
-    name: 'getV2Quote',
+    inputs: [],
+    name: 'getLastPostJoinExitInvariant',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
-    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    name: 'indexTokens',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'getNextNonce',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getNormalizedWeights',
+    outputs: [{ name: '', internalType: 'uint256[]', type: 'uint256[]' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getOwner',
     outputs: [{ name: '', internalType: 'address', type: 'address' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [],
-    name: 'mint',
-    outputs: [],
-    stateMutability: 'payable',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'owner',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: 'getPausedState',
+    outputs: [
+      { name: 'paused', internalType: 'bool', type: 'bool' },
+      { name: 'pauseWindowEndTime', internalType: 'uint256', type: 'uint256' },
+      { name: 'bufferPeriodEndTime', internalType: 'uint256', type: 'uint256' },
+    ],
     stateMutability: 'view',
   },
   {
     type: 'function',
-    inputs: [{ name: 'bptAmount', internalType: 'uint256', type: 'uint256' }],
-    name: 'redeem',
-    outputs: [],
-    stateMutability: 'nonpayable',
+    inputs: [],
+    name: 'getPoolId',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'feeType', internalType: 'uint256', type: 'uint256' }],
+    name: 'getProtocolFeePercentageCache',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [],
-    name: 'renounceOwnership',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'newFeeBasisPoints', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'setFeeBasisPoints',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'newSlippageTolerance', internalType: 'uint16', type: 'uint16' },
-    ],
-    name: 'setSlippageTolerance',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'address', type: 'address' },
+    name: 'getProtocolFeesCollector',
+    outputs: [
       {
-        name: 'newSwapPoolType',
-        internalType: 'enum IndexFund.SwapPoolType',
-        type: 'uint8',
+        name: '',
+        internalType: 'contract IProtocolFeesCollector',
+        type: 'address',
       },
     ],
-    name: 'setSwapPoolType',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'slippageTolerance',
-    outputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
-    inputs: [{ name: '', internalType: 'address', type: 'address' }],
-    name: 'swapPoolTypes',
+    inputs: [],
+    name: 'getProtocolSwapFeeDelegation',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getRateProviders',
     outputs: [
-      { name: '', internalType: 'enum IndexFund.SwapPoolType', type: 'uint8' },
+      { name: '', internalType: 'contract IRateProvider[]', type: 'address[]' },
     ],
     stateMutability: 'view',
   },
   {
     type: 'function',
-    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    name: 'tokenWeights',
+    inputs: [],
+    name: 'getScalingFactors',
+    outputs: [{ name: '', internalType: 'uint256[]', type: 'uint256[]' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getSwapFeePercentage',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
-    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
-    name: 'transferOwnership',
+    inputs: [],
+    name: 'getVault',
+    outputs: [{ name: '', internalType: 'contract IVault', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'inRecoveryMode',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'increaseAllowance',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'name',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
+    name: 'nonces',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'poolId', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'recipient', internalType: 'address', type: 'address' },
+      { name: 'balances', internalType: 'uint256[]', type: 'uint256[]' },
+      { name: 'lastChangeBlock', internalType: 'uint256', type: 'uint256' },
+      {
+        name: 'protocolSwapFeePercentage',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'onExitPool',
+    outputs: [
+      { name: '', internalType: 'uint256[]', type: 'uint256[]' },
+      { name: '', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'poolId', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'recipient', internalType: 'address', type: 'address' },
+      { name: 'balances', internalType: 'uint256[]', type: 'uint256[]' },
+      { name: 'lastChangeBlock', internalType: 'uint256', type: 'uint256' },
+      {
+        name: 'protocolSwapFeePercentage',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'onJoinPool',
+    outputs: [
+      { name: '', internalType: 'uint256[]', type: 'uint256[]' },
+      { name: '', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'request',
+        internalType: 'struct IPoolSwapStructs.SwapRequest',
+        type: 'tuple',
+        components: [
+          { name: 'kind', internalType: 'enum IVault.SwapKind', type: 'uint8' },
+          { name: 'tokenIn', internalType: 'contract IERC20', type: 'address' },
+          {
+            name: 'tokenOut',
+            internalType: 'contract IERC20',
+            type: 'address',
+          },
+          { name: 'amount', internalType: 'uint256', type: 'uint256' },
+          { name: 'poolId', internalType: 'bytes32', type: 'bytes32' },
+          { name: 'lastChangeBlock', internalType: 'uint256', type: 'uint256' },
+          { name: 'from', internalType: 'address', type: 'address' },
+          { name: 'to', internalType: 'address', type: 'address' },
+          { name: 'userData', internalType: 'bytes', type: 'bytes' },
+        ],
+      },
+      { name: 'balanceTokenIn', internalType: 'uint256', type: 'uint256' },
+      { name: 'balanceTokenOut', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'onSwap',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'pause',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'value', internalType: 'uint256', type: 'uint256' },
+      { name: 'deadline', internalType: 'uint256', type: 'uint256' },
+      { name: 'v', internalType: 'uint8', type: 'uint8' },
+      { name: 'r', internalType: 'bytes32', type: 'bytes32' },
+      { name: 's', internalType: 'bytes32', type: 'bytes32' },
+    ],
+    name: 'permit',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'poolId', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'recipient', internalType: 'address', type: 'address' },
+      { name: 'balances', internalType: 'uint256[]', type: 'uint256[]' },
+      { name: 'lastChangeBlock', internalType: 'uint256', type: 'uint256' },
+      {
+        name: 'protocolSwapFeePercentage',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'queryExit',
+    outputs: [
+      { name: 'bptIn', internalType: 'uint256', type: 'uint256' },
+      { name: 'amountsOut', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'poolId', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'recipient', internalType: 'address', type: 'address' },
+      { name: 'balances', internalType: 'uint256[]', type: 'uint256[]' },
+      { name: 'lastChangeBlock', internalType: 'uint256', type: 'uint256' },
+      {
+        name: 'protocolSwapFeePercentage',
+        internalType: 'uint256',
+        type: 'uint256',
+      },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'queryJoin',
+    outputs: [
+      { name: 'bptOut', internalType: 'uint256', type: 'uint256' },
+      { name: 'amountsIn', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract IERC20', type: 'address' },
+      { name: 'poolConfig', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'setAssetManagerPoolConfig',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'swapFeePercentage', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'setSwapFeePercentage',
     outputs: [],
     stateMutability: 'nonpayable',
   },
   {
     type: 'function',
     inputs: [],
-    name: 'uniswapV2Router',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: 'symbol',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
     inputs: [],
-    name: 'uniswapV3Factory',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: 'totalSupply',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
   },
   {
     type: 'function',
-    inputs: [],
-    name: 'uniswapV3Router',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
-    stateMutability: 'view',
+    inputs: [
+      { name: 'recipient', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transfer',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'recipient', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transferFrom',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
   },
   {
     type: 'function',
     inputs: [],
-    name: 'wethAddress',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    name: 'unpause',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'updateProtocolFeePercentageCache',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'version',
+    outputs: [{ name: '', internalType: 'string', type: 'string' }],
     stateMutability: 'view',
   },
-  { type: 'receive', stateMutability: 'payable' },
 ] as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
 export const indexFundAddress = {
-  8453: '0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0',
+  8453: '0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35',
 } as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
 export const indexFundConfig = {
   address: indexFundAddress,
@@ -2624,7 +2926,7 @@ export const useWatchBmiTokenTransferEvent =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
 export const useReadIndexFund = /*#__PURE__*/ createUseReadContract({
   abi: indexFundAbi,
@@ -2632,210 +2934,359 @@ export const useReadIndexFund = /*#__PURE__*/ createUseReadContract({
 })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"DEFAULT_FEE_TIER"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useReadIndexFundDefaultFeeTier =
+export const useReadIndexFundDelegateProtocolSwapFeesSentinel =
   /*#__PURE__*/ createUseReadContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'DEFAULT_FEE_TIER',
+    functionName: 'DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL',
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"DIVISOR"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"DOMAIN_SEPARATOR"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useReadIndexFundDivisor = /*#__PURE__*/ createUseReadContract({
+export const useReadIndexFundDomainSeparator =
+  /*#__PURE__*/ createUseReadContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'DOMAIN_SEPARATOR',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"allowance"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundAllowance = /*#__PURE__*/ createUseReadContract({
   abi: indexFundAbi,
   address: indexFundAddress,
-  functionName: 'DIVISOR',
+  functionName: 'allowance',
 })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"balancerPoolId"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"balanceOf"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useReadIndexFundBalancerPoolId =
+export const useReadIndexFundBalanceOf = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'balanceOf',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"decimals"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundDecimals = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'decimals',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getATHRateProduct"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundGetAthRateProduct =
   /*#__PURE__*/ createUseReadContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'balancerPoolId',
+    functionName: 'getATHRateProduct',
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"balancerPoolToken"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getActionId"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useReadIndexFundBalancerPoolToken =
+export const useReadIndexFundGetActionId = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'getActionId',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getActualSupply"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundGetActualSupply =
   /*#__PURE__*/ createUseReadContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'balancerPoolToken',
+    functionName: 'getActualSupply',
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"balancerVault"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getAuthorizer"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useReadIndexFundBalancerVault =
+export const useReadIndexFundGetAuthorizer =
   /*#__PURE__*/ createUseReadContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'balancerVault',
+    functionName: 'getAuthorizer',
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"feeBasisPoints"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getDomainSeparator"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useReadIndexFundFeeBasisPoints =
+export const useReadIndexFundGetDomainSeparator =
   /*#__PURE__*/ createUseReadContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'feeBasisPoints',
+    functionName: 'getDomainSeparator',
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getSwapQuote"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getInvariant"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useReadIndexFundGetSwapQuote = /*#__PURE__*/ createUseReadContract(
+export const useReadIndexFundGetInvariant = /*#__PURE__*/ createUseReadContract(
   {
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'getSwapQuote',
+    functionName: 'getInvariant',
   },
 )
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getV2Quote"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getLastPostJoinExitInvariant"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useReadIndexFundGetV2Quote = /*#__PURE__*/ createUseReadContract({
-  abi: indexFundAbi,
-  address: indexFundAddress,
-  functionName: 'getV2Quote',
-})
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"indexTokens"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
- */
-export const useReadIndexFundIndexTokens = /*#__PURE__*/ createUseReadContract({
-  abi: indexFundAbi,
-  address: indexFundAddress,
-  functionName: 'indexTokens',
-})
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"owner"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
- */
-export const useReadIndexFundOwner = /*#__PURE__*/ createUseReadContract({
-  abi: indexFundAbi,
-  address: indexFundAddress,
-  functionName: 'owner',
-})
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"slippageTolerance"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
- */
-export const useReadIndexFundSlippageTolerance =
+export const useReadIndexFundGetLastPostJoinExitInvariant =
   /*#__PURE__*/ createUseReadContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'slippageTolerance',
+    functionName: 'getLastPostJoinExitInvariant',
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"swapPoolTypes"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getNextNonce"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useReadIndexFundSwapPoolTypes =
-  /*#__PURE__*/ createUseReadContract({
-    abi: indexFundAbi,
-    address: indexFundAddress,
-    functionName: 'swapPoolTypes',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"tokenWeights"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
- */
-export const useReadIndexFundTokenWeights = /*#__PURE__*/ createUseReadContract(
+export const useReadIndexFundGetNextNonce = /*#__PURE__*/ createUseReadContract(
   {
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'tokenWeights',
+    functionName: 'getNextNonce',
   },
 )
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"uniswapV2Router"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getNormalizedWeights"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useReadIndexFundUniswapV2Router =
+export const useReadIndexFundGetNormalizedWeights =
   /*#__PURE__*/ createUseReadContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'uniswapV2Router',
+    functionName: 'getNormalizedWeights',
   })
 
 /**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"uniswapV3Factory"`
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getOwner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useReadIndexFundUniswapV3Factory =
-  /*#__PURE__*/ createUseReadContract({
-    abi: indexFundAbi,
-    address: indexFundAddress,
-    functionName: 'uniswapV3Factory',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"uniswapV3Router"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
- */
-export const useReadIndexFundUniswapV3Router =
-  /*#__PURE__*/ createUseReadContract({
-    abi: indexFundAbi,
-    address: indexFundAddress,
-    functionName: 'uniswapV3Router',
-  })
-
-/**
- * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"wethAddress"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
- */
-export const useReadIndexFundWethAddress = /*#__PURE__*/ createUseReadContract({
+export const useReadIndexFundGetOwner = /*#__PURE__*/ createUseReadContract({
   abi: indexFundAbi,
   address: indexFundAddress,
-  functionName: 'wethAddress',
+  functionName: 'getOwner',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getPausedState"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundGetPausedState =
+  /*#__PURE__*/ createUseReadContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'getPausedState',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getPoolId"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundGetPoolId = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'getPoolId',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getProtocolFeePercentageCache"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundGetProtocolFeePercentageCache =
+  /*#__PURE__*/ createUseReadContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'getProtocolFeePercentageCache',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getProtocolFeesCollector"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundGetProtocolFeesCollector =
+  /*#__PURE__*/ createUseReadContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'getProtocolFeesCollector',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getProtocolSwapFeeDelegation"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundGetProtocolSwapFeeDelegation =
+  /*#__PURE__*/ createUseReadContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'getProtocolSwapFeeDelegation',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getRateProviders"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundGetRateProviders =
+  /*#__PURE__*/ createUseReadContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'getRateProviders',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getScalingFactors"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundGetScalingFactors =
+  /*#__PURE__*/ createUseReadContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'getScalingFactors',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getSwapFeePercentage"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundGetSwapFeePercentage =
+  /*#__PURE__*/ createUseReadContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'getSwapFeePercentage',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getVault"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundGetVault = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'getVault',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"inRecoveryMode"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundInRecoveryMode =
+  /*#__PURE__*/ createUseReadContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'inRecoveryMode',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"name"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundName = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'name',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"nonces"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundNonces = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'nonces',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"symbol"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundSymbol = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'symbol',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"totalSupply"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundTotalSupply = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'totalSupply',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"version"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useReadIndexFundVersion = /*#__PURE__*/ createUseReadContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'version',
 })
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
 export const useWriteIndexFund = /*#__PURE__*/ createUseWriteContract({
   abi: indexFundAbi,
@@ -2843,91 +3294,211 @@ export const useWriteIndexFund = /*#__PURE__*/ createUseWriteContract({
 })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"mint"`
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"approve"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWriteIndexFundMint = /*#__PURE__*/ createUseWriteContract({
+export const useWriteIndexFundApprove = /*#__PURE__*/ createUseWriteContract({
   abi: indexFundAbi,
   address: indexFundAddress,
-  functionName: 'mint',
+  functionName: 'approve',
 })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"redeem"`
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"decreaseAllowance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWriteIndexFundRedeem = /*#__PURE__*/ createUseWriteContract({
+export const useWriteIndexFundDecreaseAllowance =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'decreaseAllowance',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"disableRecoveryMode"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWriteIndexFundDisableRecoveryMode =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'disableRecoveryMode',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"enableRecoveryMode"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWriteIndexFundEnableRecoveryMode =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'enableRecoveryMode',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"increaseAllowance"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWriteIndexFundIncreaseAllowance =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'increaseAllowance',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"onExitPool"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWriteIndexFundOnExitPool = /*#__PURE__*/ createUseWriteContract(
+  { abi: indexFundAbi, address: indexFundAddress, functionName: 'onExitPool' },
+)
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"onJoinPool"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWriteIndexFundOnJoinPool = /*#__PURE__*/ createUseWriteContract(
+  { abi: indexFundAbi, address: indexFundAddress, functionName: 'onJoinPool' },
+)
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"onSwap"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWriteIndexFundOnSwap = /*#__PURE__*/ createUseWriteContract({
   abi: indexFundAbi,
   address: indexFundAddress,
-  functionName: 'redeem',
+  functionName: 'onSwap',
 })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"renounceOwnership"`
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"pause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWriteIndexFundRenounceOwnership =
+export const useWriteIndexFundPause = /*#__PURE__*/ createUseWriteContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'pause',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"permit"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWriteIndexFundPermit = /*#__PURE__*/ createUseWriteContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'permit',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"queryExit"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWriteIndexFundQueryExit = /*#__PURE__*/ createUseWriteContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'queryExit',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"queryJoin"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWriteIndexFundQueryJoin = /*#__PURE__*/ createUseWriteContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'queryJoin',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setAssetManagerPoolConfig"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWriteIndexFundSetAssetManagerPoolConfig =
   /*#__PURE__*/ createUseWriteContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'renounceOwnership',
+    functionName: 'setAssetManagerPoolConfig',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setFeeBasisPoints"`
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setSwapFeePercentage"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWriteIndexFundSetFeeBasisPoints =
+export const useWriteIndexFundSetSwapFeePercentage =
   /*#__PURE__*/ createUseWriteContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'setFeeBasisPoints',
+    functionName: 'setSwapFeePercentage',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setSlippageTolerance"`
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"transfer"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWriteIndexFundSetSlippageTolerance =
+export const useWriteIndexFundTransfer = /*#__PURE__*/ createUseWriteContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'transfer',
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWriteIndexFundTransferFrom =
   /*#__PURE__*/ createUseWriteContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'setSlippageTolerance',
+    functionName: 'transferFrom',
   })
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setSwapPoolType"`
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"unpause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWriteIndexFundSetSwapPoolType =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: indexFundAbi,
-    address: indexFundAddress,
-    functionName: 'setSwapPoolType',
-  })
+export const useWriteIndexFundUnpause = /*#__PURE__*/ createUseWriteContract({
+  abi: indexFundAbi,
+  address: indexFundAddress,
+  functionName: 'unpause',
+})
 
 /**
- * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"transferOwnership"`
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"updateProtocolFeePercentageCache"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWriteIndexFundTransferOwnership =
+export const useWriteIndexFundUpdateProtocolFeePercentageCache =
   /*#__PURE__*/ createUseWriteContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'transferOwnership',
+    functionName: 'updateProtocolFeePercentageCache',
   })
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
 export const useSimulateIndexFund = /*#__PURE__*/ createUseSimulateContract({
   abi: indexFundAbi,
@@ -2935,153 +3506,300 @@ export const useSimulateIndexFund = /*#__PURE__*/ createUseSimulateContract({
 })
 
 /**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"mint"`
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"approve"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useSimulateIndexFundMint = /*#__PURE__*/ createUseSimulateContract(
-  { abi: indexFundAbi, address: indexFundAddress, functionName: 'mint' },
-)
-
-/**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"redeem"`
- *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
- */
-export const useSimulateIndexFundRedeem =
+export const useSimulateIndexFundApprove =
   /*#__PURE__*/ createUseSimulateContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'redeem',
+    functionName: 'approve',
   })
 
 /**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"renounceOwnership"`
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"decreaseAllowance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useSimulateIndexFundRenounceOwnership =
+export const useSimulateIndexFundDecreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'renounceOwnership',
+    functionName: 'decreaseAllowance',
   })
 
 /**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setFeeBasisPoints"`
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"disableRecoveryMode"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useSimulateIndexFundSetFeeBasisPoints =
+export const useSimulateIndexFundDisableRecoveryMode =
   /*#__PURE__*/ createUseSimulateContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'setFeeBasisPoints',
+    functionName: 'disableRecoveryMode',
   })
 
 /**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setSlippageTolerance"`
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"enableRecoveryMode"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useSimulateIndexFundSetSlippageTolerance =
+export const useSimulateIndexFundEnableRecoveryMode =
   /*#__PURE__*/ createUseSimulateContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'setSlippageTolerance',
+    functionName: 'enableRecoveryMode',
   })
 
 /**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setSwapPoolType"`
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"increaseAllowance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useSimulateIndexFundSetSwapPoolType =
+export const useSimulateIndexFundIncreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'setSwapPoolType',
+    functionName: 'increaseAllowance',
   })
 
 /**
- * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"transferOwnership"`
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"onExitPool"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useSimulateIndexFundTransferOwnership =
+export const useSimulateIndexFundOnExitPool =
   /*#__PURE__*/ createUseSimulateContract({
     abi: indexFundAbi,
     address: indexFundAddress,
-    functionName: 'transferOwnership',
+    functionName: 'onExitPool',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"onJoinPool"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundOnJoinPool =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'onJoinPool',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"onSwap"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundOnSwap =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'onSwap',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"pause"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundPause =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'pause',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"permit"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundPermit =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'permit',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"queryExit"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundQueryExit =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'queryExit',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"queryJoin"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundQueryJoin =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'queryJoin',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setAssetManagerPoolConfig"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundSetAssetManagerPoolConfig =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'setAssetManagerPoolConfig',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setSwapFeePercentage"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundSetSwapFeePercentage =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'setSwapFeePercentage',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"transfer"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundTransfer =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'transfer',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"transferFrom"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundTransferFrom =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'transferFrom',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"unpause"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundUnpause =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'unpause',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"updateProtocolFeePercentageCache"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useSimulateIndexFundUpdateProtocolFeePercentageCache =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    functionName: 'updateProtocolFeePercentageCache',
   })
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
 export const useWatchIndexFundEvent = /*#__PURE__*/ createUseWatchContractEvent(
   { abi: indexFundAbi, address: indexFundAddress },
 )
 
 /**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"FeeUpdated"`
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"Approval"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWatchIndexFundFeeUpdatedEvent =
+export const useWatchIndexFundApprovalEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: indexFundAbi,
     address: indexFundAddress,
-    eventName: 'FeeUpdated',
+    eventName: 'Approval',
   })
 
 /**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"Minted"`
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"PausedStateChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWatchIndexFundMintedEvent =
+export const useWatchIndexFundPausedStateChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: indexFundAbi,
     address: indexFundAddress,
-    eventName: 'Minted',
+    eventName: 'PausedStateChanged',
   })
 
 /**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"ProtocolFeePercentageCacheUpdated"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWatchIndexFundOwnershipTransferredEvent =
+export const useWatchIndexFundProtocolFeePercentageCacheUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: indexFundAbi,
     address: indexFundAddress,
-    eventName: 'OwnershipTransferred',
+    eventName: 'ProtocolFeePercentageCacheUpdated',
   })
 
 /**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"Redeemed"`
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"RecoveryModeStateChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWatchIndexFundRedeemedEvent =
+export const useWatchIndexFundRecoveryModeStateChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: indexFundAbi,
     address: indexFundAddress,
-    eventName: 'Redeemed',
+    eventName: 'RecoveryModeStateChanged',
   })
 
 /**
- * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"SlippageToleranceUpdated"`
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"SwapFeePercentageChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
-export const useWatchIndexFundSlippageToleranceUpdatedEvent =
+export const useWatchIndexFundSwapFeePercentageChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: indexFundAbi,
     address: indexFundAddress,
-    eventName: 'SlippageToleranceUpdated',
+    eventName: 'SwapFeePercentageChanged',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"Transfer"`
+ *
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ */
+export const useWatchIndexFundTransferEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: indexFundAbi,
+    address: indexFundAddress,
+    eventName: 'Transfer',
   })
 
 /**
