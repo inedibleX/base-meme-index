@@ -10,7 +10,7 @@ import {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const bmiTokenAbi = [
   {
@@ -623,14 +623,14 @@ export const bmiTokenAbi = [
 ] as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const bmiTokenAddress = {
   8453: '0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35',
 } as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const bmiTokenConfig = {
   address: bmiTokenAddress,
@@ -642,7 +642,7 @@ export const bmiTokenConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const indexFundAbi = [
   {
@@ -906,14 +906,14 @@ export const indexFundAbi = [
 ] as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const indexFundAddress = {
-  8453: '0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0',
+  8453: '0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0',
 } as const
 
 /**
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const indexFundConfig = {
   address: indexFundAddress,
@@ -1703,7 +1703,7 @@ export const vaultConfig = { address: vaultAddress, abi: vaultAbi } as const
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiToken = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -1713,7 +1713,7 @@ export const useReadBmiToken = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"DELEGATE_PROTOCOL_SWAP_FEES_SENTINEL"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenDelegateProtocolSwapFeesSentinel =
   /*#__PURE__*/ createUseReadContract({
@@ -1725,7 +1725,7 @@ export const useReadBmiTokenDelegateProtocolSwapFeesSentinel =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"DOMAIN_SEPARATOR"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenDomainSeparator =
   /*#__PURE__*/ createUseReadContract({
@@ -1737,7 +1737,7 @@ export const useReadBmiTokenDomainSeparator =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"allowance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenAllowance = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -1748,7 +1748,7 @@ export const useReadBmiTokenAllowance = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"balanceOf"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenBalanceOf = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -1759,7 +1759,7 @@ export const useReadBmiTokenBalanceOf = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"decimals"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenDecimals = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -1770,7 +1770,7 @@ export const useReadBmiTokenDecimals = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getATHRateProduct"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetAthRateProduct =
   /*#__PURE__*/ createUseReadContract({
@@ -1782,7 +1782,7 @@ export const useReadBmiTokenGetAthRateProduct =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getActionId"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetActionId = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -1793,7 +1793,7 @@ export const useReadBmiTokenGetActionId = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getActualSupply"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetActualSupply =
   /*#__PURE__*/ createUseReadContract({
@@ -1805,7 +1805,7 @@ export const useReadBmiTokenGetActualSupply =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getAuthorizer"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetAuthorizer = /*#__PURE__*/ createUseReadContract(
   { abi: bmiTokenAbi, address: bmiTokenAddress, functionName: 'getAuthorizer' },
@@ -1814,7 +1814,7 @@ export const useReadBmiTokenGetAuthorizer = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getDomainSeparator"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetDomainSeparator =
   /*#__PURE__*/ createUseReadContract({
@@ -1826,7 +1826,7 @@ export const useReadBmiTokenGetDomainSeparator =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getInvariant"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetInvariant = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -1837,7 +1837,7 @@ export const useReadBmiTokenGetInvariant = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getLastPostJoinExitInvariant"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetLastPostJoinExitInvariant =
   /*#__PURE__*/ createUseReadContract({
@@ -1849,7 +1849,7 @@ export const useReadBmiTokenGetLastPostJoinExitInvariant =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getNextNonce"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetNextNonce = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -1860,7 +1860,7 @@ export const useReadBmiTokenGetNextNonce = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getNormalizedWeights"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetNormalizedWeights =
   /*#__PURE__*/ createUseReadContract({
@@ -1872,7 +1872,7 @@ export const useReadBmiTokenGetNormalizedWeights =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getOwner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetOwner = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -1883,7 +1883,7 @@ export const useReadBmiTokenGetOwner = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getPausedState"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetPausedState =
   /*#__PURE__*/ createUseReadContract({
@@ -1895,7 +1895,7 @@ export const useReadBmiTokenGetPausedState =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getPoolId"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetPoolId = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -1906,7 +1906,7 @@ export const useReadBmiTokenGetPoolId = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getProtocolFeePercentageCache"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetProtocolFeePercentageCache =
   /*#__PURE__*/ createUseReadContract({
@@ -1918,7 +1918,7 @@ export const useReadBmiTokenGetProtocolFeePercentageCache =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getProtocolFeesCollector"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetProtocolFeesCollector =
   /*#__PURE__*/ createUseReadContract({
@@ -1930,7 +1930,7 @@ export const useReadBmiTokenGetProtocolFeesCollector =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getProtocolSwapFeeDelegation"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetProtocolSwapFeeDelegation =
   /*#__PURE__*/ createUseReadContract({
@@ -1942,7 +1942,7 @@ export const useReadBmiTokenGetProtocolSwapFeeDelegation =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getRateProviders"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetRateProviders =
   /*#__PURE__*/ createUseReadContract({
@@ -1954,7 +1954,7 @@ export const useReadBmiTokenGetRateProviders =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getScalingFactors"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetScalingFactors =
   /*#__PURE__*/ createUseReadContract({
@@ -1966,7 +1966,7 @@ export const useReadBmiTokenGetScalingFactors =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getSwapFeePercentage"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetSwapFeePercentage =
   /*#__PURE__*/ createUseReadContract({
@@ -1978,7 +1978,7 @@ export const useReadBmiTokenGetSwapFeePercentage =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"getVault"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenGetVault = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -1989,7 +1989,7 @@ export const useReadBmiTokenGetVault = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"inRecoveryMode"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenInRecoveryMode =
   /*#__PURE__*/ createUseReadContract({
@@ -2001,7 +2001,7 @@ export const useReadBmiTokenInRecoveryMode =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"name"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenName = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -2012,7 +2012,7 @@ export const useReadBmiTokenName = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"nonces"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenNonces = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -2023,7 +2023,7 @@ export const useReadBmiTokenNonces = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"symbol"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenSymbol = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -2034,7 +2034,7 @@ export const useReadBmiTokenSymbol = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"totalSupply"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenTotalSupply = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -2045,7 +2045,7 @@ export const useReadBmiTokenTotalSupply = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"version"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useReadBmiTokenVersion = /*#__PURE__*/ createUseReadContract({
   abi: bmiTokenAbi,
@@ -2056,7 +2056,7 @@ export const useReadBmiTokenVersion = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiToken = /*#__PURE__*/ createUseWriteContract({
   abi: bmiTokenAbi,
@@ -2066,7 +2066,7 @@ export const useWriteBmiToken = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"approve"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenApprove = /*#__PURE__*/ createUseWriteContract({
   abi: bmiTokenAbi,
@@ -2077,7 +2077,7 @@ export const useWriteBmiTokenApprove = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"decreaseAllowance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenDecreaseAllowance =
   /*#__PURE__*/ createUseWriteContract({
@@ -2089,7 +2089,7 @@ export const useWriteBmiTokenDecreaseAllowance =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"disableRecoveryMode"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenDisableRecoveryMode =
   /*#__PURE__*/ createUseWriteContract({
@@ -2101,7 +2101,7 @@ export const useWriteBmiTokenDisableRecoveryMode =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"enableRecoveryMode"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenEnableRecoveryMode =
   /*#__PURE__*/ createUseWriteContract({
@@ -2113,7 +2113,7 @@ export const useWriteBmiTokenEnableRecoveryMode =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"increaseAllowance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenIncreaseAllowance =
   /*#__PURE__*/ createUseWriteContract({
@@ -2125,7 +2125,7 @@ export const useWriteBmiTokenIncreaseAllowance =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"onExitPool"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenOnExitPool = /*#__PURE__*/ createUseWriteContract({
   abi: bmiTokenAbi,
@@ -2136,7 +2136,7 @@ export const useWriteBmiTokenOnExitPool = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"onJoinPool"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenOnJoinPool = /*#__PURE__*/ createUseWriteContract({
   abi: bmiTokenAbi,
@@ -2147,7 +2147,7 @@ export const useWriteBmiTokenOnJoinPool = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"onSwap"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenOnSwap = /*#__PURE__*/ createUseWriteContract({
   abi: bmiTokenAbi,
@@ -2158,7 +2158,7 @@ export const useWriteBmiTokenOnSwap = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"pause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenPause = /*#__PURE__*/ createUseWriteContract({
   abi: bmiTokenAbi,
@@ -2169,7 +2169,7 @@ export const useWriteBmiTokenPause = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"permit"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenPermit = /*#__PURE__*/ createUseWriteContract({
   abi: bmiTokenAbi,
@@ -2180,7 +2180,7 @@ export const useWriteBmiTokenPermit = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"queryExit"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenQueryExit = /*#__PURE__*/ createUseWriteContract({
   abi: bmiTokenAbi,
@@ -2191,7 +2191,7 @@ export const useWriteBmiTokenQueryExit = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"queryJoin"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenQueryJoin = /*#__PURE__*/ createUseWriteContract({
   abi: bmiTokenAbi,
@@ -2202,7 +2202,7 @@ export const useWriteBmiTokenQueryJoin = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"setAssetManagerPoolConfig"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenSetAssetManagerPoolConfig =
   /*#__PURE__*/ createUseWriteContract({
@@ -2214,7 +2214,7 @@ export const useWriteBmiTokenSetAssetManagerPoolConfig =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"setSwapFeePercentage"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenSetSwapFeePercentage =
   /*#__PURE__*/ createUseWriteContract({
@@ -2226,7 +2226,7 @@ export const useWriteBmiTokenSetSwapFeePercentage =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"transfer"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenTransfer = /*#__PURE__*/ createUseWriteContract({
   abi: bmiTokenAbi,
@@ -2237,7 +2237,7 @@ export const useWriteBmiTokenTransfer = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"transferFrom"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenTransferFrom =
   /*#__PURE__*/ createUseWriteContract({
@@ -2249,7 +2249,7 @@ export const useWriteBmiTokenTransferFrom =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"unpause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenUnpause = /*#__PURE__*/ createUseWriteContract({
   abi: bmiTokenAbi,
@@ -2260,7 +2260,7 @@ export const useWriteBmiTokenUnpause = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"updateProtocolFeePercentageCache"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWriteBmiTokenUpdateProtocolFeePercentageCache =
   /*#__PURE__*/ createUseWriteContract({
@@ -2272,7 +2272,7 @@ export const useWriteBmiTokenUpdateProtocolFeePercentageCache =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiToken = /*#__PURE__*/ createUseSimulateContract({
   abi: bmiTokenAbi,
@@ -2282,7 +2282,7 @@ export const useSimulateBmiToken = /*#__PURE__*/ createUseSimulateContract({
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"approve"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenApprove =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2294,7 +2294,7 @@ export const useSimulateBmiTokenApprove =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"decreaseAllowance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenDecreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2306,7 +2306,7 @@ export const useSimulateBmiTokenDecreaseAllowance =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"disableRecoveryMode"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenDisableRecoveryMode =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2318,7 +2318,7 @@ export const useSimulateBmiTokenDisableRecoveryMode =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"enableRecoveryMode"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenEnableRecoveryMode =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2330,7 +2330,7 @@ export const useSimulateBmiTokenEnableRecoveryMode =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"increaseAllowance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenIncreaseAllowance =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2342,7 +2342,7 @@ export const useSimulateBmiTokenIncreaseAllowance =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"onExitPool"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenOnExitPool =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2354,7 +2354,7 @@ export const useSimulateBmiTokenOnExitPool =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"onJoinPool"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenOnJoinPool =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2366,7 +2366,7 @@ export const useSimulateBmiTokenOnJoinPool =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"onSwap"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenOnSwap =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2378,7 +2378,7 @@ export const useSimulateBmiTokenOnSwap =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"pause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenPause = /*#__PURE__*/ createUseSimulateContract(
   { abi: bmiTokenAbi, address: bmiTokenAddress, functionName: 'pause' },
@@ -2387,7 +2387,7 @@ export const useSimulateBmiTokenPause = /*#__PURE__*/ createUseSimulateContract(
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"permit"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenPermit =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2399,7 +2399,7 @@ export const useSimulateBmiTokenPermit =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"queryExit"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenQueryExit =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2411,7 +2411,7 @@ export const useSimulateBmiTokenQueryExit =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"queryJoin"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenQueryJoin =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2423,7 +2423,7 @@ export const useSimulateBmiTokenQueryJoin =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"setAssetManagerPoolConfig"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenSetAssetManagerPoolConfig =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2435,7 +2435,7 @@ export const useSimulateBmiTokenSetAssetManagerPoolConfig =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"setSwapFeePercentage"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenSetSwapFeePercentage =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2447,7 +2447,7 @@ export const useSimulateBmiTokenSetSwapFeePercentage =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"transfer"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenTransfer =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2459,7 +2459,7 @@ export const useSimulateBmiTokenTransfer =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"transferFrom"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenTransferFrom =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2471,7 +2471,7 @@ export const useSimulateBmiTokenTransferFrom =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"unpause"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenUnpause =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2483,7 +2483,7 @@ export const useSimulateBmiTokenUnpause =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link bmiTokenAbi}__ and `functionName` set to `"updateProtocolFeePercentageCache"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useSimulateBmiTokenUpdateProtocolFeePercentageCache =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2495,7 +2495,7 @@ export const useSimulateBmiTokenUpdateProtocolFeePercentageCache =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link bmiTokenAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWatchBmiTokenEvent = /*#__PURE__*/ createUseWatchContractEvent({
   abi: bmiTokenAbi,
@@ -2505,7 +2505,7 @@ export const useWatchBmiTokenEvent = /*#__PURE__*/ createUseWatchContractEvent({
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link bmiTokenAbi}__ and `eventName` set to `"Approval"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWatchBmiTokenApprovalEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -2517,7 +2517,7 @@ export const useWatchBmiTokenApprovalEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link bmiTokenAbi}__ and `eventName` set to `"PausedStateChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWatchBmiTokenPausedStateChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -2529,7 +2529,7 @@ export const useWatchBmiTokenPausedStateChangedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link bmiTokenAbi}__ and `eventName` set to `"ProtocolFeePercentageCacheUpdated"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWatchBmiTokenProtocolFeePercentageCacheUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -2541,7 +2541,7 @@ export const useWatchBmiTokenProtocolFeePercentageCacheUpdatedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link bmiTokenAbi}__ and `eventName` set to `"RecoveryModeStateChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWatchBmiTokenRecoveryModeStateChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -2553,7 +2553,7 @@ export const useWatchBmiTokenRecoveryModeStateChangedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link bmiTokenAbi}__ and `eventName` set to `"SwapFeePercentageChanged"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWatchBmiTokenSwapFeePercentageChangedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -2565,7 +2565,7 @@ export const useWatchBmiTokenSwapFeePercentageChangedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link bmiTokenAbi}__ and `eventName` set to `"Transfer"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const useWatchBmiTokenTransferEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -2577,7 +2577,7 @@ export const useWatchBmiTokenTransferEvent =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFund = /*#__PURE__*/ createUseReadContract({
   abi: indexFundAbi,
@@ -2587,7 +2587,7 @@ export const useReadIndexFund = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"DEFAULT_FEE_TIER"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundDefaultFeeTier =
   /*#__PURE__*/ createUseReadContract({
@@ -2599,7 +2599,7 @@ export const useReadIndexFundDefaultFeeTier =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"DIVISOR"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundDivisor = /*#__PURE__*/ createUseReadContract({
   abi: indexFundAbi,
@@ -2610,7 +2610,7 @@ export const useReadIndexFundDivisor = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"balancerPoolId"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundBalancerPoolId =
   /*#__PURE__*/ createUseReadContract({
@@ -2622,7 +2622,7 @@ export const useReadIndexFundBalancerPoolId =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"balancerPoolToken"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundBalancerPoolToken =
   /*#__PURE__*/ createUseReadContract({
@@ -2634,7 +2634,7 @@ export const useReadIndexFundBalancerPoolToken =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"balancerVault"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundBalancerVault =
   /*#__PURE__*/ createUseReadContract({
@@ -2646,7 +2646,7 @@ export const useReadIndexFundBalancerVault =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"feeBasisPoints"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundFeeBasisPoints =
   /*#__PURE__*/ createUseReadContract({
@@ -2658,7 +2658,7 @@ export const useReadIndexFundFeeBasisPoints =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"getQuote"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundGetQuote = /*#__PURE__*/ createUseReadContract({
   abi: indexFundAbi,
@@ -2669,7 +2669,7 @@ export const useReadIndexFundGetQuote = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"indexTokens"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundIndexTokens = /*#__PURE__*/ createUseReadContract({
   abi: indexFundAbi,
@@ -2680,7 +2680,7 @@ export const useReadIndexFundIndexTokens = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"owner"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundOwner = /*#__PURE__*/ createUseReadContract({
   abi: indexFundAbi,
@@ -2691,7 +2691,7 @@ export const useReadIndexFundOwner = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"slippageTolerance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundSlippageTolerance =
   /*#__PURE__*/ createUseReadContract({
@@ -2703,7 +2703,7 @@ export const useReadIndexFundSlippageTolerance =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"tokenWeights"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundTokenWeights = /*#__PURE__*/ createUseReadContract(
   {
@@ -2716,7 +2716,7 @@ export const useReadIndexFundTokenWeights = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"uniswapFactory"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundUniswapFactory =
   /*#__PURE__*/ createUseReadContract({
@@ -2728,7 +2728,7 @@ export const useReadIndexFundUniswapFactory =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"uniswapRouter"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundUniswapRouter =
   /*#__PURE__*/ createUseReadContract({
@@ -2740,7 +2740,7 @@ export const useReadIndexFundUniswapRouter =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"wethAddress"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useReadIndexFundWethAddress = /*#__PURE__*/ createUseReadContract({
   abi: indexFundAbi,
@@ -2751,7 +2751,7 @@ export const useReadIndexFundWethAddress = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWriteIndexFund = /*#__PURE__*/ createUseWriteContract({
   abi: indexFundAbi,
@@ -2761,7 +2761,7 @@ export const useWriteIndexFund = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"mint"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWriteIndexFundMint = /*#__PURE__*/ createUseWriteContract({
   abi: indexFundAbi,
@@ -2772,7 +2772,7 @@ export const useWriteIndexFundMint = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"redeem"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWriteIndexFundRedeem = /*#__PURE__*/ createUseWriteContract({
   abi: indexFundAbi,
@@ -2783,7 +2783,7 @@ export const useWriteIndexFundRedeem = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWriteIndexFundRenounceOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -2795,7 +2795,7 @@ export const useWriteIndexFundRenounceOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setFeeBasisPoints"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWriteIndexFundSetFeeBasisPoints =
   /*#__PURE__*/ createUseWriteContract({
@@ -2807,7 +2807,7 @@ export const useWriteIndexFundSetFeeBasisPoints =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setSlippageTolerance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWriteIndexFundSetSlippageTolerance =
   /*#__PURE__*/ createUseWriteContract({
@@ -2819,7 +2819,7 @@ export const useWriteIndexFundSetSlippageTolerance =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWriteIndexFundTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -2831,7 +2831,7 @@ export const useWriteIndexFundTransferOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useSimulateIndexFund = /*#__PURE__*/ createUseSimulateContract({
   abi: indexFundAbi,
@@ -2841,7 +2841,7 @@ export const useSimulateIndexFund = /*#__PURE__*/ createUseSimulateContract({
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"mint"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useSimulateIndexFundMint = /*#__PURE__*/ createUseSimulateContract(
   { abi: indexFundAbi, address: indexFundAddress, functionName: 'mint' },
@@ -2850,7 +2850,7 @@ export const useSimulateIndexFundMint = /*#__PURE__*/ createUseSimulateContract(
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"redeem"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useSimulateIndexFundRedeem =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2862,7 +2862,7 @@ export const useSimulateIndexFundRedeem =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"renounceOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useSimulateIndexFundRenounceOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2874,7 +2874,7 @@ export const useSimulateIndexFundRenounceOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setFeeBasisPoints"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useSimulateIndexFundSetFeeBasisPoints =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2886,7 +2886,7 @@ export const useSimulateIndexFundSetFeeBasisPoints =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"setSlippageTolerance"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useSimulateIndexFundSetSlippageTolerance =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2898,7 +2898,7 @@ export const useSimulateIndexFundSetSlippageTolerance =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link indexFundAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useSimulateIndexFundTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -2910,7 +2910,7 @@ export const useSimulateIndexFundTransferOwnership =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWatchIndexFundEvent = /*#__PURE__*/ createUseWatchContractEvent(
   { abi: indexFundAbi, address: indexFundAddress },
@@ -2919,7 +2919,7 @@ export const useWatchIndexFundEvent = /*#__PURE__*/ createUseWatchContractEvent(
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"FeeUpdated"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWatchIndexFundFeeUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -2931,7 +2931,7 @@ export const useWatchIndexFundFeeUpdatedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"Minted"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWatchIndexFundMintedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -2943,7 +2943,7 @@ export const useWatchIndexFundMintedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWatchIndexFundOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -2955,7 +2955,7 @@ export const useWatchIndexFundOwnershipTransferredEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"Redeemed"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWatchIndexFundRedeemedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -2967,7 +2967,7 @@ export const useWatchIndexFundRedeemedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link indexFundAbi}__ and `eventName` set to `"SlippageToleranceUpdated"`
  *
- * [__View Contract on Base Basescan__](https://basescan.org/address/0x260db430bA657F9CEb8497B2A1A3E3A1d25113f0)
+ * [__View Contract on Base Basescan__](https://basescan.org/address/0x27E555F194f0ABE12249250674BEbC156eC2a58C)
  */
 export const useWatchIndexFundSlippageToleranceUpdatedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
