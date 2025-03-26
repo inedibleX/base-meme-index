@@ -44,14 +44,6 @@ export const UserBalanceCard = () => {
                   {numberFormat(formatEther(bmiTokenBalance ?? BigInt(0)))} $BMI
                 </p>
               )}
-              {isEthBalanceLoading ? (
-                <Skeleton className="h-[28px] w-[95px] rounded-sm" />
-              ) : (
-                <p className="text-lg text-sky-500">
-                  {numberFormat(formatEther(ethBalance?.value ?? BigInt(0)))}{' '}
-                  ETH
-                </p>
-              )}
             </div>
           </div>
         </div>
