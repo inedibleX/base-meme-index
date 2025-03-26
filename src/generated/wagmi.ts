@@ -626,7 +626,7 @@ export const bmiTokenAbi = [
  * [__View Contract on Base Basescan__](https://basescan.org/address/0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f)
  */
 export const bmiTokenAddress = {
-  8453: '0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35',
+  8453: '0xFfA997dFeD184a220392ebaE7C054c39D87Ad00f',
 } as const
 
 /**
