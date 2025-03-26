@@ -13,7 +13,7 @@ export const useBmiTokenUsdPriceAndTVL = () => {
   const { data: tokenInfo, isLoading: isTokenInfoLoading } =
     useReadVaultGetPoolTokenInfo({
       args: [
-        '0xffa997dfed184a220392ebae7c054c39d87ad00f0001000000000000000001d2',
+        '0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB350001000000000000000001d2',
         '0x0d97f261b1e88845184f678e2d1e7a98d9fd38de',
       ],
     })
