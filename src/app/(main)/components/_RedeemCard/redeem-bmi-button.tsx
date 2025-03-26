@@ -48,7 +48,7 @@ export const RedeemBMIButton = ({ amount, onRedeem }: RedeemBMIButtonProps) => {
   // TODO: replace with a dynamic token and address
   const { refetch: refetchPoolTokenInfo } = useReadVaultGetPoolTokenInfo({
     args: [
-      '0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB350001000000000000000001d2',
+      '0xb8931645216d8ff2b4d8323a6bbbef9bd482db350001000000000000000001d2',
       '0x0d97f261b1e88845184f678e2d1e7a98d9fd38de',
     ],
   })
