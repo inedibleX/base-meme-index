@@ -111,7 +111,7 @@ export const ApproveBMIButton = ({
         isLoading={isLoading}
         onClick={handleApproveClick}
       >
-        {isLoading ? 'Approve $BMI' : 'Approving...'}
+        {isLoading ? 'Approve $EMI' : 'Approving...'}
       </ActionButton>
 
       {errorMsg && <p className="mt-2 text-sm text-red-500">{errorMsg}</p>}

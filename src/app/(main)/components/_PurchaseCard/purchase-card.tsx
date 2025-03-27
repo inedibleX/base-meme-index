@@ -23,7 +23,7 @@ export const PurchaseCard = () => {
     setPurchaseAmount('')
     toastTxSuccess(
       'Transaction successful',
-      'Your $BMI has been purchased!',
+      'Your $EMI has been purchased!',
       hash,
     )
   }, [])
@@ -34,7 +34,7 @@ export const PurchaseCard = () => {
         <div className="mb-4 flex items-center">
           <ArrowDownUp className="mr-2 h-6 w-6 text-sky-600" />
           <h2 className="text-xl font-semibold text-slate-800">
-            Purchase $BMI
+            Purchase $EMI
           </h2>
         </div>
         <div className="space-y-4">

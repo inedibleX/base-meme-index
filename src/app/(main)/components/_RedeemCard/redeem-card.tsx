@@ -26,7 +26,7 @@ export const RedeemCard = () => {
     setRedeemAmount('')
     toastTxSuccess(
       'Transaction successful',
-      'Your $BMI has been redeemed!',
+      'Your $EMI has been redeemed!',
       hash,
     )
   }, [])
@@ -34,7 +34,7 @@ export const RedeemCard = () => {
   const onApprove = useCallback((hash: string) => {
     toastTxSuccess(
       'Transaction successful',
-      'Your $BMI has been approved!',
+      'Your $EMI has been approved!',
       hash,
     )
   }, [])
@@ -44,7 +44,7 @@ export const RedeemCard = () => {
       <div className="rounded-2xl bg-white/90 p-6 shadow-xl backdrop-blur-md">
         <div className="mb-4 flex items-center">
           <ArrowRightLeft className="mr-2 h-6 w-6 text-sky-600" />
-          <h2 className="text-xl font-semibold text-slate-800">Redeem $BMI</h2>
+          <h2 className="text-xl font-semibold text-slate-800">Redeem $EMI</h2>
         </div>
         <div className="space-y-4">
           <div className="rounded-xl bg-sky-50 p-4">
@@ -53,7 +53,7 @@ export const RedeemCard = () => {
                 className="mb-2 block text-sm text-slate-600"
                 htmlFor="purchaseAmount"
               >
-                Amount in $BMI
+                Amount in $EMI
               </label>
               {isBmiTokenBalanceLoading ? (
                 <Skeleton className="h-[20px] w-[80px] rounded-sm" />
@@ -61,7 +61,7 @@ export const RedeemCard = () => {
                 <BalanceButton
                   balance={bmiTokenBalance ?? BigInt(0)}
                   isDisabled={!bmiTokenBalance || !address}
-                  label="$BMI"
+                  label="$EMI"
                   onClick={(v) => setRedeemAmount(v)}
                 />
               )}

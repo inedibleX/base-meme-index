@@ -143,13 +143,13 @@ export const PurchaseBMIButton = ({
 
       <SwapConfirmationDialog
         confirmButtonText="Confirm Purchase"
-        description="Are you sure you want to purchase $BMI?"
+        description="Are you sure you want to purchase $EMI?"
         onConfirm={handlePurchaseConfirmed}
         onOpenChange={setShowConfirmPurchaseDialog}
         open={showConfirmPurchaseDialog}
         title="Confirm Purchase"
         userPaysAmount={`${formatEther(amount)} ETH`}
-        userReceivesAmount={`${estimatedBmiTokensReceived.toFixed(2)} $BMI`}
+        userReceivesAmount={`${estimatedBmiTokensReceived.toFixed(2)} $EMI`}
       />
     </>
   )

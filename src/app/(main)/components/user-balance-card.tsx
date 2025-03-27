@@ -41,7 +41,7 @@ export const UserBalanceCard = () => {
                 <Skeleton className="h-[32px] w-[95px] rounded-sm" />
               ) : (
                 <p className="text-2xl font-bold text-sky-600">
-                  {numberFormat(formatEther(bmiTokenBalance ?? BigInt(0)))} $BMI
+                  {numberFormat(formatEther(bmiTokenBalance ?? BigInt(0)))} $EMI
                 </p>
               )}
             </div>

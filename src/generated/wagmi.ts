@@ -626,7 +626,7 @@ export const bmiTokenAbi = [
  * [__View Contract on Base Basescan__](https://basescan.org/address/0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35)
  */
 export const bmiTokenAddress = {
-  8453: '0xB8931645216D8FF2B4D8323A6BBbEf9bD482DB35',
+  8453: '0x394044dDA375095185f1443f1397b36042b402d3',
 } as const
 
 /**
@@ -956,7 +956,7 @@ export const indexFundAbi = [
  * [__View Contract on Base Basescan__](https://basescan.org/address/0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0)
  */
 export const indexFundAddress = {
-  8453: '0x65bfCF0D9CcD78A72E390EF8322cC6325E0f47A0',
+  8453: '0x0Ec4FDC463F3F554DE66C4B024eF8f9A466B907d',
 } as const
 
 /**

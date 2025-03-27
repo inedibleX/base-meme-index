@@ -10,7 +10,7 @@ export const TVLAmountCard = () => {
   return (
     <div className="mb-8 flex items-center justify-between rounded-2xl bg-white/90 p-6 shadow-xl backdrop-blur-md">
       <h2 className="grow text-xl font-semibold text-slate-800">
-        $BMI <span className="hidden sm:inline">Total Value Locked</span>{' '}
+        $EMI <span className="hidden sm:inline">Total Value Locked</span>{' '}
         <span className="inline sm:hidden">TVL</span>
       </h2>
       <div className="text-2xl font-bold text-sky-500">
