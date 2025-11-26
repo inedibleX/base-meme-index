@@ -17,7 +17,7 @@ jobs:
       NEXT_PUBLIC_VAULT_ADDRESS: ${{ secrets.NEXT_PUBLIC_VAULT_ADDRESS }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Cache Node Modules
         uses: actions/cache@v4
